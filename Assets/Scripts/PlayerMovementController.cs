@@ -6,34 +6,39 @@ using UnityEngine;
 public class PlayerMovementController : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public FuelTank fuelTank;
 
-    public float jetpackForce = 100f;
-    public float jetpackTorque = 100f;
+    public float jetpackForwardDeltaV = 100f; //m/s^2
+    public float jetpackFowaredDepletionRate = 1f; //kg/s
+
+    
+    public bool requiresFuelToRotate = false;
+    public float jetpackRotateDeltaV = 100f;
+    public float jetpackRotateDepletion= 1f; //kg/s
 
     void Awake(){
         rb=GetComponent<Rigidbody2D>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKey(KeyCode.UpArrow)){
-            rb.AddForce( transform.up * jetpackForce * Time.deltaTime);
-            //fuelsystem.DepleteFuel
+            float forceApplied = fuelTank.DepleteFuel(jetpackFowaredDepletionRate * Time.deltaTime) * jetpackForwardDeltaV ;
+            rb.AddForce( transform.up * forceApplied);
         }
 
         if(Input.GetKey(KeyCode.LeftArrow)){
-            rb.AddTorque(jetpackTorque * Time.deltaTime);
-            //fuelSystem
+            float torqueApplied = requiresFuelToRotate? 
+                fuelTank.DepleteFuel(jetpackRotateDepletion * Time.deltaTime) * jetpackRotateDeltaV : 
+                jetpackRotateDeltaV * Time.deltaTime;
+            rb.AddTorque(torqueApplied);
         }
         if(Input.GetKey(KeyCode.RightArrow)){
-            rb.AddTorque( -jetpackTorque * Time.deltaTime);
+            float torqueApplied = requiresFuelToRotate? 
+                fuelTank.DepleteFuel(jetpackRotateDepletion * Time.deltaTime) * jetpackRotateDeltaV : 
+                jetpackRotateDeltaV * Time.deltaTime;
+            rb.AddTorque( -torqueApplied);
         }
 
 
