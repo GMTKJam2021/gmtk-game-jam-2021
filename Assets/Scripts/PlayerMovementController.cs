@@ -9,31 +9,36 @@ public class PlayerMovementController : MonoBehaviour
 
     public float jetpackForce = 100f;
     public float jetpackTorque = 100f;
+    public bool isSwinging = false;
 
-    void Awake(){
-        rb=GetComponent<Rigidbody2D>();
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.UpArrow)){
-            rb.AddForce( transform.up * jetpackForce * Time.deltaTime);
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            rb.AddForce(transform.up * jetpackForce * Time.deltaTime);
             //fuelsystem.DepleteFuel
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow)){
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
             rb.AddTorque(jetpackTorque * Time.deltaTime);
             //fuelSystem
         }
-        if(Input.GetKey(KeyCode.RightArrow)){
-            rb.AddTorque( -jetpackTorque * Time.deltaTime);
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            rb.AddTorque(-jetpackTorque * Time.deltaTime);
         }
 
 

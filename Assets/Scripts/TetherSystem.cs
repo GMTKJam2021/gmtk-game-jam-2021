@@ -1,0 +1,221 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+
+// Heavily references this tutorial series: https://www.raywenderlich.com/348-make-a-2d-grappling-hook-game-in-unity-part-1
+public class TetherSystem : MonoBehaviour
+{
+    public GameObject tetherHingeAnchor;
+    public DistanceJoint2D tetherJoint;
+    public Transform crosshair;
+    public SpriteRenderer crosshairSprite;
+    public PlayerMovementController playerMovement;
+    private bool tetherAttached;
+    private Vector2 playerPosition;
+    private Rigidbody2D tetherHingeAnchorRb;
+    private SpriteRenderer tetherHingeAnchorSprite;
+    public LineRenderer tetherRenderer;
+    public LayerMask tetherLayerMask;
+    private float tetherMaxCastDistance = 20f;
+    private List<Vector2> tetherPositions = new List<Vector2>();
+    private bool distanceSet;
+    private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
+
+    void Awake()
+    {
+        tetherJoint.enabled = false;
+        playerPosition = transform.position;
+        tetherHingeAnchorRb = tetherHingeAnchor.GetComponent<Rigidbody2D>();
+        tetherHingeAnchorSprite = tetherHingeAnchor.GetComponent<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
+        Vector3 facingDirection = worldMousePosition - transform.position;
+        float aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
+        if (aimAngle < 0f)
+        {
+            aimAngle = Mathf.PI * 2 + aimAngle;
+        }
+
+        var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
+
+        playerPosition = transform.position;
+
+        if (!tetherAttached)
+        {
+            SetCrosshairPosition(aimAngle);
+        }
+        else
+        {
+            crosshairSprite.enabled = false;
+
+            if (tetherPositions.Count > 0)
+            {
+                var lastRopePoint = tetherPositions.Last();
+                var playerToCurrentNextHit = Physics2D.Raycast(playerPosition, (lastRopePoint - playerPosition).normalized, Vector2.Distance(playerPosition, lastRopePoint) - 0.1f, tetherLayerMask);
+
+                if (playerToCurrentNextHit)
+                {
+                    var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
+                    if (colliderWithVertices != null)
+                    {
+                        var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
+
+                        if (wrapPointsLookup.ContainsKey(closestPointToHit))
+                        {
+                            ResetTether();
+                            return;
+                        }
+
+                        tetherPositions.Add(closestPointToHit);
+                        wrapPointsLookup.Add(closestPointToHit, 0);
+                        distanceSet = false;
+                    }
+                }
+            }
+        }
+
+        HandleInput(aimDirection);
+        UpdateTetherPositions();
+    }
+
+    private void SetCrosshairPosition(float aimAngle)
+    {
+        if (!crosshairSprite.enabled)
+        {
+            crosshairSprite.enabled = true;
+        }
+
+        var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
+        var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
+
+        var crossHairPosition = new Vector3(x, y, 0);
+        crosshair.transform.position = crossHairPosition;
+    }
+
+    private void HandleInput(Vector2 aimDirection)
+    {
+        if (Input.GetMouseButton(0))
+        {
+            if (tetherAttached) return;
+            tetherRenderer.enabled = true;
+
+            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, tetherLayerMask);
+
+            if (hit.collider != null)
+            {
+                tetherAttached = true;
+                if (!tetherPositions.Contains(hit.point))
+                {
+                    // Jump slightly to distance the player a little from the ground after grappling to something.
+                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
+                    tetherPositions.Add(hit.point);
+                    tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
+                    tetherJoint.enabled = true;
+                    tetherHingeAnchorSprite.enabled = true;
+                }
+            }
+            else
+            {
+                tetherRenderer.enabled = false;
+                tetherAttached = false;
+                tetherJoint.enabled = false;
+            }
+        }
+
+        if (Input.GetMouseButton(1))
+        {
+            ResetTether();
+        }
+    }
+
+    private void ResetTether()
+    {
+        tetherJoint.enabled = false;
+        tetherAttached = false;
+        playerMovement.isSwinging = false;
+        tetherRenderer.positionCount = 2;
+        tetherRenderer.SetPosition(0, transform.position);
+        tetherRenderer.SetPosition(1, transform.position);
+        tetherPositions.Clear();
+        tetherHingeAnchorSprite.enabled = false;
+        wrapPointsLookup.Clear();
+    }
+
+    private void UpdateTetherPositions()
+    {
+        if (!tetherAttached)
+        {
+            return;
+        }
+
+        tetherRenderer.positionCount = tetherPositions.Count + 1;
+
+        for (var i = tetherRenderer.positionCount - 1; i >= 0; i--)
+        {
+            if (i != tetherRenderer.positionCount - 1) // if not the Last point of line renderer
+            {
+                tetherRenderer.SetPosition(i, tetherPositions[i]);
+
+                if (i == tetherPositions.Count - 1 || tetherPositions.Count == 1)
+                {
+                    var tetherPosition = tetherPositions[tetherPositions.Count - 1];
+                    if (tetherPositions.Count == 1)
+                    {
+                        tetherHingeAnchorRb.transform.position = tetherPosition;
+                        if (!distanceSet)
+                        {
+                            tetherJoint.distance = Vector2.Distance(transform.position, tetherPosition);
+                            distanceSet = true;
+                        }
+                    }
+                    else
+                    {
+                        tetherHingeAnchorRb.transform.position = tetherPosition;
+                        if (!distanceSet)
+                        {
+                            tetherJoint.distance = Vector2.Distance(transform.position, tetherPosition);
+                            distanceSet = true;
+                        }
+                    }
+                }
+                else if (i - 1 == tetherPositions.IndexOf(tetherPositions.Last()))
+                {
+                    var tetherPosition = tetherPositions.Last();
+                    tetherHingeAnchorRb.transform.position = tetherPosition;
+                    if (!distanceSet)
+                    {
+                        tetherJoint.distance = Vector2.Distance(transform.position, tetherPosition);
+                        distanceSet = true;
+                    }
+                }
+            }
+            else
+            {
+                tetherRenderer.SetPosition(i, transform.position);
+            }
+        }
+    }
+
+    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider)
+    {
+        // This converts the polygon collider's collection of points, into a dictionary of Vector2 positions 
+        // (the value of each dictionary entry is the position itself), and the key of each entry, is set to 
+        // the distance that this point is to the player's position (float value). Something else happens here: 
+        // the resulting position is transformed into world space (by default a collider's vertex positions are 
+        // stored in local space - i.e. local to the object the collider sits on, and we want the world space 
+        // positions).
+        var distanceDictionary = polyCollider.points.ToDictionary<Vector2, float, Vector2>(
+            position => Vector2.Distance(hit.point, polyCollider.transform.TransformPoint(position)),
+            position => polyCollider.transform.TransformPoint(position));
+
+        // The dictionary is ordered by key. In other words, the distance closest to the player's current 
+        // position, and the closest one is returned, meaning that whichever point is returned from this method, 
+        // is the point on the collider between the player and the current hinge point on the tether.
+        var orderedDictionary = distanceDictionary.OrderBy(e => e.Key);
+        return orderedDictionary.Any() ? orderedDictionary.First().Value : Vector2.zero;
+    }
+}
