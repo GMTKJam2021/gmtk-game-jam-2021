@@ -4,27 +4,36 @@ using UnityEngine;
 
 public class TetherSource : MonoBehaviour
 {
-    public TetherSegment startingSegment;
-    public DistanceJoint2D distanceJoint;
-    public float distanceToExtend = 0.5f;
+    public GameObject tetherPrefab;
+    public DistanceJoint2D joint;
+    public float maxStretchBeforeAddition = 0.5f;
 
     private void Awake()
     {
-        Debug.Assert(distanceJoint != null);
-        Debug.Assert(startingSegment != null);
-
+        Debug.Assert(tetherPrefab != null);
+        Debug.Assert(joint != null);
     }
+
+    public void AddNewTether()
+    {
+        GameObject newTether = Instantiate(tetherPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+        newTether.transform.parent = transform.parent;
+        HingeJoint2D newJoint = newTether.GetComponent<HingeJoint2D>();
+        Rigidbody2D oldTether = joint.connectedBody;
+        joint.connectedBody = newTether.GetComponent<Rigidbody2D>();
+        newJoint.connectedBody = oldTether;
+    }
+
+    public bool CheckForNewTether()
+    {
+        return joint.distance > maxStretchBeforeAddition;
+    }
+
     private void FixedUpdate()
     {
-        // if tether is stretched
-        HingeJoint2D j = startingSegment.GetComponent<HingeJoint2D>();
-        if (distanceJoint.distance >= distanceToExtend)
+        if (CheckForNewTether())
         {
-            // add piece of tether
-            startingSegment = startingSegment.AddSegmentBefore();
+            AddNewTether();
         }
-
-        // on button hold
-        // slowly remove pieces of tether
     }
 }
