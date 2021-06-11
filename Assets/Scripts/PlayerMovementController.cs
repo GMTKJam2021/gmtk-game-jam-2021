@@ -25,11 +25,17 @@ public class PlayerMovementController : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.UpArrow)){
             rb.AddForce( transform.up * jetpackForce * Time.deltaTime);
+            //fuelsystem.DepleteFuel
         }
 
-        if(Input.GetKey(KeyCode.LeftArrow))
+        if(Input.GetKey(KeyCode.LeftArrow)){
             rb.AddTorque(jetpackTorque * Time.deltaTime);
-        if(Input.GetKey(KeyCode.RightArrow))
+            //fuelSystem
+        }
+        if(Input.GetKey(KeyCode.RightArrow)){
             rb.AddTorque( -jetpackTorque * Time.deltaTime);
+        }
+
+
     }
 }
