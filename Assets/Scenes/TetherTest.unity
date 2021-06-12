@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 215595652}
   - component: {fileID: 215595653}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Direction Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -215,7 +215,7 @@ GameObject:
   m_Component:
   - component: {fileID: 437385439}
   - component: {fileID: 437385440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -302,7 +302,8 @@ GameObject:
   - component: {fileID: 559951654}
   - component: {fileID: 559951656}
   - component: {fileID: 559951658}
-  m_Layer: 0
+  - component: {fileID: 559951659}
+  m_Layer: 8
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -413,9 +414,9 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!232 &559951656
 DistanceJoint2D:
@@ -556,6 +557,22 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!58 &559951659
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559951651}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1111497636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,7 +1046,7 @@ GameObject:
   - component: {fileID: 2031226106}
   - component: {fileID: 2031226105}
   - component: {fileID: 2031226104}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -1112,7 +1129,7 @@ GameObject:
   - component: {fileID: 2108488532}
   - component: {fileID: 2108488534}
   - component: {fileID: 2108488533}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Tether Hinge Anchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

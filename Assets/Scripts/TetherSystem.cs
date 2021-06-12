@@ -72,11 +72,11 @@ public class TetherSystem : MonoBehaviour
                     {
                         var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
 
-                        if (wrapPointsLookup.ContainsKey(closestPointToHit))
-                        {
-                            ResetTether();
-                            return;
-                        }
+                        // if (wrapPointsLookup.ContainsKey(closestPointToHit))
+                        // {
+                        //     ResetTether();
+                        //     return;
+                        // }
 
                         tetherPositions.Add(closestPointToHit);
                         wrapPointsLookup.Add(closestPointToHit, 0);
