@@ -15,6 +15,9 @@ public class PlayerMovementController : MonoBehaviour
     public bool requiresFuelToRotate = false;
     public float jetpackRotateDeltaV = 100f;
     public float jetpackRotateDepletion= 1f; //kg/s
+    public bool isSwinging = false;
+    public Vector2 tetherHook;
+    public float swingForce = 4f;
 
     void Awake(){
         rb=GetComponent<Rigidbody2D>();
