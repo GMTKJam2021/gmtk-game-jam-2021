@@ -7,7 +7,7 @@ public class MeterBar : MonoBehaviour
 {
     Slider slider;
 
-    void Start(){
+    void Awake(){
         slider = GetComponent<Slider>();
     }
 
