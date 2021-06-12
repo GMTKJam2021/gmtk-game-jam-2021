@@ -19,6 +19,7 @@ public class TetherSystem : MonoBehaviour
     private SpriteRenderer tetherHingeAnchorSprite;
     public LineRenderer tetherRenderer;
     public LayerMask tetherLayerMask;
+    [SerializeField]
     private float tetherMaxCastDistance = 20f;
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
@@ -47,6 +48,8 @@ public class TetherSystem : MonoBehaviour
 
         var aimDirection = Quaternion.Euler(0, 0, aimAngle * Mathf.Rad2Deg) * Vector2.right;
 
+        // Check direction of angle
+        //Debug.DrawRay(transform.position, aimDirection, Color.red);
         playerPosition = transform.position;
 
         if (!tetherAttached)
