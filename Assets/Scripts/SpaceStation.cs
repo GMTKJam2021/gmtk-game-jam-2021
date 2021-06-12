@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class SpaceStation : MonoBehaviour
 {
-    [SerializeField] // Serialized for debugging
     private StationModule[,] modules;
     public GameObject testPrefab;
     public Vector2Int maxStationDimensions = new Vector2Int(13, 13);
@@ -138,10 +137,20 @@ public class SpaceStation : MonoBehaviour
                     continue;
                 }
 
-                if (modules[x + moduleX, y + moduleY] != null)
+                if (modules[x + moduleX, y + moduleY] == null) // no neighbor there
                 {
-                    count++;
+                    continue;
                 }
+                Debug.Log(x);
+                Debug.Log(y);
+                Debug.Log(modules[x + moduleX, y + moduleY]);
+                if (!modules[x + moduleX, y + moduleY].CheckIfCanConnectTo(moduleX, moduleY, x + moduleX, y + moduleY)) // if no valid connector
+                {
+                    continue;
+                }
+
+                // if everything works, increase the neighbor count
+                count++;
             }
         }
 

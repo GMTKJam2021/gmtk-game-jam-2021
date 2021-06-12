@@ -22,6 +22,19 @@ public class StationModule : MonoBehaviour
 
     }
 
+    public bool CheckIfCanConnectTo(int x, int y, int offsetX, int offsetY)
+    {
+        foreach (var connection in connections)
+        {
+            // If it has a connector that can connect to the requested spot, return true
+            if (connection.connectedModuleGridLocation.x + offsetX == x && connection.connectedModuleGridLocation.y + offsetY == y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private void AlignToConnection(StationConnection other)
     {
         transform.eulerAngles = new Vector3(0f, 0f, other.outDirectionAngle);
@@ -35,7 +48,5 @@ public class StationModule : MonoBehaviour
             rb.rotation += angle * Time.deltaTime;
             yield return null;
         }
-
     }
-
 }

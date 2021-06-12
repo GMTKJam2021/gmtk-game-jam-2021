@@ -881,7 +881,8 @@ MonoBehaviour:
   testPrefab: {fileID: 466686230633995062, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
-  moduleScaleInRate: 0.1
+  gridOffset: {x: -6.5, y: -6.5, z: 0}
+  moduleScaleInRate: 0.2
 --- !u!1 &852902187
 GameObject:
   m_ObjectHideFlags: 0
