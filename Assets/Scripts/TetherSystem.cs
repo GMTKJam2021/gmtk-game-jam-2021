@@ -75,6 +75,7 @@ public class TetherSystem : MonoBehaviour
 
                         if (wrapPointsLookup.ContainsKey((closestPointToHit, wrapLoop)))
                         {
+                            // Removed to permit multiple loops
                             // ResetTether();
                             // return;
 
