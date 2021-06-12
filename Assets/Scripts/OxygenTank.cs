@@ -5,6 +5,8 @@ using UnityEngine;
 public class OxygenTank : MonoBehaviour
 {
 
+    public MeterBar oxygenGauge;
+
     /// <summary> The max amount of oxygen the tank can hold</summary>
     [SerializeField] private float oxygenMax = 50f;
     /// <summary> The amount of oxygen remaining</summary>
@@ -27,6 +29,9 @@ public class OxygenTank : MonoBehaviour
                 Debug.Log("Oxygen Tank Full");
             }
         }
+
+        if(oxygenGauge)
+            oxygenGauge.SetAmount(oxygenRemaining);
     }
 
 
@@ -43,6 +48,14 @@ public class OxygenTank : MonoBehaviour
                 Debug.Log("Oxygen Tank Empty");
             }
         }
+
+        if(oxygenGauge)
+            oxygenGauge.SetAmount(oxygenRemaining);
+    }
+
+    void Awake(){
+        if(oxygenGauge)
+            oxygenGauge.SetMaxAmount(oxygenMax);
     }
 
 }

@@ -13,8 +13,10 @@ public class ScoreKeeper : MonoBehaviour
     private void Awake()
     {
         data = SaveSystem.Load();
-        highScoreText.text = "HighScore: " + data.highScore;
-        currentScoreText.text = "Score: 0";
+        if(highScoreText)
+            highScoreText.text = "HighScore: " + data.highScore;
+        if(currentScoreText)
+            currentScoreText.text = "Score: 0";
     }
 
     /// <summary> Adds points to the score</summary>
@@ -22,8 +24,10 @@ public class ScoreKeeper : MonoBehaviour
     public void AddPoints(int points)
     {
         currentScore += points;
-        currentScoreText.text = "Score: " + currentScore;
-        if(currentScore > data.highScore)
+
+        if(currentScoreText)
+            currentScoreText.text = "Score: " + currentScore;
+        if(currentScore > data.highScore && highScoreText!=null)
             highScoreText.text = "HighScore: " + currentScore;
     }
 
@@ -31,6 +35,7 @@ public class ScoreKeeper : MonoBehaviour
     public void ResetPoints()
     {
         currentScore = 0;
-        currentScoreText.text = "Score: 0";
+        if(currentScoreText)
+            currentScoreText.text = "Score: 0";
     }
 }
