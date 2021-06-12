@@ -7,17 +7,22 @@ public class PlayerInteraction : MonoBehaviour
     private ModuleState currentModule;
     private OxygenTank oxygenTank;
     [SerializeField] private bool tethered = false;
+    private ScoreKeeper scoreKeeper;
 
     private void Start()
     {
         oxygenTank = GetComponent<OxygenTank>();
+        scoreKeeper = GetComponent<ScoreKeeper>();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1))
             if (currentModule != null)
+            {
                 currentModule.Fix();
+                scoreKeeper.AddPoints(1);
+            }
             else
                 Debug.Log("No Module Available");
         if (tethered)
