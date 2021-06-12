@@ -25,7 +25,7 @@ public class MiniGameWindow : MonoBehaviour
     {
         minigame = minigameRoot;
         minigame.transform.localScale = new Vector3(minigame.transform.localScale.x / minigame.dimensions.x, minigame.transform.localScale.y / minigame.dimensions.y, 1f);
-        windowState++;
+        windowState = 1;
     }
 
     void Update()
@@ -58,19 +58,20 @@ public class MiniGameWindow : MonoBehaviour
         currentModule = newModule;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive); // Loads the scene for the minigame
-        windowState++; // Starts opening the window
+        windowState = 1; // Starts opening the window
     }
 
     private void WindowOpen()
     {
         transform.localScale += new Vector3(1f, 1f, 0) * Time.deltaTime * 10f;
-        if (transform.localScale.x > 100f)
-            windowState++; // Marks window as fully open
+        Debug.Log(transform.localScale);
+        if (transform.localScale.x > 10f)
+            windowState = 2; // Marks window as fully open
     }
     private void WindowRun()
     {
         if (Input.GetKeyDown(KeyCode.Space))
-            windowState++; // Starts closing window
+            windowState = 3; // Starts closing window
     }
     private void WindowClose()
     {
