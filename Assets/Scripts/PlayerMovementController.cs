@@ -10,6 +10,8 @@ public class PlayerMovementController : MonoBehaviour
     public float jetpackForce = 100f;
     public float jetpackTorque = 100f;
     public bool isSwinging = false;
+    public Vector2 tetherHook;
+    public float swingForce = 4f;
 
     void Awake()
     {

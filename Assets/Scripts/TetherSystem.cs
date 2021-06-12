@@ -21,6 +21,8 @@ public class TetherSystem : MonoBehaviour
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
     private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
+    public float climbSpeed = 3f;
+    private bool isColliding;
 
     void Awake()
     {
@@ -46,10 +48,14 @@ public class TetherSystem : MonoBehaviour
 
         if (!tetherAttached)
         {
+            playerMovement.isSwinging = false;
             SetCrosshairPosition(aimAngle);
         }
         else
         {
+            playerMovement.isSwinging = true;
+            playerMovement.tetherHook = tetherPositions.Last();
+
             crosshairSprite.enabled = false;
 
             if (tetherPositions.Count > 0)
@@ -79,6 +85,7 @@ public class TetherSystem : MonoBehaviour
         }
 
         HandleInput(aimDirection);
+        HandleTetherLength();
         UpdateTetherPositions();
     }
 
@@ -217,5 +224,39 @@ public class TetherSystem : MonoBehaviour
         // is the point on the collider between the player and the current hinge point on the tether.
         var orderedDictionary = distanceDictionary.OrderBy(e => e.Key);
         return orderedDictionary.Any() ? orderedDictionary.First().Value : Vector2.zero;
+    }
+
+    private void HandleTetherLength()
+    {
+        if (Input.GetButton("Tether Extend") && tetherAttached && !isColliding)
+        {
+            tetherJoint.distance -= Time.deltaTime * climbSpeed;
+        }
+        else if (Input.GetButton("Tether Retract") && tetherAttached)
+        {
+            tetherJoint.distance += Time.deltaTime * climbSpeed;
+        }
+    }
+
+    // May be needed?
+    /*void OnTriggerStay2D(Collider2D colliderStay)
+    {
+        isColliding = true;
+    }*/
+
+    private void OnCollisionStay2D(Collision2D other)
+    {
+        isColliding = true;
+    }
+
+    // May be needed?
+    /*private void OnTriggerExit2D(Collider2D colliderOnExit)
+    {
+        isColliding = false;
+    }*/
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        isColliding = false;
     }
 }
