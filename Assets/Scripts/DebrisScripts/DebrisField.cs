@@ -8,6 +8,7 @@ public class DebrisField : MonoBehaviour
     [System.Serializable]
     public struct SpawnMetrics{
         public string typeName;
+        public bool enabled;
         public SpaceDebris prefab;
         public float directionLowerBound;
         public float directionUpperBound;
@@ -17,6 +18,7 @@ public class DebrisField : MonoBehaviour
         public int maxInstances;
     }
     
+    public float spawnDistance = 20f;
     public SpawnMetrics[] spawnOptions; 
 
     CircleCollider2D bounds;
@@ -32,41 +34,32 @@ public class DebrisField : MonoBehaviour
             GameObject obj = new GameObject(option.typeName);
             obj.transform.SetParent(this.transform);
         }
-        // Vector2 start = Random.insideUnitCircle.normalized * bounds.radius;
-        // Vector3 direction = Random.insideUnitCircle.normalized * 10f;
-
-        // SpaceDebris debris = Instantiate(debrisPrefab.gameObject).GetComponent<SpaceDebris>();
-        // debris.parent = this;
-        // debris.transform.position = start;
-        // debris.rb.AddForce(direction*10f);
-        // debris.transform.SetParent(this.transform);
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         for(int i=0; i<spawnOptions.Length;i++){
             SpawnMetrics metrics = spawnOptions[i];
+            if(!metrics.enabled) continue;
             Transform child = transform.GetChild(i);
 
             if(child.childCount<metrics.maxInstances)
             {
                 TrySpawn(metrics, child);
             }
-
-            
         }
     }
 
     public void TrySpawn(SpawnMetrics metrics, Transform parent){
-        if(Random.value > metrics.probability) return;
+        if(Random.value > metrics.probability * Time.deltaTime) return;
 
         float direction = Random.Range(metrics.directionLowerBound, metrics.directionUpperBound)%360f;
         float speed = Random.Range(metrics.velocityLowerBound, metrics.velocityUpperBound);
-        float side2side = Random.Range(-bounds.radius,bounds.radius);
+        float side2side = Random.Range(-spawnDistance,spawnDistance);
 
         //x-axis will be spread, y-axis will be distance from origin
-        Vector2 startLocation = RotateVector2( new Vector2(side2side,bounds.radius), direction+180f);
+        Vector2 startLocation = RotateVector2( new Vector2(side2side,spawnDistance), direction+180f);
         Vector2 velocity =  RotateVector2( Vector2.up, direction)*speed;
 
         SpaceDebris debris = Instantiate(metrics.prefab).GetComponent<SpaceDebris>();
