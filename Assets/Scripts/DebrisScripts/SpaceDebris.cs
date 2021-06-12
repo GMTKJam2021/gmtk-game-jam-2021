@@ -7,7 +7,6 @@ using UnityEngine;
 public class SpaceDebris : MonoBehaviour
 {
     public DebrisField parent;
-    public int metricsID;
 
     public Rigidbody2D rb {
         get {
