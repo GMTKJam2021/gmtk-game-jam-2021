@@ -4,10 +4,21 @@ using UnityEngine;
 
 public class Problem : MonoBehaviour
 {
-    void OnEnable(){
+
+    public void RequestHelp(){
         foreach(ProblemLocator pl in FindObjectsOfType<ProblemLocator>()){
             pl.AddProblem(this);
         }
     }
-
+    public void ProblemSolved(){
+        foreach(ProblemLocator pl in FindObjectsOfType<ProblemLocator>()){
+            pl.RemoveProblem(this);
+        }
+    }
+    public void SetStatus(bool help){
+        if(help)
+            RequestHelp();
+        else
+            ProblemSolved();
+    }
 }

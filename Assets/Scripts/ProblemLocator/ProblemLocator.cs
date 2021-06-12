@@ -16,6 +16,7 @@ public class ProblemLocator : MonoBehaviour
     }
     public void RemoveProblem(Problem prob){
         problems2PointAt.Remove(prob);
+        Debug.Log("problems:"+problems2PointAt.Count);
     }
 
     void Start(){
@@ -30,6 +31,8 @@ public class ProblemLocator : MonoBehaviour
         // problems2PointAt.AddRange(probs);
     }
     void Update(){
+        System.Array.ForEach(GetComponentsInChildren<ProblemArrow>(),p=>p.target=null);
+
         int i=0;
         problems2PointAt
             .OrderBy(p=>Vector3.Distance(p.transform.position,this.transform.position))
