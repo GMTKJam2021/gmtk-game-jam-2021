@@ -9,7 +9,6 @@ public class ScoreKeeper : MonoBehaviour
     private int currentScore;
     [SerializeField] private TMP_Text highScoreText;
     [SerializeField] private TMP_Text currentScoreText;
-    public ModuleState currentModule;
 
     private void Awake()
     {
@@ -33,12 +32,5 @@ public class ScoreKeeper : MonoBehaviour
     {
         currentScore = 0;
         currentScoreText.text = "Score: 0";
-    }
-
-    public void MiniGameEnd(bool result)
-    {
-        if (result)
-            AddPoints(currentModule.modulePoints);
-        currentModule.FixResult(result);
     }
 }

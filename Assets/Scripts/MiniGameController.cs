@@ -5,11 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class MiniGameController : MonoBehaviour
 {
+    public bool run = false;
+    public Canvas canvas;
+
+    private void Awake()
+    {
+        canvas = GetComponentInChildren<Canvas>();
+        canvas.worldCamera = FindObjectOfType<Camera>();
+        canvas.scaleFactor = 0.1f;
+    }
+
     /// <summary>Exits the minigame with the given result.</summary>
     /// <param name="result">True if a player won, false if they lost or cancelled.</param>
     public void EndMiniGame(bool result)
     {
-        FindObjectOfType<ScoreKeeper>().MiniGameEnd(result);
-        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        Debug.Log("End Game");
+        FindObjectOfType<MiniGameWindow>().MiniGameEnd(result);
     }
 }

@@ -16,15 +16,14 @@ public class MiniGameWindow : MonoBehaviour
     public int windowState;
 
     private Scene scene;
-    private MinigameRoot minigame;
+    private MiniGameController miniGame;
     private Transform ret;
     private ModuleState currentModule;
 
 
-    public void OnMinigameLoaded(Scene scene, LoadSceneMode mode, MinigameRoot minigameRoot)
+    public void OnMinigameLoaded(Scene scene, LoadSceneMode mode, MiniGameController miniGameController)
     {
-        minigame = minigameRoot;
-        minigame.transform.localScale = new Vector3(minigame.transform.localScale.x / minigame.dimensions.x, minigame.transform.localScale.y / minigame.dimensions.y, 1f);
+        miniGame = miniGameController;
         windowState = 1;
     }
 
@@ -39,9 +38,8 @@ public class MiniGameWindow : MonoBehaviour
             case 1:
                 WindowOpen();
                 break;
-            //Checks to see if the window needs to be closed.
+            //Nothing happens while the window is open.
             case 2:
-                WindowRun();
                 break;
             //Keeps closing the window until it's fully closed.
             case 3:
@@ -63,23 +61,23 @@ public class MiniGameWindow : MonoBehaviour
 
     private void WindowOpen()
     {
-        transform.localScale += new Vector3(1f, 1f, 0) * Time.deltaTime * 10f;
-        Debug.Log(transform.localScale);
-        if (transform.localScale.x > 10f)
+        transform.localScale += new Vector3(1f, 1f, 0) * Time.deltaTime * 2f;
+        if (transform.localScale.x >= .5f)
             windowState = 2; // Marks window as fully open
     }
-    private void WindowRun()
+    public void MiniGameEnd(bool result)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            windowState = 3; // Starts closing window
+        Debug.Log("Close Window");
+        currentModule.FixResult(result);
+        windowState = 3; // Starts closing window
     }
     private void WindowClose()
     {
-        transform.localScale -= new Vector3(1f, 1f, 0) * Time.deltaTime * 10f;
+        transform.localScale -= new Vector3(1f, 1f, 0) * Time.deltaTime * 2f;
         if (transform.localScale.x < 0.01f)
         {
             if (!scene.IsValid()) return;
-            minigame.transform.SetParent(ret);
+            miniGame.transform.SetParent(ret);
             SceneManager.sceneUnloaded += OnSceneUnloaded;
             SceneManager.UnloadSceneAsync(scene);
         }
@@ -90,20 +88,19 @@ public class MiniGameWindow : MonoBehaviour
         try
         {
             scene = s;
-            minigame = scene.GetRootGameObjects()[0].GetComponent<MinigameRoot>();
+            miniGame = scene.GetRootGameObjects()[0].GetComponent<MiniGameController>();
             ret = scene.GetRootGameObjects()[1].transform;
 
-            minigame.transform.SetParent(transform);
-            minigame.transform.localPosition = new Vector3();
-            minigame.transform.localScale = new Vector3(1f, 1f, 1f);
+            miniGame.transform.SetParent(transform);
+            miniGame.transform.localPosition = new Vector3();
+            miniGame.transform.localScale = new Vector3(1f, 1f, 1f);
 
-            OnMinigameLoaded(s, mode, minigame);
+            OnMinigameLoaded(s, mode, miniGame);
         }
         catch (Exception ex)
         {
             Debug.Log(scene.GetRootGameObjects().Length);
             Debug.Log(ex);
-            minigame = null;
         }
 
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -112,7 +109,6 @@ public class MiniGameWindow : MonoBehaviour
     void OnSceneUnloaded(Scene current)
     {
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
-        currentModule.FixResult(true);
         windowState = 0; // Marks window as fully closed
     }
 }

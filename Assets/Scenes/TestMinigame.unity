@@ -279,7 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   run: 0
-  dimensions: {x: 15, y: 10}
+  dimensions: {x: 10, y: 10}
 --- !u!4 &1321190765
 Transform:
   m_ObjectHideFlags: 0

@@ -28,7 +28,6 @@ public class ModuleState : MonoBehaviour
             return;
         }
         PlayerMouseMovement.inGame = true;
-        scorekeeper.currentModule = this;
         miniGameWindow.LoadMinigame(miniGameName, this);
     }
 
@@ -38,12 +37,12 @@ public class ModuleState : MonoBehaviour
     public void FixResult(bool isFixed)
     {
         PlayerMouseMovement.inGame = false;
-        scorekeeper.currentModule = null;
         if (isFixed)
         {
             Debug.Log(gameObject.name + " is now fixed.");
             moduleFixed = true;
             sRend.color = Color.green;
+            scorekeeper.AddPoints(modulePoints);
             return;
         }
         Debug.Log(gameObject.name + " is still broken.");
