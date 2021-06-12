@@ -561,7 +561,7 @@ MonoBehaviour:
   spawnDistance: 20
   spawnOptions:
   - typeName: SmallMeteor
-    enabled: 0
+    enabled: 1
     prefab: {fileID: 7224982759274599066, guid: a85f1c5a7f756d34d97d9adc31a8534f, type: 3}
     directionLowerBound: 165
     directionUpperBound: 195
@@ -570,7 +570,7 @@ MonoBehaviour:
     probability: 0.25
     maxInstances: 20
   - typeName: MediumMeteor
-    enabled: 0
+    enabled: 1
     prefab: {fileID: 5665885907825951641, guid: 245071a908128a042a139630bbe4f907, type: 3}
     directionLowerBound: 165
     directionUpperBound: 195
@@ -579,7 +579,7 @@ MonoBehaviour:
     probability: 0.125
     maxInstances: 10
   - typeName: BigMeteor
-    enabled: 0
+    enabled: 1
     prefab: {fileID: 4677839086357430449, guid: 6245099a3f161624fb42c5395d133b02, type: 3}
     directionLowerBound: 165
     directionUpperBound: 195
