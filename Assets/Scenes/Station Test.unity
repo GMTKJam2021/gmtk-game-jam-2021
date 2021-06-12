@@ -878,7 +878,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f71021fb87e3543ba3abeb3c216fb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testPrefab: {fileID: 466686230633995062, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+  stationModulePrefabs:
+  - {fileID: 7974336847001061617, guid: 35c649cbd5891fb4c94666bff0e1c9d0, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
   gridOffset: {x: -6.5, y: -6.5, z: 0}

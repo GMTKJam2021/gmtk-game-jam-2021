@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpaceStation : MonoBehaviour
 {
     private StationModule[,] modules;
-    public GameObject testPrefab;
+    public GameObject[] stationModulePrefabs;
     public Vector2Int maxStationDimensions = new Vector2Int(13, 13);
     public float moduleToGridScaleFactor = 1; // How large a modules array position is in square units
     public Vector3 gridOffset = new Vector3(-6.5f, -6.5f); // Offset for the grid
@@ -16,12 +16,17 @@ public class SpaceStation : MonoBehaviour
     {
         modules = new StationModule[maxStationDimensions.x, maxStationDimensions.y];
 
-        StartCoroutine(WaitABitThenAddAModule(1));
-        StartCoroutine(WaitABitThenAddAModule(2));
-        StartCoroutine(WaitABitThenAddAModule(3));
-        StartCoroutine(WaitABitThenAddAModule(4));
-        StartCoroutine(WaitABitThenAddAModule(5));
-        StartCoroutine(WaitABitThenAddAModule(6));
+        // StartCoroutine(WaitABitThenAddAModule(1));
+        // StartCoroutine(WaitABitThenAddAModule(2));
+        // StartCoroutine(WaitABitThenAddAModule(3));
+        // StartCoroutine(WaitABitThenAddAModule(4));
+        // StartCoroutine(WaitABitThenAddAModule(5));
+        // StartCoroutine(WaitABitThenAddAModule(6));
+
+        for (var i = 0; i < 30; i++)
+        {
+            StartCoroutine(WaitABitThenAddAModule((i - 1) / 2 + 1));
+        }
     }
 
     public IEnumerator WaitABitThenAddAModule(float seconds)
@@ -30,7 +35,8 @@ public class SpaceStation : MonoBehaviour
 
         Vector2Int spot = FindValidModuleSpot();
 
-        StartCoroutine(AddModule(testPrefab, spot.x, spot.y));
+        yield return StartCoroutine(AddModule(stationModulePrefabs[Random.Range(0, stationModulePrefabs.Length)], spot.x, spot.y));
+        Debug.Log("Module Done");
     }
 
     public Vector2Int FindValidModuleSpot()
@@ -102,14 +108,22 @@ public class SpaceStation : MonoBehaviour
                     if (GetNeighborCount(x, y) < 1)
                         continue;
 
+                    Debug.Log(GetNeighborCount(x, y));
                     validSpots.Add((x, y));
                 }
+            }
+
+            foreach (var item in validSpots)
+            {
+                Debug.Log(item);
             }
         }
 
         // If all else fails, stick it in the middle
         if (validSpots.Count < 1)
         {
+            Debug.Assert(modules[maxStationDimensions.x / 2, maxStationDimensions.y / 2] == null);
+
             // This is intentionally integer division
             validSpots.Add((maxStationDimensions.x / 2, maxStationDimensions.y / 2));
         }
@@ -123,34 +137,48 @@ public class SpaceStation : MonoBehaviour
     public int GetNeighborCount(int moduleX, int moduleY)
     {
         int count = 0;
+        bool debug = false;
         for (var y = -1; y < 2; y++)
         {
             for (var x = -1; x < 2; x++)
             {
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
                 if (x + moduleX < 0 || y + moduleY < 0 || x + moduleX >= maxStationDimensions.x || y + moduleY >= maxStationDimensions.y)
                 {
                     continue; // don't draw outside the lines
                 }
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
 
                 if (x != 0 && y != 0) // ignore diagonals for now
                 {
                     continue;
                 }
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
 
                 if (modules[x + moduleX, y + moduleY] == null) // no neighbor there
                 {
                     continue;
                 }
-                if (!modules[x + moduleX, y + moduleY].CheckIfCanConnectTo(moduleX, moduleY, x + moduleX, y + moduleY)) // if no valid connector
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+
+                if (!modules[x + moduleX, y + moduleY].CheckIfCanConnectTo(moduleX + x, moduleY + y, moduleX, moduleY)) // if no valid connector
                 {
+                    Debug.Log("fail");
                     continue;
                 }
+                Debug.Log("success");
+
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+                // Debug.Break();
 
                 // if everything works, increase the neighbor count
                 count++;
+                Debug.Log("Count Up! " + count);
+                debug = true;
             }
         }
-
+        if (debug)
+            Debug.Log("Done counting for this one.");
         return count;
     }
 
