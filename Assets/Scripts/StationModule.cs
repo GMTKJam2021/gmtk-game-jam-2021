@@ -26,12 +26,12 @@ public class StationModule : MonoBehaviour
     {
         foreach (var connection in connections)
         {
-            Debug.Log(connection + " of " + connections.Count);
+            // Debug.Log(connection + " of " + connections.Count);
             // If it has a connector that can connect to the requested spot, return true
-            Debug.Log((connection.connectedModuleGridLocation.x + offsetX) + " == " + x + " | " + (connection.connectedModuleGridLocation.y + offsetY) + " == " + y);
+            // Debug.Log((connection.connectedModuleGridLocation.x + offsetX) + " == " + x + " | " + (connection.connectedModuleGridLocation.y + offsetY) + " == " + y);
             if (connection.connectedModuleGridLocation.x + offsetX == x && connection.connectedModuleGridLocation.y + offsetY == y)
             {
-                Debug.Log("True");
+                // Debug.Log("True");
                 return true;
             }
         }

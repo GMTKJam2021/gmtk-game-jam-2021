@@ -25,7 +25,7 @@ public class SpaceStation : MonoBehaviour
 
         for (var i = 0; i < 30; i++)
         {
-            StartCoroutine(WaitABitThenAddAModule((i - 1) / 2 + 1));
+            StartCoroutine(WaitABitThenAddAModule(3 * i));
         }
     }
 
@@ -36,7 +36,7 @@ public class SpaceStation : MonoBehaviour
         Vector2Int spot = FindValidModuleSpot();
 
         yield return StartCoroutine(AddModule(stationModulePrefabs[Random.Range(0, stationModulePrefabs.Length)], spot.x, spot.y));
-        Debug.Log("Module Done");
+        // Debug.Log("Module Done");
     }
 
     public Vector2Int FindValidModuleSpot()
@@ -108,14 +108,14 @@ public class SpaceStation : MonoBehaviour
                     if (GetNeighborCount(x, y) < 1)
                         continue;
 
-                    Debug.Log(GetNeighborCount(x, y));
+                    // Debug.Log(GetNeighborCount(x, y));
                     validSpots.Add((x, y));
                 }
             }
 
             foreach (var item in validSpots)
             {
-                Debug.Log(item);
+                // Debug.Log(item);
             }
         }
 
@@ -127,6 +127,9 @@ public class SpaceStation : MonoBehaviour
             // This is intentionally integer division
             validSpots.Add((maxStationDimensions.x / 2, maxStationDimensions.y / 2));
         }
+
+        // Remove spots that are not reciprocal
+
 
         // Pick a random spot
         (int, int) selectedSpot = validSpots[Random.Range(0, validSpots.Count)];
@@ -161,25 +164,75 @@ public class SpaceStation : MonoBehaviour
                 }
                 // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
 
-                if (!modules[x + moduleX, y + moduleY].CheckIfCanConnectTo(moduleX + x, moduleY + y, moduleX, moduleY)) // if no valid connector
+                if (!modules[moduleX + x, moduleY + y].CheckIfCanConnectTo(moduleX, moduleY, moduleX + x, moduleY + y)) // if no valid connector
                 {
-                    Debug.Log("fail");
+                    // Debug.Log("fail");
                     continue;
                 }
-                Debug.Log("success");
+
+                // Debug.Log("success");
 
                 // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
                 // Debug.Break();
 
                 // if everything works, increase the neighbor count
                 count++;
-                Debug.Log("Count Up! " + count);
+                // Debug.Log("Count Up! " + count);
                 debug = true;
             }
         }
-        if (debug)
-            Debug.Log("Done counting for this one.");
+        // if (debug)
+        // Debug.Log("Done counting for this one.");
         return count;
+    }
+
+    public List<(int, int)> GetNeighborsWithConnections(int moduleX, int moduleY, List<StationConnection> connections)
+    {
+        List<(int, int)> validNeighbors = new List<(int, int)>();
+        for (var y = -1; y < 2; y++)
+        {
+            for (var x = -1; x < 2; x++)
+            {
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+                if (x + moduleX < 0 || y + moduleY < 0 || x + moduleX >= maxStationDimensions.x || y + moduleY >= maxStationDimensions.y)
+                {
+                    continue; // don't draw outside the lines
+                }
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+
+                if (x != 0 && y != 0) // ignore diagonals for now
+                {
+                    continue;
+                }
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+
+                if (modules[x + moduleX, y + moduleY] == null) // no neighbor there
+                {
+                    continue;
+                }
+                // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+
+                if (!modules[moduleX + x, moduleY + y].CheckIfCanConnectTo(moduleX, moduleY, moduleX + x, moduleY + y)) // if no valid connector
+                {
+                    continue;
+                }
+                Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+
+                foreach (var c in connections)
+                {
+                    if (c.connectedModuleGridLocation.x + moduleX == x && c.connectedModuleGridLocation.y + moduleY == y)
+                    {
+                        // Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+                        validNeighbors.Add((x + moduleX, y + moduleY));
+                    }
+                    // Debug.Log("nope");
+                }
+                validNeighbors.Add((x + moduleX, y + moduleY));
+                // Debug.Log("nope over");
+            }
+        }
+
+        return validNeighbors;
     }
 
     public IEnumerator AddModule(GameObject module, int x, int y)
@@ -196,6 +249,83 @@ public class SpaceStation : MonoBehaviour
 
         // Add as child to this
         newModule.transform.parent = transform;
+
+        // Rotate to match random connection to connection target
+        List<float> thisAngle = new List<float>();
+        Debug.Log("outangles");
+        foreach (var connection in modules[x, y].connections)
+        {
+            thisAngle.Add(connection.outDirectionAngle);
+            Debug.Log(connection.outDirectionAngle);
+        }
+        // StationConnection randomConnection = modules[x, y].connections[Random.Range(0, modules[x, y].connections.Count)];
+        List<(int, int)> validNeighbors = GetNeighborsWithConnections(x, y, modules[x, y].connections);
+        // float thisAngle = randomConnection.outDirectionAngle;
+        Debug.Log("neigh");
+        foreach (var n in validNeighbors)
+        {
+            Debug.Log(n);
+        }
+        Debug.Log("end neigh");
+
+        // This list will contain all the directions where a connection is valid
+        List<float> targetAngle = new List<float>();
+        foreach (var neighbor in validNeighbors)
+        {
+            if (neighbor.Item1 < x)
+            {
+                Debug.Log(neighbor.Item1 + " | " + x);
+                targetAngle.Add(180);
+                Debug.Log(180);
+            }
+            else if (neighbor.Item1 > x)
+            {
+                targetAngle.Add(0);
+                Debug.Log(0);
+            }
+            else if (neighbor.Item2 < y)
+            {
+                targetAngle.Add(270);
+                Debug.Log(270);
+            }
+            else if (neighbor.Item2 > y)
+            {
+                targetAngle.Add(90);
+                Debug.Log(90);
+            }
+        }
+
+        int indexOfBestRotation = 0;
+        int highestCount = 0;
+        for (var i = 0; i < 4; i++)
+        {
+            int count = 0;
+            Debug.Log(i + ", Count: " + count);
+            foreach (var angle in thisAngle)
+            {
+                Debug.Log("Angle: " + angle);
+                foreach (var other in targetAngle)
+                {
+                    Debug.Log("Other: " + other);
+                    if (angle + i * 90 == other)
+                    {
+                        Debug.Log("true A " + angle + i * 90);
+                        count++;
+                    }
+                }
+            }
+
+            if (count > highestCount)
+            {
+                Debug.Log("true B " + count);
+                indexOfBestRotation = i;
+                highestCount = count;
+            }
+        }
+        // Debug.Assert(highestCount > 0); // If this doesn't pass, the logic is horribly broken somewhere (Narrator from the future: it was horribly broken)
+
+        // Rotate to make indexOfBestRotation
+        newModule.transform.eulerAngles = new Vector3(0f, 0f, 90f * highestCount);
 
         // Disable all physics
         Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();
@@ -217,6 +347,8 @@ public class SpaceStation : MonoBehaviour
         newCol.enabled = true;
 
         // Done?
+        Debug.Log("Module Done");
+
     }
 
     public IEnumerator ScaleModuleIntoPlace(Transform module)
