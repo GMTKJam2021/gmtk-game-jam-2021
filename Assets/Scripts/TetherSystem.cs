@@ -22,7 +22,8 @@ public class TetherSystem : MonoBehaviour
     private float tetherMaxCastDistance = 20f;
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
-    private Dictionary<Vector2, int> wrapPointsLookup = new Dictionary<Vector2, int>();
+    private Dictionary<(Vector2, int), int> wrapPointsLookup = new Dictionary<(Vector2, int), int>();
+    private int wrapLoop = 0; // This is the number of times looped around, used with wrapPointsLookup to handle multiple loops around an object
     public float climbSpeed = 3f;
     private bool isColliding;
 
@@ -67,19 +68,21 @@ public class TetherSystem : MonoBehaviour
 
                 if (playerToCurrentNextHit)
                 {
-                    var colliderWithVertices = playerToCurrentNextHit.collider as PolygonCollider2D;
+                    var colliderWithVertices = playerToCurrentNextHit.collider as CompositeCollider2D;
                     if (colliderWithVertices != null)
                     {
                         var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
 
-                        // if (wrapPointsLookup.ContainsKey(closestPointToHit))
-                        // {
-                        //     ResetTether();
-                        //     return;
-                        // }
+                        if (wrapPointsLookup.ContainsKey((closestPointToHit, wrapLoop)))
+                        {
+                            // ResetTether();
+                            // return;
+
+                            wrapLoop += 1;
+                        }
 
                         tetherPositions.Add(closestPointToHit);
-                        wrapPointsLookup.Add(closestPointToHit, 0);
+                        wrapPointsLookup.Add((closestPointToHit, wrapLoop), 0);
                         distanceSet = false;
                     }
                 }
@@ -153,6 +156,7 @@ public class TetherSystem : MonoBehaviour
         tetherPositions.Clear();
         tetherHingeAnchorSprite.enabled = false;
         wrapPointsLookup.Clear();
+        wrapLoop = 0;
     }
 
     private void UpdateTetherPositions()
@@ -210,7 +214,7 @@ public class TetherSystem : MonoBehaviour
         }
     }
 
-    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, PolygonCollider2D polyCollider)
+    private Vector2 GetClosestColliderPointFromRaycastHit(RaycastHit2D hit, CompositeCollider2D polyCollider)
     {
         // This converts the polygon collider's collection of points, into a dictionary of Vector2 positions 
         // (the value of each dictionary entry is the position itself), and the key of each entry, is set to 
@@ -218,7 +222,12 @@ public class TetherSystem : MonoBehaviour
         // the resulting position is transformed into world space (by default a collider's vertex positions are 
         // stored in local space - i.e. local to the object the collider sits on, and we want the world space 
         // positions).
-        var distanceDictionary = polyCollider.points.ToDictionary<Vector2, float, Vector2>(
+
+        // TO-DO: ensure this actually covers all sub-areas; may need to iterate over all paths in composite collider
+        Vector2[] points = new Vector2[polyCollider.GetPathPointCount(0)];
+        polyCollider.GetPath(0, points);
+
+        var distanceDictionary = points.ToDictionary<Vector2, float, Vector2>(
             position => Vector2.Distance(hit.point, polyCollider.transform.TransformPoint(position)),
             position => polyCollider.transform.TransformPoint(position));
 
@@ -284,7 +293,7 @@ public class TetherSystem : MonoBehaviour
         var playerDir = playerPosition - anchorPosition;
         var playerAngle = Vector2.Angle(anchorPosition, playerDir);
 
-        if (!wrapPointsLookup.ContainsKey(hingePosition))
+        if (!wrapPointsLookup.ContainsKey((hingePosition, wrapLoop)))
         {
             Debug.LogError("We were not tracking hingePosition (" + hingePosition + ") in the look up dictionary.");
             return;
@@ -292,30 +301,43 @@ public class TetherSystem : MonoBehaviour
 
         if (playerAngle < hingeAngle)
         {
-            if (wrapPointsLookup[hingePosition] == 1)
+            if (wrapPointsLookup[(hingePosition, wrapLoop)] == 1)
             {
                 UnwrapTetherPosition(anchorIndex, hingeIndex);
                 return;
             }
 
-            wrapPointsLookup[hingePosition] = -1;
+            wrapPointsLookup[(hingePosition, wrapLoop)] = -1;
         }
         else
         {
-            if (wrapPointsLookup[hingePosition] == -1)
+            if (wrapPointsLookup[(hingePosition, wrapLoop)] == -1)
             {
                 UnwrapTetherPosition(anchorIndex, hingeIndex);
                 return;
             }
 
-            wrapPointsLookup[hingePosition] = 1;
+            wrapPointsLookup[(hingePosition, wrapLoop)] = 1;
         }
     }
 
     private void UnwrapTetherPosition(int anchorIndex, int hingeIndex)
     {
         var newAnchorPosition = tetherPositions[anchorIndex];
-        wrapPointsLookup.Remove(tetherPositions[hingeIndex]);
+        wrapPointsLookup.Remove((tetherPositions[hingeIndex], wrapLoop));
+
+        // iterate through lookup and find highest wrapLoop
+        int highestLoop = 0;
+        foreach (var keyValuePair in wrapPointsLookup)
+        {
+            if (keyValuePair.Key.Item2 > highestLoop)
+            {
+                highestLoop = keyValuePair.Key.Item2;
+            }
+        }
+        wrapLoop = highestLoop;
+        // TO-DO: see if the above can be done more efficiently or less often
+
         tetherPositions.RemoveAt(hingeIndex);
 
         tetherHingeAnchorRb.transform.position = newAnchorPosition;
