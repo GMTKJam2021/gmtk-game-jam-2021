@@ -90,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFuel: 100
   fuelRemaining: 100
+  fuelGauge: {fileID: 0}
 --- !u!1 &6857921670230911495
 GameObject:
   m_ObjectHideFlags: 0

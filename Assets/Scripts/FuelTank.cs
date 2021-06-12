@@ -6,6 +6,14 @@ public class FuelTank : MonoBehaviour
 {
     public float maxFuel = 100f;
     public float fuelRemaining = 100f;
+    public MeterBar fuelGauge;
+
+    void Start(){
+        if(fuelGauge){
+            fuelGauge.SetMaxAmount(maxFuel);
+            fuelGauge.SetAmount(fuelRemaining);
+        }
+    }
 
     /**
       * Adds amount to fuelRemaining up to the maxfuel limit, and returns the amount of fuel added.
@@ -14,11 +22,20 @@ public class FuelTank : MonoBehaviour
         if(fuelRemaining+amount>=maxFuel){
             float temp = maxFuel - fuelRemaining;
             fuelRemaining = maxFuel;
+
+            if(fuelGauge){
+                fuelGauge.SetAmount(fuelRemaining);
+            }
+            
             return temp;
         }
         else
         {
             fuelRemaining += amount;
+
+            if(fuelGauge)
+                fuelGauge.SetAmount(fuelRemaining);
+            
             return amount;
         }
     }
@@ -30,12 +47,20 @@ public class FuelTank : MonoBehaviour
         if(fuelRemaining>=amount)
         {
             fuelRemaining-=amount;
+
+            if(fuelGauge)
+                fuelGauge.SetAmount(fuelRemaining);
+            
             return amount;
         }
         else
         {
             float temp = fuelRemaining;
             fuelRemaining = 0f;
+
+            if(fuelGauge)
+                fuelGauge.SetAmount(fuelRemaining);
+            
             return temp;
         }
     }
