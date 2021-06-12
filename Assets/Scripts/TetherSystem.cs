@@ -22,6 +22,10 @@ public class TetherSystem : MonoBehaviour
     public LayerMask connectionLayerMask;
     [SerializeField]
     private float tetherMaxCastDistance = 20f;
+    [SerializeField]
+    private float tetherMaxLength = 30f;
+    [SerializeField]
+    private float tetherLength = 0f;
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
     private Dictionary<(Vector2, int), int> wrapPointsLookup = new Dictionary<(Vector2, int), int>();
@@ -132,6 +136,7 @@ public class TetherSystem : MonoBehaviour
                     tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
                     tetherJoint.enabled = true;
                     tetherHingeAnchorSprite.enabled = true;
+                    tetherLength = tetherJoint.distance;
                 }
             }
             else
@@ -243,13 +248,16 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleTetherLength()
     {
-        if (Input.GetButton("Tether Extend") && tetherAttached && !isColliding)
+        if (Input.GetButton("Tether Retract") && tetherAttached && !isColliding)
         {
             tetherJoint.distance -= Time.deltaTime * climbSpeed;
+            tetherLength -= Time.deltaTime * climbSpeed;
         }
-        else if (Input.GetButton("Tether Retract") && tetherAttached)
+        else if (Input.GetButton("Tether Extend") && tetherAttached && tetherLength < tetherMaxLength)
         {
             tetherJoint.distance += Time.deltaTime * climbSpeed;
+            tetherLength += Time.deltaTime * climbSpeed;
+
         }
     }
 
