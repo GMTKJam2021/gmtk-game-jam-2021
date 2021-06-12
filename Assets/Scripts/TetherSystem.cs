@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-// Heavily references this tutorial series: https://www.raywenderlich.com/348-make-a-2d-grappling-hook-game-in-unity-part-1
+// Heavily references this tutorial series: 
+// https://www.raywenderlich.com/348-make-a-2d-grappling-hook-game-in-unity-part-1
+// https://www.raywenderlich.com/312-make-a-2d-grappling-hook-game-in-unity-part-2
 public class TetherSystem : MonoBehaviour
 {
     public GameObject tetherHingeAnchor;
@@ -85,8 +87,9 @@ public class TetherSystem : MonoBehaviour
         }
 
         HandleInput(aimDirection);
-        HandleTetherLength();
         UpdateTetherPositions();
+        HandleTetherLength();
+        HandleTetherUnwrap();
     }
 
     private void SetCrosshairPosition(float aimAngle)
@@ -258,5 +261,72 @@ public class TetherSystem : MonoBehaviour
     private void OnCollisionExit2D(Collision2D other)
     {
         isColliding = false;
+    }
+
+    private void HandleTetherUnwrap()
+    {
+        if (tetherPositions.Count <= 1)
+        {
+            return;
+        }
+
+        // Hinge = next point up from the player position
+        // Anchor = next point up from the Hinge
+        // Hinge Angle = Angle between anchor and hinge
+        // Player Angle = Angle between anchor and player
+
+        var anchorIndex = tetherPositions.Count - 2;
+        var hingeIndex = tetherPositions.Count - 1;
+        var anchorPosition = tetherPositions[anchorIndex];
+        var hingePosition = tetherPositions[hingeIndex];
+        var hingeDir = hingePosition - anchorPosition;
+        var hingeAngle = Vector2.Angle(anchorPosition, hingeDir);
+        var playerDir = playerPosition - anchorPosition;
+        var playerAngle = Vector2.Angle(anchorPosition, playerDir);
+
+        if (!wrapPointsLookup.ContainsKey(hingePosition))
+        {
+            Debug.LogError("We were not tracking hingePosition (" + hingePosition + ") in the look up dictionary.");
+            return;
+        }
+
+        if (playerAngle < hingeAngle)
+        {
+            if (wrapPointsLookup[hingePosition] == 1)
+            {
+                UnwrapTetherPosition(anchorIndex, hingeIndex);
+                return;
+            }
+
+            wrapPointsLookup[hingePosition] = -1;
+        }
+        else
+        {
+            if (wrapPointsLookup[hingePosition] == -1)
+            {
+                UnwrapTetherPosition(anchorIndex, hingeIndex);
+                return;
+            }
+
+            wrapPointsLookup[hingePosition] = 1;
+        }
+    }
+
+    private void UnwrapTetherPosition(int anchorIndex, int hingeIndex)
+    {
+        var newAnchorPosition = tetherPositions[anchorIndex];
+        wrapPointsLookup.Remove(tetherPositions[hingeIndex]);
+        tetherPositions.RemoveAt(hingeIndex);
+
+        tetherHingeAnchorRb.transform.position = newAnchorPosition;
+        distanceSet = false;
+
+        // Set new rope distance joint distance for anchor position if not yet set.
+        if (distanceSet)
+        {
+            return;
+        }
+        tetherJoint.distance = Vector2.Distance(transform.position, newAnchorPosition);
+        distanceSet = true;
     }
 }
