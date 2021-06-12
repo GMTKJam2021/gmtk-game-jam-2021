@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TetherTest.unity
     guid: 42650193c7415b340a549e99053cc2d6
+  - enabled: 1
+    path: Assets/Scenes/Archive/MiniGameLoadSandbox.unity
+    guid: de0f570adc08a5a478066f01749141b9
+  - enabled: 1
+    path: Assets/Scenes/Archive/TestMinigame.unity
+    guid: ba82a1a9d5d46c64198bd19b159ae64c
+  - enabled: 1
+    path: Assets/Scenes/MiniGame0.unity
+    guid: 1bc6b2198560fed49b7b952ad742d2a6
   m_configObjects: {}
