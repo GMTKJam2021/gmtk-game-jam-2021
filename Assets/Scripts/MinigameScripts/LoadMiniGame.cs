@@ -8,12 +8,10 @@ public class LoadMiniGame : MonoBehaviour
 {
     public string sceneName;
     public IMinigameWindowHandler window;
-    // Start is called before the first frame update
 
     Scene scene;
     MinigameRoot minigame;
     Transform ret;
-
 
     void OnSceneLoaded(Scene s, LoadSceneMode mode){
         try{
@@ -49,11 +47,4 @@ public class LoadMiniGame : MonoBehaviour
         SceneManager.sceneUnloaded += OnSceneUnloaded;
         SceneManager.UnloadSceneAsync(scene);
     }
-
-    
-
-
-    
-
-
 }

@@ -7,21 +7,18 @@ public class PlayerInteraction : MonoBehaviour
     private ModuleState currentModule;
     private OxygenTank oxygenTank;
     [SerializeField] private bool tethered = false;
-    private ScoreKeeper scoreKeeper;
 
     private void Start()
     {
         oxygenTank = GetComponent<OxygenTank>();
-        scoreKeeper = GetComponent<ScoreKeeper>();
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") || Input.GetMouseButtonDown(1))
-            if (currentModule != null)
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
+            if (currentModule != null && !PlayerMouseMovement.inGame)
             {
-                currentModule.Fix();
-                scoreKeeper.AddPoints(1);
+                currentModule.AttemptFix();
             }
             else
                 Debug.Log("No Module Available");

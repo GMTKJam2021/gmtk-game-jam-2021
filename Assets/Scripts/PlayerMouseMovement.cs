@@ -6,6 +6,7 @@ public class PlayerMouseMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private FuelTank fuelTank;
+    public static bool inGame;
 
     [SerializeField] private float speed = 10f;
 
@@ -20,13 +21,19 @@ public class PlayerMouseMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (!inGame)
         {
-            fuelTank.DepleteFuel(Time.fixedDeltaTime);
-            rb.AddForce(transform.up * speed);
-        }
+            if (Input.GetMouseButton(0))
+            {
+                fuelTank.DepleteFuel(Time.fixedDeltaTime);
+                rb.AddForce(transform.up * speed);
+            }
 
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.up = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.up = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+
+        }
+        else
+            rb.velocity = Vector2.zero;
     }
 }
