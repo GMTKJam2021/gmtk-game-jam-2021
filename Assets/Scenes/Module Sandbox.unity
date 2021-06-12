@@ -137,6 +137,8 @@ GameObject:
   - component: {fileID: 36027632}
   - component: {fileID: 36027631}
   - component: {fileID: 36027630}
+  - component: {fileID: 36027637}
+  - component: {fileID: 36027636}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -156,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35d8bdc5d4b8594ea2467f5fabbf44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tethered: 0
 --- !u!58 &36027631
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -185,8 +188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  jetpackForce: 100
-  jetpackTorque: 100
+  fuelTank: {fileID: 36027637}
+  jetpackForwardDeltaV: 100
+  jetpackFowaredDepletionRate: 1
+  requiresFuelToRotate: 0
+  jetpackRotateDeltaV: 100
+  jetpackRotateDepletion: 1
 --- !u!50 &36027633
 Rigidbody2D:
   serializedVersion: 4
@@ -274,6 +281,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &36027636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36027629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95a8c1fb53bb254c8af4ab8db8d3670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oxygenMax: 50
+  oxygenRemaining: 50
+  refillRate: 5
+  usageRate: 2
+--- !u!114 &36027637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36027629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a598fbd3bf55b0b42aec5347ec930750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFuel: 100
+  fuelRemaining: 100
 --- !u!1 &104680411
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,14 @@ using UnityEngine;
 public class PlayerInteraction : MonoBehaviour
 {
     private ModuleState currentModule;
-    
+    private OxygenTank oxygenTank;
+    [SerializeField] private bool tethered = false;
+
+    private void Start()
+    {
+        oxygenTank = GetComponent<OxygenTank>();
+    }
+
     private void Update()
     {
         if (Input.GetButtonDown("Jump"))
@@ -13,6 +20,11 @@ public class PlayerInteraction : MonoBehaviour
                 currentModule.Fix();
             else
                 Debug.Log("No Module Available");
+        if (tethered)
+            oxygenTank.ReplenishOxygen(Time.deltaTime);
+        else
+            oxygenTank.DepleteOxygen(Time.deltaTime);
+            
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
