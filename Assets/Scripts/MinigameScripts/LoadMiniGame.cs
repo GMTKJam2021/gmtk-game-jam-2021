@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,19 +7,13 @@ using UnityEngine.SceneManagement;
 public class LoadMiniGame : MonoBehaviour
 {
     public string sceneName;
+    public IMinigameWindowHandler window;
     // Start is called before the first frame update
 
     Scene scene;
     MinigameRoot minigame;
     Transform ret;
 
-    bool shouldLoad = false;
-    bool isLoaded = false;
-
-    void Start()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
 
     void OnSceneLoaded(Scene s, LoadSceneMode mode){
         try{
@@ -27,55 +22,38 @@ public class LoadMiniGame : MonoBehaviour
             minigame = scene.GetRootGameObjects()[0].GetComponent<MinigameRoot>();
             ret = scene.GetRootGameObjects()[1].transform;
 
-            minigame.transform.SetParent(this.transform);
+            minigame.transform.SetParent(window.transform);
             minigame.transform.localPosition = new Vector3();
             minigame.transform.localScale = new Vector3(1f,1f,1f);
 
-           shouldLoad = true;
-        }catch{
-            Debug.Log("Error");
+            window.OnMinigameLoaded(s,mode,minigame);
+        }catch (Exception ex){
+            Debug.Log(ex);
             minigame = null;
         }
-    }
-
-    void OnSceneUnloaded(Scene current){
-        isLoaded = false;
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(!shouldLoad && !isLoaded){
-            if(Input.GetKeyDown(KeyCode.Space)){
-                SceneManager.LoadSceneAsync(sceneName,LoadSceneMode.Additive);
-            }
-        }
-
-        if(shouldLoad && !isLoaded){
-            transform.localScale += new Vector3(1f,1f,0) * Time.deltaTime*10f;
-            if(transform.localScale.x>1f){
-                isLoaded = true;
-                minigame.run = true;
-            }
-        }
-
-        if(shouldLoad && isLoaded){
-            if( Input.GetKeyDown(KeyCode.Space) ){
-                shouldLoad = false;
-                minigame.run = false;
-                
-            }
-        }
-
-        if(!shouldLoad && isLoaded){
-            transform.localScale -= new Vector3(1f,1f,0) * Time.deltaTime*10f;
-            if(transform.localScale.x<0.01f && scene.IsValid()){
-                minigame.transform.SetParent(ret);
-                isLoaded=false;
-                SceneManager.UnloadSceneAsync(scene);
-            }
-        }
         
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    void OnSceneUnloaded(Scene current){
+        SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        window.OnMinigameUnloaded(current);
+    }
+
+    public void LoadMinigame(){
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.LoadSceneAsync(sceneName,LoadSceneMode.Additive);
+    }
+    public void UnloadMinigame(){
+        if(!scene.IsValid()) return;
+        minigame.transform.SetParent(ret);
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        SceneManager.UnloadSceneAsync(scene);
+    }
+
+    
+
+
+    
+
+
 }
