@@ -7,5 +7,5 @@ public class StationConnection
 {
     public Vector2 position;
     public float outDirectionAngle;
-    public StationConnection otherConnection;
+    public Vector2Int connectedModuleGridLocation;
 }

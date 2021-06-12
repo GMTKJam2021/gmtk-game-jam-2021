@@ -22,15 +22,6 @@ public class StationModule : MonoBehaviour
 
     }
 
-    private void FindValidConnections()
-    {
-        Transform stationTransform = transform.parent;
-        SpaceStation station = stationTransform.GetComponent<SpaceStation>();
-        List<StationModule> validModules = station.GetModules(true);
-
-
-    }
-
     private void AlignToConnection(StationConnection other)
     {
         transform.eulerAngles = new Vector3(0f, 0f, other.outDirectionAngle);
