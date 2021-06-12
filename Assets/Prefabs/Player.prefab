@@ -29,7 +29,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6857921670907365845}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1674316095254572011
 MonoBehaviour:
@@ -45,6 +45,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberProbsToShow: 5
   arrowPrefab: {fileID: 1885226651089833493, guid: 9890db78dab6a0c47912293f17b21d6f, type: 3}
+--- !u!1 &2950155727236387171
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3258424697798926630}
+  - component: {fileID: 4626392205190711705}
+  m_Layer: 0
+  m_Name: FuelTank
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3258424697798926630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950155727236387171}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.000000037252903, y: 0, z: -7.98125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6857921670907365845}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4626392205190711705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2950155727236387171}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a598fbd3bf55b0b42aec5347ec930750, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxFuel: 100
+  fuelRemaining: 100
+  fuelGauge: {fileID: 0}
 --- !u!1 &6857921670230911495
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,17 +313,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6857921670907365845}
+  - component: {fileID: 6857921670907365849}
   - component: {fileID: 6857921670907365844}
   - component: {fileID: 6857921670907365847}
+  - component: {fileID: 6857921670907365846}
   - component: {fileID: 6857921670907365848}
   - component: {fileID: 6857921670907365850}
   - component: {fileID: 6857921670907365851}
-  - component: {fileID: 6857921670907365846}
-  - component: {fileID: 3490690451140611625}
-  - component: {fileID: 5393137789159391082}
-  - component: {fileID: 6857921670907365849}
-  - component: {fileID: 8291656584392300583}
-  - component: {fileID: 8667364580981267806}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -293,17 +335,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6857921670907365843}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.04, y: -0.7300005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6857921671619845236}
   - {fileID: 6857921670230911498}
   - {fileID: 6857921670291643812}
   - {fileID: 6857921671791304239}
+  - {fileID: 3258424697798926630}
   - {fileID: 2604183612493153016}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6857921670907365849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857921670907365843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9673b895acb9a64bafe0c79cf4a6258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tetherHingeAnchor: {fileID: 6857921670291643811}
+  tetherJoint: {fileID: 6857921670907365848}
+  crosshair: {fileID: 6857921671791304239}
+  crosshairSprite: {fileID: 6857921671791304208}
+  playerMovement: {fileID: 6857921670907365846}
+  tetherRenderer: {fileID: 6857921670907365850}
+  tetherLayerMask:
+    serializedVersion: 2
+    m_Bits: 193
+  connectionLayerMask:
+    serializedVersion: 2
+    m_Bits: 512
+  tetherMaxCastDistance: 1
+  tetherMaxLength: 30
+  tetherLength: 0
+  climbSpeed: 3
 --- !u!212 &6857921670907365844
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -376,6 +447,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &6857921670907365846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6857921670907365843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 399a34b58c5f587428b69df02e88a7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 6857921670907365847}
+  fuelTank: {fileID: 4626392205190711705}
+  jetpackForwardDeltaV: 100
+  jetpackFowaredDepletionRate: 1
+  requiresFuelToRotate: 0
+  jetpackRotateDeltaV: 100
+  jetpackRotateDepletion: 1
+  isSwinging: 0
+  tetherHook: {x: 0, y: 0}
+  swingForce: 4
 --- !u!232 &6857921670907365848
 DistanceJoint2D:
   m_ObjectHideFlags: 0
@@ -509,114 +602,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &6857921670907365846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 399a34b58c5f587428b69df02e88a7f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 6857921670907365847}
-  fuelTank: {fileID: 8291656584392300583}
-  jetpackForwardDeltaV: 100
-  jetpackFowaredDepletionRate: 1
-  requiresFuelToRotate: 0
-  jetpackRotateDeltaV: 100
-  jetpackRotateDepletion: 1
-  isSwinging: 0
-  tetherHook: {x: 0, y: 0}
-  swingForce: 4
---- !u!114 &3490690451140611625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a35d8bdc5d4b8594ea2467f5fabbf44d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tethered: 0
---- !u!114 &5393137789159391082
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60973f7aa584e5b4ab0b371acbf36dce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highScoreText: {fileID: 0}
-  currentScoreText: {fileID: 0}
---- !u!114 &6857921670907365849
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9673b895acb9a64bafe0c79cf4a6258, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tetherHingeAnchor: {fileID: 6857921670291643811}
-  tetherJoint: {fileID: 6857921670907365848}
-  crosshair: {fileID: 6857921671791304239}
-  crosshairSprite: {fileID: 6857921671791304208}
-  playerMovement: {fileID: 6857921670907365846}
-  tetherRenderer: {fileID: 6857921670907365850}
-  tetherLayerMask:
-    serializedVersion: 2
-    m_Bits: 193
-  connectionLayerMask:
-    serializedVersion: 2
-    m_Bits: 512
-  tetherMaxCastDistance: 1
-  tetherMaxLength: 30
-  tetherLength: 0
-  climbSpeed: 3
---- !u!114 &8291656584392300583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a598fbd3bf55b0b42aec5347ec930750, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxFuel: 100
-  fuelRemaining: 100
-  fuelGauge: {fileID: 0}
---- !u!114 &8667364580981267806
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6857921670907365843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c95a8c1fb53bb254c8af4ab8db8d3670, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oxygenMax: 50
-  oxygenRemaining: 50
-  refillRate: 5
-  usageRate: 2
 --- !u!1 &6857921671619845235
 GameObject:
   m_ObjectHideFlags: 0
