@@ -134,12 +134,12 @@ GameObject:
   - component: {fileID: 36027635}
   - component: {fileID: 36027634}
   - component: {fileID: 36027633}
-  - component: {fileID: 36027632}
   - component: {fileID: 36027631}
   - component: {fileID: 36027630}
   - component: {fileID: 36027637}
   - component: {fileID: 36027636}
   - component: {fileID: 36027638}
+  - component: {fileID: 36027632}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -185,16 +185,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 36027629}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 399a34b58c5f587428b69df02e88a7f9, type: 3}
+  m_Script: {fileID: 11500000, guid: c4c85aa3fb2411d4d9f2b1f25029fb00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
-  fuelTank: {fileID: 36027637}
-  jetpackForwardDeltaV: 100
-  jetpackFowaredDepletionRate: 1
-  requiresFuelToRotate: 0
-  jetpackRotateDeltaV: 100
-  jetpackRotateDepletion: 1
+  speed: 10
 --- !u!50 &36027633
 Rigidbody2D:
   serializedVersion: 4
@@ -383,11 +377,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Left/Right Arrow to rotate.
+  m_text: 'Move Mouse to rotate.
 
-    Up/Down Arrow to accelarate.
+    Left Click to accelarate.
 
-    Space
+    Right Click
     to fix module.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
