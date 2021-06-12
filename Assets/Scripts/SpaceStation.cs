@@ -141,9 +141,6 @@ public class SpaceStation : MonoBehaviour
                 {
                     continue;
                 }
-                Debug.Log(x);
-                Debug.Log(y);
-                Debug.Log(modules[x + moduleX, y + moduleY]);
                 if (!modules[x + moduleX, y + moduleY].CheckIfCanConnectTo(moduleX, moduleY, x + moduleX, y + moduleY)) // if no valid connector
                 {
                     continue;
