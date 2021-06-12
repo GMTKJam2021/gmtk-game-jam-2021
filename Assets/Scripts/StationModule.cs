@@ -33,7 +33,7 @@ public class StationModule : MonoBehaviour
 
     private void AlignToConnection(StationConnection other)
     {
-        StartCoroutine(AlignToAngle(Vector2.Angle(Vector2.zero, other.outDirection)));
+        transform.eulerAngles = new Vector3(0f, 0f, other.outDirectionAngle);
     }
 
     private IEnumerator AlignToAngle(float angle)

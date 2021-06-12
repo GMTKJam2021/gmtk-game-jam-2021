@@ -6,6 +6,6 @@ using UnityEngine;
 public class StationConnection
 {
     public Vector2 position;
-    public Vector2 outDirection;
+    public float outDirectionAngle;
     public StationConnection otherConnection;
 }

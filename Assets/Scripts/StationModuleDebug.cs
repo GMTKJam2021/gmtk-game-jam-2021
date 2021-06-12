@@ -21,7 +21,7 @@ public class StationModuleDebug : MonoBehaviour
                 Gizmos.color = Color.blue;
                 Gizmos.DrawSphere(transform.position + (Vector3)connection.position, 0.1f);
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(transform.position + (Vector3)connection.position, transform.position + (Vector3)connection.position + (Vector3)connection.outDirection * 0.5f);
+                Gizmos.DrawLine(transform.position + (Vector3)connection.position, transform.position + (Vector3)connection.position + (Vector3)Helper.DegreeToVector2(connection.outDirectionAngle) * 0.5f);
             }
         }
 

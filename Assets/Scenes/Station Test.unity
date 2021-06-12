@@ -1678,6 +1678,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Station Module
       objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995062, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995063, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 466686230633995065, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
       propertyPath: m_RootOrder
       value: 9
