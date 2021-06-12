@@ -19,9 +19,9 @@ public class StationModuleDebug : MonoBehaviour
             foreach (var connection in module.connections)
             {
                 Gizmos.color = Color.blue;
-                Gizmos.DrawSphere(transform.position + (Vector3)connection.position, 0.1f);
+                Gizmos.DrawSphere(transform.position + (Vector3)(Vector2)connection.connectedModuleGridLocation, 0.1f);
                 Gizmos.color = Color.green;
-                Gizmos.DrawLine(transform.position + (Vector3)connection.position, transform.position + (Vector3)connection.position + (Vector3)Helper.DegreeToVector2(connection.outDirectionAngle) * 0.5f);
+                Gizmos.DrawLine(transform.position + (Vector3)(Vector2)connection.connectedModuleGridLocation, transform.position + (Vector3)(Vector2)connection.connectedModuleGridLocation + (Vector3)Helper.DegreeToVector2(connection.outDirectionAngle) * 0.5f);
             }
         }
 

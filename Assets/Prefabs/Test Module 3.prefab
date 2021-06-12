@@ -76,8 +76,24 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: connections.Array.data[0].outDirectionAngle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
       propertyPath: connections.Array.data[1].outDirectionAngle
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: connections.Array.data[2].outDirectionAngle
       value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: connections.Array.data[0].connectedModuleGridLocation.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+      propertyPath: connections.Array.data[1].connectedModuleGridLocation.x
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 466686230633995068, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
       propertyPath: connections.Array.data[2].connectedModuleGridLocation.x
