@@ -14,6 +14,7 @@ public class TestMinigameWindow : IMinigameWindowHandler
 
     public override void OnMinigameLoaded(Scene scene, LoadSceneMode mode, MinigameRoot minigameRoot){
         minigame = minigameRoot;
+        minigame.transform.localScale = new Vector3(minigame.transform.localScale.x/minigame.dimensions.x, minigame.transform.localScale.y/minigame.dimensions.y, 1f);
         shouldLoad = true;
     }
     public override void OnMinigameUnloaded(Scene current){
@@ -40,7 +41,7 @@ public class TestMinigameWindow : IMinigameWindowHandler
     }
     void WindowOpen(){
         transform.localScale += new Vector3(1f,1f,0) * Time.deltaTime*10f;
-        if(transform.localScale.x>1f){
+        if(transform.localScale.x>10f){
             isLoaded = true;
             minigame.run = true;
         }
