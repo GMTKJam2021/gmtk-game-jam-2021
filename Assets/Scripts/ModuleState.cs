@@ -5,7 +5,7 @@ using UnityEngine;
 public class ModuleState : MonoBehaviour
 {
     public bool moduleFixed;
-    private SpriteRenderer sRend;   
+    private SpriteRenderer sRend;
 
     // Start is called before the first frame update
     void Start()
@@ -41,5 +41,13 @@ public class ModuleState : MonoBehaviour
             return;
         }
         Debug.Log(gameObject.name + " is already broken");
+    }
+
+    public enum State
+    {
+        Undamaged,
+        Damaged,
+        Repaired,
+        Broken
     }
 }
