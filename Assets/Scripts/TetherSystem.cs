@@ -128,8 +128,6 @@ public class TetherSystem : MonoBehaviour
                 tetherAttached = true;
                 if (!tetherPositions.Contains(hit.point))
                 {
-                    // Jump slightly to distance the player a little from the ground after grappling to something.
-                    transform.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 2f), ForceMode2D.Impulse);
                     tetherPositions.Add(hit.point);
                     tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
                     tetherJoint.enabled = true;
