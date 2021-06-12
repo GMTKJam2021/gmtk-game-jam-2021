@@ -12,7 +12,6 @@ public class MiniGameController : MonoBehaviour
     {
         canvas = GetComponentInChildren<Canvas>();
         canvas.worldCamera = FindObjectOfType<Camera>();
-        canvas.scaleFactor = 0.1f;
     }
 
     /// <summary>Exits the minigame with the given result.</summary>
