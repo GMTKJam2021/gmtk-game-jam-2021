@@ -19,6 +19,7 @@ public class TetherSystem : MonoBehaviour
     private SpriteRenderer tetherHingeAnchorSprite;
     public LineRenderer tetherRenderer;
     public LayerMask tetherLayerMask;
+    public LayerMask connectionLayerMask;
     [SerializeField]
     private float tetherMaxCastDistance = 20f;
     private List<Vector2> tetherPositions = new List<Vector2>();
@@ -120,7 +121,7 @@ public class TetherSystem : MonoBehaviour
             if (tetherAttached) return;
             tetherRenderer.enabled = true;
 
-            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, tetherLayerMask);
+            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
 
             if (hit.collider != null)
             {
