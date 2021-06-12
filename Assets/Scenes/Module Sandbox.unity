@@ -963,6 +963,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2802360408750545619, guid: 7d7955d482bd9094490cbb4877951bea, type: 3}
+      propertyPath: miniGameName
+      value: MiniGame1
+      objectReference: {fileID: 0}
     - target: {fileID: 2802360408750545621, guid: 7d7955d482bd9094490cbb4877951bea, type: 3}
       propertyPath: m_RootOrder
       value: 3
