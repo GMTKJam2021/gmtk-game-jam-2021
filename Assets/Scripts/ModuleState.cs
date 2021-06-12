@@ -29,7 +29,7 @@ public class ModuleState : MonoBehaviour
         }
         PlayerMouseMovement.inGame = true;
         scorekeeper.currentModule = this;
-        miniGameWindow.LoadMinigame(miniGameName);
+        miniGameWindow.LoadMinigame(miniGameName, this);
     }
 
     /// <summary>

@@ -15,16 +15,11 @@ public class MiniGameWindow : MonoBehaviour
     /// </summary>
     public int windowState;
 
-    private MiniGameWindow window;
-
     private Scene scene;
     private MinigameRoot minigame;
     private Transform ret;
+    private ModuleState currentModule;
 
-    private void Start()
-    {
-        //ret = transform;
-    }
 
     public void OnMinigameLoaded(Scene scene, LoadSceneMode mode, MinigameRoot minigameRoot)
     {
@@ -58,8 +53,9 @@ public class MiniGameWindow : MonoBehaviour
     /// <summary>
     /// Loads up the assigned minigame.
     /// </summary>
-    public void LoadMinigame(String sceneName)
+    public void LoadMinigame(String sceneName, ModuleState newModule)
     {
+        currentModule = newModule;
         SceneManager.sceneLoaded += OnSceneLoaded;
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive); // Loads the scene for the minigame
         windowState++; // Starts opening the window
@@ -68,7 +64,7 @@ public class MiniGameWindow : MonoBehaviour
     private void WindowOpen()
     {
         transform.localScale += new Vector3(1f, 1f, 0) * Time.deltaTime * 10f;
-        if (transform.localScale.x > 10f)
+        if (transform.localScale.x > 100f)
             windowState++; // Marks window as fully open
     }
     private void WindowRun()
@@ -96,16 +92,15 @@ public class MiniGameWindow : MonoBehaviour
             minigame = scene.GetRootGameObjects()[0].GetComponent<MinigameRoot>();
             ret = scene.GetRootGameObjects()[1].transform;
 
-            minigame.transform.SetParent(window.transform);
+            minigame.transform.SetParent(transform);
             minigame.transform.localPosition = new Vector3();
             minigame.transform.localScale = new Vector3(1f, 1f, 1f);
 
-            window.OnMinigameLoaded(s, mode, minigame);
+            OnMinigameLoaded(s, mode, minigame);
         }
         catch (Exception ex)
         {
             Debug.Log(scene.GetRootGameObjects().Length);
-            Debug.Log(ret);
             Debug.Log(ex);
             minigame = null;
         }
@@ -116,6 +111,7 @@ public class MiniGameWindow : MonoBehaviour
     void OnSceneUnloaded(Scene current)
     {
         SceneManager.sceneUnloaded -= OnSceneUnloaded;
+        currentModule.FixResult(true);
         windowState = 0; // Marks window as fully closed
     }
 }
