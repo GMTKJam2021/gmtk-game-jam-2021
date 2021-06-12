@@ -53,7 +53,7 @@ public class OxygenTank : MonoBehaviour
             oxygenGauge.SetAmount(oxygenRemaining);
     }
 
-    void Awake(){
+    void Start(){
         if(oxygenGauge)
             oxygenGauge.SetMaxAmount(oxygenMax);
     }
