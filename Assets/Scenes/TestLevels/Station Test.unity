@@ -827,11 +827,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationModulePrefabs:
+  - {fileID: 8703360252821022857, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
   - {fileID: 2009304604110888755, guid: 2c5d9456742e6b745888a7d07564b061, type: 3}
   - {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
   - {fileID: 3228152189342062826, guid: 944cd1bf774412a4bb1065b60a75dd14, type: 3}
   - {fileID: 22491390565372461, guid: d2ae6bda565839e46855742f844b7116, type: 3}
   - {fileID: 4346056063682651519, guid: 88088ddb31674e44292a1bf52563adcc, type: 3}
+  - {fileID: 5890609497531271944, guid: 21d74e4fd70adef4b9609751abb04097, type: 3}
+  - {fileID: 7479464866038559609, guid: dcfd94f47d60b9e40a24e000910d4d87, type: 3}
+  - {fileID: 3534780790704283996, guid: ea8c35c471f11b64a9f0e6e3575268bf, type: 3}
+  - {fileID: 7225210089764213242, guid: cf920c2df11f74c4bbdc8605775f032e, type: 3}
+  - {fileID: 6503021099383710857, guid: 37726fe42f750854c8fd665942226635, type: 3}
+  - {fileID: 4651989846445771969, guid: b0c707979cfed1543a52c9c454b8c14e, type: 3}
+  - {fileID: 6392358049535102623, guid: c03da2816f00fe040a7c04b9bf8e915c, type: 3}
+  - {fileID: 7151893968876769688, guid: 0abbc29e6b4387844a383dbf498313c3, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
   gridOffset: {x: -6.5, y: -6.5, z: 0}

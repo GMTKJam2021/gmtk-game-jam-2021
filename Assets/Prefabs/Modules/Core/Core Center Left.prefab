@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8703360252821022851, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: coreSection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703360252821022851, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: isCenterCore
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: brokenSprite
       value: 

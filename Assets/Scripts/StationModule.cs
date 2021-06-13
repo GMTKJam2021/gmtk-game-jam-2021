@@ -9,7 +9,9 @@ public class StationModule : MonoBehaviour
     public List<StationConnection> connections = new List<StationConnection>();
     [SerializeField]
     private Rigidbody2D rb;
-    public bool isCore = false;
+    public bool isCenterCore = false;
+    public CoreSection coreSection = CoreSection.NotCore;
+    public bool isBrace = false;
 
     private void Awake()
     {
@@ -47,5 +49,19 @@ public class StationModule : MonoBehaviour
             rb.rotation += angle * Time.deltaTime;
             yield return null;
         }
+    }
+
+    public enum CoreSection
+    {
+        NotCore,
+        Center,
+        CenterLeft,
+        CenterRight,
+        TopLeft,
+        TopCenter,
+        TopRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight,
     }
 }

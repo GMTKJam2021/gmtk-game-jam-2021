@@ -7,4 +7,5 @@ public class StationConnection
 {
     public float outDirectionAngle;
     public Vector2Int connectedModuleGridLocation;
+    public bool isBraceConnection = false;
 }

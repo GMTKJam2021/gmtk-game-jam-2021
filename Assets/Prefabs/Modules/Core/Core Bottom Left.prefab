@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8703360252821022851, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: coreSection
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703360252821022851, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: isCenterCore
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8703360252821022851, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: connections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: brokenSprite
       value: 
@@ -69,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703360252821022857, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: m_Name
-      value: Core Bottom Center
+      value: Core Bottom Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
