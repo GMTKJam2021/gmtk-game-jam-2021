@@ -55,7 +55,6 @@ public class MainMenu : MonoBehaviour
             else if (wipeElapsed < wipeDuration){
                 wipeElapsed += Time.deltaTime;
                 debrisField.enabled=false;
-                Debug.Break();
             }
             else if(unloadElapsed < unloadDuration){
                 unloadElapsed += Time.deltaTime;
