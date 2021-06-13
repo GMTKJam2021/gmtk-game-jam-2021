@@ -88,4 +88,12 @@ public class ModuleState : MonoBehaviour
         }
         Debug.Log(gameObject.name + " is already broken.");
     }
+
+    public enum State
+    {
+        Undamaged,
+        Damaged,
+        Repaired,
+        Broken
+    }
 }
