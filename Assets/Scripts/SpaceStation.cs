@@ -36,7 +36,6 @@ public class SpaceStation : MonoBehaviour
         Vector2Int spot = FindValidModuleSpot();
 
         yield return StartCoroutine(AddModule(stationModulePrefabs[Random.Range(0, stationModulePrefabs.Length)], spot.x, spot.y));
-        // Debug.Log("Module Done");
     }
 
     public Vector2Int FindValidModuleSpot()
@@ -237,7 +236,6 @@ public class SpaceStation : MonoBehaviour
 
     public IEnumerator AddModule(GameObject module, int x, int y)
     {
-
         // Convert grid coords to real coords
         Vector3 spawnPosition = new Vector3(x * moduleToGridScaleFactor, y * moduleToGridScaleFactor, 0f) + gridOffset;
 
