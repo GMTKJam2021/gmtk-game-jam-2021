@@ -515,6 +515,10 @@ PrefabInstance:
       propertyPath: tetherMaxCastDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8116097101613372591, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 71ee9e5087d415c4ba2c329516e12cd6, type: 3}
     - target: {fileID: 8933292911953002723, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: fuelGauge
       value: 
