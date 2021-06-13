@@ -9,17 +9,13 @@ public class StationModule : MonoBehaviour
     public List<StationConnection> connections = new List<StationConnection>();
     [SerializeField]
     private Rigidbody2D rb;
+    public bool isCore = false;
 
     private void Awake()
     {
         Debug.Assert(rb != null);
         Debug.Assert(rotationSpeed != 0);
         Debug.Assert(connections.Count > 0);
-    }
-
-    private void Update()
-    {
-
     }
 
     public bool CheckIfCanConnectTo(int x, int y, int offsetX, int offsetY)
