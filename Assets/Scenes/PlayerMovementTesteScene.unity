@@ -530,95 +530,6 @@ MonoBehaviour:
   maxFuel: 100
   fuelRemaining: 100
   fuelGauge: {fileID: 1418159084}
---- !u!1 &1166764242
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1166764245}
-  - component: {fileID: 1166764244}
-  - component: {fileID: 1166764243}
-  m_Layer: 0
-  m_Name: DebrisField
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1166764243
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166764242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8befa91d0aec1ce4cb1e98af3f0b2475, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnDistance: 20
-  spawnOptions:
-  - typeName: SmallMeteor
-    enabled: 1
-    prefab: {fileID: 7224982759274599066, guid: a85f1c5a7f756d34d97d9adc31a8534f, type: 3}
-    directionLowerBound: 165
-    directionUpperBound: 195
-    velocityLowerBound: 19
-    velocityUpperBound: 20
-    probability: 0.25
-    maxInstances: 20
-  - typeName: MediumMeteor
-    enabled: 1
-    prefab: {fileID: 5665885907825951641, guid: 245071a908128a042a139630bbe4f907, type: 3}
-    directionLowerBound: 165
-    directionUpperBound: 195
-    velocityLowerBound: 11
-    velocityUpperBound: 10
-    probability: 0.125
-    maxInstances: 10
-  - typeName: BigMeteor
-    enabled: 1
-    prefab: {fileID: 4677839086357430449, guid: 6245099a3f161624fb42c5395d133b02, type: 3}
-    directionLowerBound: 165
-    directionUpperBound: 195
-    velocityLowerBound: 4
-    velocityUpperBound: 5
-    probability: 0.0625
-    maxInstances: 5
---- !u!58 &1166764244
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166764242}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 30
---- !u!4 &1166764245
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1166764242}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11208778, y: -0.14992239, z: -0.4451304}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1206410112
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +606,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -1003,3 +914,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d37514161451e847a1f95675fce27ee, type: 3}
+--- !u!1001 &8611687253548753578
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8611687254697642616, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_Name
+      value: DebrisField
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.11208778
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.14992239
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4451304
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642623, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}

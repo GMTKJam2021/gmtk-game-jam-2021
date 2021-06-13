@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Problem))]
 public class ModuleState : MonoBehaviour
 {
     public bool moduleFixed;
@@ -9,6 +10,11 @@ public class ModuleState : MonoBehaviour
     public MiniGameWindow miniGameWindow;
     private ScoreKeeper scorekeeper;
     public int modulePoints;
+
+    public Problem beacon;
+
+    public int maxhp = 5;
+    public int hp = 0;
 
     [SerializeField] private string miniGameName = "TestMinigame";
 
@@ -18,7 +24,16 @@ public class ModuleState : MonoBehaviour
         sRend = GetComponent<SpriteRenderer>();
         scorekeeper = FindObjectOfType<ScoreKeeper>();
         miniGameWindow = FindObjectOfType<MiniGameWindow>();
+        beacon = GetComponent<Problem>();
+        beacon.SetStatus(!moduleFixed);
     }
+    
+    // bool firstUpdate = true;
+    // void FixedUpdate(){
+    //     if(firstUpdate){
+    //         beacon.SetStatus(moduleFixed)
+    //     }
+    // }
 
     public void AttemptFix()
     {
@@ -41,11 +56,21 @@ public class ModuleState : MonoBehaviour
         {
             Debug.Log(gameObject.name + " is now fixed.");
             moduleFixed = true;
+            hp = maxhp;
             sRend.color = Color.green;
             scorekeeper.AddPoints(modulePoints);
+            beacon.ProblemSolved();
             return;
         }
         Debug.Log(gameObject.name + " is still broken.");
+    }
+
+    public void TakeDamage(int amount){
+        hp-= amount;
+        if(hp<=0){
+            hp=0;
+            Break();
+        }
     }
 
     /// <summary>
@@ -58,6 +83,7 @@ public class ModuleState : MonoBehaviour
             moduleFixed = false;
             sRend.color = Color.red;
             Debug.Log(gameObject.name + " is now broken.");
+            beacon.RequestHelp();
             return;
         }
         Debug.Log(gameObject.name + " is already broken.");
