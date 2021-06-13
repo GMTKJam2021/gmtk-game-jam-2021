@@ -6,7 +6,6 @@ using UnityEngine;
 public class ModuleState : MonoBehaviour
 {
     public bool moduleFixed;
-    private SpriteRenderer sRend;
     public MiniGameWindow miniGameWindow;
     private ScoreKeeper scorekeeper;
     public int modulePoints;
@@ -28,7 +27,7 @@ public class ModuleState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        sRend = GetComponent<SpriteRenderer>();
+        visual = GetComponent<SpriteRenderer>();
         scorekeeper = FindObjectOfType<ScoreKeeper>();
         miniGameWindow = FindObjectOfType<MiniGameWindow>();
         beacon = GetComponent<Problem>();
@@ -72,7 +71,7 @@ public class ModuleState : MonoBehaviour
             if (brokenModules == 0)
                 scorekeeper.Win();
             hp = maxhp;
-            sRend.color = Color.green;
+            visual.color = Color.green;
             scorekeeper.AddPoints(modulePoints);
             beacon.ProblemSolved();
             return;
@@ -100,7 +99,7 @@ public class ModuleState : MonoBehaviour
             UpdateVisual(State.Damaged);
             moduleFixed = false;
             brokenModules++;
-            sRend.color = Color.red;
+            visual.color = Color.red;
             Debug.Log(gameObject.name + " is now broken.");
             beacon.RequestHelp();
             return;
