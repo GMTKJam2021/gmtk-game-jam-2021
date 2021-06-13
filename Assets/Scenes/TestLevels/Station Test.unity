@@ -189,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  depletionRate: 10
 --- !u!50 &36027633
 Rigidbody2D:
   serializedVersion: 4
@@ -321,6 +322,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 0}
   currentScoreText: {fileID: 0}
+  completeScreen: {fileID: 0}
+  newHighScoreText: {fileID: 0}
+  finalScoreText: {fileID: 0}
 --- !u!1 &104680411
 GameObject:
   m_ObjectHideFlags: 0
@@ -710,6 +714,7 @@ MonoBehaviour:
   repairedSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
   brokenSprite: {fileID: 0}
+  changeColorIfDamagedOrBroken: 0
   visual: {fileID: 0}
   miniGameName: TestMinigame
 --- !u!212 &773341731
@@ -855,10 +860,14 @@ MonoBehaviour:
   - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
   - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
   - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
-  maxStationDimensions: {x: 13, y: 13}
+  maxStationDimensions: {x: 10000, y: 10000}
   moduleToGridScaleFactor: 1
   gridOffset: {x: -6.5, y: -6.5, z: 0}
   moduleScaleInRate: 0.5
+  moduleCount: 0
+  oxygenSourceCount: 0
+  oxygenSourceMinFrequency: 0.1
+  moreConnectionsFrequency: 0.2
 --- !u!66 &774115808
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -987,6 +996,7 @@ MonoBehaviour:
   repairedSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
   brokenSprite: {fileID: 0}
+  changeColorIfDamagedOrBroken: 0
   visual: {fileID: 0}
   miniGameName: TestMinigame
 --- !u!212 &852902191
@@ -1151,6 +1161,7 @@ MonoBehaviour:
   repairedSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
   brokenSprite: {fileID: 0}
+  changeColorIfDamagedOrBroken: 0
   visual: {fileID: 0}
   miniGameName: TestMinigame
 --- !u!212 &1224728997
@@ -1366,6 +1377,7 @@ MonoBehaviour:
   repairedSprite: {fileID: 0}
   damagedSprite: {fileID: 0}
   brokenSprite: {fileID: 0}
+  changeColorIfDamagedOrBroken: 0
   visual: {fileID: 0}
   miniGameName: TestMinigame
 --- !u!212 &2097015963
