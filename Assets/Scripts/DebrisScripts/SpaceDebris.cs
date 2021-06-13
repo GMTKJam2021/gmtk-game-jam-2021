@@ -8,6 +8,7 @@ public class SpaceDebris : MonoBehaviour
 {
     public DebrisField parent;
     public int damage;
+    public float kickMagnitude = 4f;
 
     public Rigidbody2D rb {
         get {
@@ -26,7 +27,15 @@ public class SpaceDebris : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider){
         ModuleState ms = collider.GetComponent<ModuleState>();
-        if(ms)
+        if(ms){
             ms.TakeDamage(damage);
+            //Add a kick
+            Vector2 velocity = rb.velocity;
+            float direction = Vector2.SignedAngle(Vector2.up,velocity);
+            float kickDirection = Random.Range(direction+90f,direction+180f);
+            Vector2 kickVelocity = DebrisField.RotateVector2(Vector2.up,kickDirection) *  kickMagnitude;
+            rb.AddForce(kickVelocity);
+        }
+        
     }
 }
