@@ -404,6 +404,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 288953565075591548, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: oxygenGauge
+      value: 
+      objectReference: {fileID: 1647338462}
+    - target: {fileID: 2668321874442883501, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5334775013215584910, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: m_Name
       value: PlayerMouse
@@ -442,7 +450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5334775013215584913, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: m_SortingLayer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5334775013215584917, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: winScreen
@@ -485,9 +493,17 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: oxygenTank
+      value: 
+      objectReference: {fileID: 1722187662}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: tetherMaxCastDistance
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 8933292911953002723, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: fuelGauge
+      value: 
+      objectReference: {fileID: 2139959185}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6689466d80405479eec052ad156331, type: 3}
 --- !u!1 &774115805
@@ -1058,6 +1074,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1647338462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7654010191797928737, guid: 4f2183843d3bf3544bb8d2f9aa1403c3, type: 3}
+  m_PrefabInstance: {fileID: 1001715345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3291f5ace4f8ab14a83af3cd2bb48ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1655025841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,6 +1219,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655025841}
   m_CullTransparentMesh: 1
+--- !u!114 &1722187662 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 288953565075591548, guid: ad6689466d80405479eec052ad156331, type: 3}
+  m_PrefabInstance: {fileID: 395106303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c95a8c1fb53bb254c8af4ab8db8d3670, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1748234320
 GameObject:
   m_ObjectHideFlags: 0
@@ -1392,3 +1430,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057678084}
   m_CullTransparentMesh: 1
+--- !u!114 &2139959185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7135747037792560687, guid: 4f2183843d3bf3544bb8d2f9aa1403c3, type: 3}
+  m_PrefabInstance: {fileID: 1001715345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3291f5ace4f8ab14a83af3cd2bb48ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
