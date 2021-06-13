@@ -686,19 +686,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9673b895acb9a64bafe0c79cf4a6258, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tetherHingeAnchor: {fileID: 0}
+  tetherHingeAnchor: {fileID: 537050453961599833}
   tetherJoint: {fileID: 7970984298367180619}
-  crosshair: {fileID: 0}
-  crosshairSprite: {fileID: 0}
+  crosshair: {fileID: 8227686613416503484}
+  crosshairSprite: {fileID: 243117321869302671}
   playerMovement: {fileID: 0}
-  tetherRenderer: {fileID: 0}
+  tetherRenderer: {fileID: 500741377374500888}
   tetherLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 193
   connectionLayerMask:
     serializedVersion: 2
-    m_Bits: 0
-  tetherMaxCastDistance: 20
+    m_Bits: 512
+  tetherMaxCastDistance: 1
   tetherMaxLength: 30
   tetherLength: 0
   climbSpeed: 3
