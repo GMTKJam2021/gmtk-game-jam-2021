@@ -1220,10 +1220,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: DebrisField
       objectReference: {fileID: 0}
-    - target: {fileID: 8611687254697642616, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 8611687254697642622, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
       propertyPath: m_Enabled
       value: 1

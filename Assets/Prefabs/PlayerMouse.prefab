@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowState: 0
+  miniGameWidth: 0.8
 --- !u!1 &2668321874442883501
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,6 +707,8 @@ MonoBehaviour:
   tetherMaxLength: 30
   tetherLength: 0
   climbSpeed: 3
+  oxygenTank: {fileID: 0}
+  fuelTank: {fileID: 0}
 --- !u!114 &8933292911953002723
 MonoBehaviour:
   m_ObjectHideFlags: 0
