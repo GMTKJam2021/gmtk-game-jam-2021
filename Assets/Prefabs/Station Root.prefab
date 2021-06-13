@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7608618701962416995
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7608618701962416992}
+  - component: {fileID: 7608618701962416993}
+  - component: {fileID: 7608618701962416991}
+  - component: {fileID: 7608618701962416990}
+  m_Layer: 0
+  m_Name: Station Root
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7608618701962416992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608618701962416995}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7608618701962416993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608618701962416995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f71021fb87e3543ba3abeb3c216fb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stationModulePrefabs:
+  - {fileID: 8703360252821022857, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+  - {fileID: 2009304604110888755, guid: 2c5d9456742e6b745888a7d07564b061, type: 3}
+  - {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
+  - {fileID: 3228152189342062826, guid: 944cd1bf774412a4bb1065b60a75dd14, type: 3}
+  - {fileID: 22491390565372461, guid: d2ae6bda565839e46855742f844b7116, type: 3}
+  - {fileID: 4346056063682651519, guid: 88088ddb31674e44292a1bf52563adcc, type: 3}
+  - {fileID: 5890609497531271944, guid: 21d74e4fd70adef4b9609751abb04097, type: 3}
+  - {fileID: 7479464866038559609, guid: dcfd94f47d60b9e40a24e000910d4d87, type: 3}
+  - {fileID: 3534780790704283996, guid: ea8c35c471f11b64a9f0e6e3575268bf, type: 3}
+  - {fileID: 7225210089764213242, guid: cf920c2df11f74c4bbdc8605775f032e, type: 3}
+  - {fileID: 6503021099383710857, guid: 37726fe42f750854c8fd665942226635, type: 3}
+  - {fileID: 4651989846445771969, guid: b0c707979cfed1543a52c9c454b8c14e, type: 3}
+  - {fileID: 6392358049535102623, guid: c03da2816f00fe040a7c04b9bf8e915c, type: 3}
+  - {fileID: 7151893968876769688, guid: 0abbc29e6b4387844a383dbf498313c3, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  maxStationDimensions: {x: 13, y: 13}
+  moduleToGridScaleFactor: 1
+  gridOffset: {x: -6.5, y: -6.5, z: 0}
+  moduleScaleInRate: 0.5
+--- !u!50 &7608618701962416991
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608618701962416995}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!66 &7608618701962416990
+CompositeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7608618701962416995}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_GeometryType: 1
+  m_GenerationType: 1
+  m_EdgeRadius: 0
+  m_ColliderPaths: []
+  m_CompositePaths:
+    m_Paths: []
+  m_VertexDistance: 0.0005
+  m_OffsetDistance: 0.00005
