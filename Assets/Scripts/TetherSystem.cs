@@ -32,6 +32,7 @@ public class TetherSystem : MonoBehaviour
     private int wrapLoop = 0; // This is the number of times looped around, used with wrapPointsLookup to handle multiple loops around an object
     public float climbSpeed = 3f;
     private bool isColliding;
+    public OxygenTank oxygenTank;
 
     void Awake()
     {
@@ -107,6 +108,15 @@ public class TetherSystem : MonoBehaviour
         UpdateTetherPositions();
         HandleTetherLength();
         HandleTetherUnwrap();
+        HandleOxygenFlow();
+    }
+
+    private void HandleOxygenFlow()
+    {
+        if (tetherAttached)
+        {
+            oxygenTank.ReplenishOxygen(Time.deltaTime);
+        }
     }
 
     private void SetCrosshairPosition(float aimAngle)
@@ -125,7 +135,7 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Oxygen Toggle"))
         {
             // If the tether is attached, reset it
             if (tetherAttached)
