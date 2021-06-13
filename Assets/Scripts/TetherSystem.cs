@@ -120,9 +120,15 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(1))
         {
-            if (tetherAttached) return;
+            // If the tether is attached, reset it
+            if (tetherAttached)
+            {
+                ResetTether();
+                return;
+            }
+            // Otherwise, attach it if possible
             tetherRenderer.enabled = true;
 
             var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
@@ -145,11 +151,6 @@ public class TetherSystem : MonoBehaviour
                 tetherAttached = false;
                 tetherJoint.enabled = false;
             }
-        }
-
-        if (Input.GetMouseButton(1))
-        {
-            ResetTether();
         }
     }
 
