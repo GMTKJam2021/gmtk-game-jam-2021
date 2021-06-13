@@ -10,9 +10,9 @@ public class ScoreKeeper : MonoBehaviour
     private int currentScore;
     [SerializeField] private TMP_Text highScoreText;
     [SerializeField] private TMP_Text currentScoreText;
-    [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private TMP_Text gameOverText;
-    [SerializeField] private GameObject winScreen;
+    //[SerializeField] private GameObject gameOverScreen;
+   // [SerializeField] private TMP_Text gameOverText;
+    [SerializeField] private GameObject completeScreen;
     [SerializeField] private TMP_Text newHighScoreText;
     [SerializeField] private TMP_Text finalScoreText;
 
@@ -21,7 +21,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         data = SaveSystem.Load();
         if(highScoreText)
-            highScoreText.text = "HighScore: " + data.highScore;
+            highScoreText.text = "Best: " + data.highScore;
         if(currentScoreText)
             currentScoreText.text = "Score: 0";
     }
@@ -35,7 +35,7 @@ public class ScoreKeeper : MonoBehaviour
         if(currentScoreText)
             currentScoreText.text = "Score: " + currentScore;
         if(currentScore > data.highScore && highScoreText!=null)
-            highScoreText.text = "HighScore: " + currentScore;
+            highScoreText.text = "Best: " + currentScore;
     }
 
     /// <summary> Resets the score to 0</summary>
@@ -46,18 +46,18 @@ public class ScoreKeeper : MonoBehaviour
             currentScoreText.text = "Score: 0";
     }
 
-    /// <summary> Switches to game over screen.</summary>
+/*    /// <summary> Switches to game over screen.</summary>
     /// <param name="reason">The reason they lost.</param>
     public void GameOver(string reason)
     {
         gameOverScreen.SetActive(true);
         gameOverText.text = reason;
-    }
+    }*/
 
     /// <summary> Switches to win screen and saves high scores.</summary>
-    public void Win()
+    public void Complete()
     {
-        winScreen.SetActive(true);
+        completeScreen.SetActive(true);
         if (currentScore > data.highScore)
         {
             data.highScore = currentScore;
@@ -69,7 +69,7 @@ public class ScoreKeeper : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("Game");
     }
 
     public void MainMenu()

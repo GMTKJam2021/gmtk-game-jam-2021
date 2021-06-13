@@ -120,6 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 0}
   damage: 1
+  kickMagnitude: 800
 --- !u!58 &7219984704757972658
 CircleCollider2D:
   m_ObjectHideFlags: 0

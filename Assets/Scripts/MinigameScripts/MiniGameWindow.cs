@@ -19,6 +19,7 @@ public class MiniGameWindow : MonoBehaviour
     private MiniGameController miniGame;
     private Transform ret;
     private ModuleState currentModule;
+    [SerializeField] private float miniGameWidth = .8f;
 
 
     public void OnMinigameLoaded(Scene scene, LoadSceneMode mode, MiniGameController miniGameController)
@@ -62,7 +63,7 @@ public class MiniGameWindow : MonoBehaviour
     private void WindowOpen()
     {
         transform.localScale += new Vector3(1f, 1f, 0) * Time.deltaTime * 2f;
-        if (transform.localScale.x >= .5f)
+        if (transform.localScale.x >= miniGameWidth)
             windowState = 2; // Marks window as fully open
     }
     public void MiniGameEnd(bool result)
