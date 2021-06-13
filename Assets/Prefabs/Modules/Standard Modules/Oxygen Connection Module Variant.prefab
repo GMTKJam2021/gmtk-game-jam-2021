@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 418430177}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2947075863166982573}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!212 &418430182
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -181,13 +181,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 980516166}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2947075863166982573}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &980516171
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -342,6 +342,18 @@ PrefabInstance:
     - target: {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_Name
       value: Oxygen Connection Module Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700394184770742664, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: connections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700394184770742664, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: connections.Array.data[1].outDirectionAngle
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700394184770742664, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: connections.Array.data[1].connectedModuleGridLocation.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3700394184770742669, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_RootOrder
