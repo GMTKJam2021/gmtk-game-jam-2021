@@ -19,6 +19,7 @@ public class ModuleState : MonoBehaviour
     public Sprite repairedSprite;
     public Sprite damagedSprite;
     public Sprite brokenSprite;
+    public bool changeColorIfDamagedOrBroken = false;
     public SpriteRenderer visual;
 
     public static int brokenModules;
@@ -109,15 +110,31 @@ public class ModuleState : MonoBehaviour
         {
             case State.Undamaged:
                 visual.sprite = undamagedSprite;
+                if (changeColorIfDamagedOrBroken)
+                {
+                    visual.color = Color.white;
+                }
                 break;
             case State.Damaged:
                 visual.sprite = damagedSprite;
+                if (changeColorIfDamagedOrBroken)
+                {
+                    visual.color = new Color(255, 119, 126, 255);
+                }
                 break;
             case State.Repaired:
                 visual.sprite = repairedSprite;
+                if (changeColorIfDamagedOrBroken)
+                {
+                    visual.color = Color.white;
+                }
                 break;
             case State.Broken:
                 visual.sprite = brokenSprite;
+                if (changeColorIfDamagedOrBroken)
+                {
+                    visual.color = new Color(255, 119, 126, 255);
+                }
                 break;
         }
     }
