@@ -23,9 +23,19 @@ public class SpaceStation : MonoBehaviour
         // StartCoroutine(WaitABitThenAddAModule(5));
         // StartCoroutine(WaitABitThenAddAModule(6));
 
-        for (var i = 0; i < (13 * 13); i++)
+        StartCoroutine(WaitABitThenAddAModule(0.5f));
+        StartCoroutine(WaitABitThenAddAModule(1f));
+        StartCoroutine(WaitABitThenAddAModule(1.5f));
+        StartCoroutine(WaitABitThenAddAModule(2f));
+        StartCoroutine(WaitABitThenAddAModule(2.5f));
+        StartCoroutine(WaitABitThenAddAModule(3f));
+        StartCoroutine(WaitABitThenAddAModule(3.5f));
+        StartCoroutine(WaitABitThenAddAModule(4f));
+        StartCoroutine(WaitABitThenAddAModule(4.5f));
+
+        for (var i = 0; i < 30; i++)
         {
-            StartCoroutine(WaitABitThenAddAModule(3 * i));
+            StartCoroutine(WaitABitThenAddAModule(6 * i));
         }
     }
 
