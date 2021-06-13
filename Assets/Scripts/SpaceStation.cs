@@ -12,6 +12,10 @@ public class SpaceStation : MonoBehaviour
     public Vector3 gridOffset = new Vector3(-6.5f, -6.5f); // Offset for the grid
     public float moduleScaleInRate = 0.1f; // Percentage of module scaling per second; 0.1f = 10 seconds to fully appear
 
+    public int moduleCount = 0;
+    public int oxygenSourceCount = 0;
+    public float oxygenSourceMinFrequency = 0.1f;
+
     private void Awake()
     {
         modules = new StationModule[maxStationDimensions.x, maxStationDimensions.y];
@@ -53,6 +57,7 @@ public class SpaceStation : MonoBehaviour
 
     public GameObject PickModuleForSpot(Vector2Int spot)
     {
+        moduleCount++;
         // If center, return first item on list(core)
         if (spot.x == maxStationDimensions.x / 2 && spot.y == maxStationDimensions.y / 2)
         {
@@ -86,12 +91,25 @@ public class SpaceStation : MonoBehaviour
             moduleList.RemoveAll(x => x.coreSection != StationModule.CoreSection.NotCore);
         }
 
+        if (oxygenSourceCount <= moduleCount * oxygenSourceMinFrequency)
+        {
+            oxygenSourceCount++;
+            return stationModulePrefabs[1];
+        }
+
+
+
         // Check if it is connecting to a brace connection
         // If brace, narrow list to braces; otherwise, remove braces
         // Count that spot's neighbors and return a module with that many sides if possible; continue with a narrowed-down list
         // Check the type of module that the player has the least of; return one of those if possible
         // If still undecided, pick randomly from remaining list
-        return moduleList[Random.Range(0, moduleList.Count)].gameObject;
+        int m = Random.Range(0, moduleList.Count);
+        if (m == 0)
+        {
+            oxygenSourceCount++;
+        }
+        return moduleList[m].gameObject;
     }
 
 
