@@ -33,6 +33,7 @@ public class DebrisField : MonoBehaviour
         foreach(SpawnMetrics option in spawnOptions){
             GameObject obj = new GameObject(option.typeName);
             obj.transform.SetParent(this.transform);
+            obj.transform.localPosition = Vector3.forward;
         }
     }
 
@@ -63,10 +64,10 @@ public class DebrisField : MonoBehaviour
         Vector2 velocity =  RotateVector2( Vector2.up, direction)*speed;
 
         SpaceDebris debris = Instantiate(metrics.prefab).GetComponent<SpaceDebris>();
-        debris.parent = this; 
-        debris.transform.position = startLocation;
-        debris.rb.velocity = velocity;
+        debris.parent = this;
         debris.transform.SetParent(parent);
+        debris.transform.localPosition = startLocation;
+        debris.rb.velocity = velocity;
     }
 
     public static Vector2 RotateVector2(Vector2 v, float degrees){
