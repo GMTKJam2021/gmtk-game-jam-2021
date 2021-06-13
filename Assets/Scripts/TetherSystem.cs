@@ -36,6 +36,7 @@ public class TetherSystem : MonoBehaviour
     public OxygenTank oxygenTank;
     public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
+    private CursorController cursor;
 
     void Awake()
     {
@@ -43,6 +44,7 @@ public class TetherSystem : MonoBehaviour
         playerPosition = transform.position;
         tetherHingeAnchorRb = tetherHingeAnchor.GetComponent<Rigidbody2D>();
         tetherHingeAnchorSprite = tetherHingeAnchor.GetComponent<SpriteRenderer>();
+        cursor = FindObjectOfType<CursorController>();
     }
 
     private void Update()
@@ -139,10 +141,17 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetButtonDown("Oxygen Toggle") || Input.GetMouseButtonDown(1))
+        if (PlayerInteraction.noModule)
         {
-            if (PlayerInteraction.noModule)
+            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
+            if (hit.collider != null)
+                cursor.Target();
+            else
+                cursor.Arrow(aimDirection);
+
+            if (Input.GetButtonDown("Oxygen Toggle") || Input.GetMouseButtonDown(1))
             {
+            
                 // If the tether is attached, reset it
                 if (tetherAttached)
                 {
@@ -154,7 +163,7 @@ public class TetherSystem : MonoBehaviour
                 Debug.Log("Attaching tether");
                 tetherRenderer.enabled = true;
 
-                var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
+                
 
                 if (hit.collider != null)
                 {
@@ -170,7 +179,7 @@ public class TetherSystem : MonoBehaviour
                     }
                 }
                 else
-                {
+                {   
                     tetherRenderer.enabled = false;
                     tetherAttached = false;
                     tetherJoint.enabled = false;
@@ -273,14 +282,26 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleTetherLength()
     {
-        if (Input.GetButton("Tether Retract") && tetherAttached && !isColliding)
+        if ((Input.GetButton("Tether Retract") || Input.mouseScrollDelta.y < 0) && tetherAttached && !isColliding)
         {
             tetherJoint.distance -= Time.deltaTime * climbSpeed;
             tetherLength -= Time.deltaTime * climbSpeed;
         }
-        else if (Input.GetButton("Tether Extend") && tetherAttached && tetherLength < tetherMaxLength)
+        else if ((Input.GetButton("Tether Extend") || Input.mouseScrollDelta.y > 0) && tetherAttached && tetherLength < tetherMaxLength)
         {
             tetherJoint.distance += Time.deltaTime * climbSpeed;
+            tetherLength += Time.deltaTime * climbSpeed;
+
+        }
+
+        if (Input.mouseScrollDelta.y < 0 && tetherAttached && !isColliding)
+        {
+            tetherJoint.distance -= Time.deltaTime * climbSpeed * Input.mouseScrollDelta.y * 10;
+            tetherLength -= Time.deltaTime * climbSpeed;
+        }
+        else if (Input.mouseScrollDelta.y > 0 && tetherAttached && tetherLength < tetherMaxLength)
+        {
+            tetherJoint.distance += Time.deltaTime * climbSpeed * Input.mouseScrollDelta.y * -10;
             tetherLength += Time.deltaTime * climbSpeed;
 
         }
