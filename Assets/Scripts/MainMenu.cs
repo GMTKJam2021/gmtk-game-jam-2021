@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
 
     public CanvasGroup startButton;
     public CanvasGroup loadingBar;
+    public CanvasGroup creditsGroup;
+
     public DebrisField debrisField;
     AsyncOperation loadingOp;
 
@@ -31,6 +33,16 @@ public class MainMenu : MonoBehaviour
         debrisField.spawnOptions[3].enabled=true;
         debrisField.spawnOptions[4].enabled=true;
         debrisField.spawnOptions[5].enabled=true;
+    }
+    public void ShowCredits(){
+        Hide(startButton);
+        Hide(loadingBar);
+        Show(creditsGroup);
+    }
+    public void ShowStartMenu(){
+        Show(startButton);
+        Hide(loadingBar);
+        Hide(creditsGroup);
     }
     void Update(){
         if(loadingOp != null){
