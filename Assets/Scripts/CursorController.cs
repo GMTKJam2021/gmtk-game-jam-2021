@@ -13,20 +13,10 @@ public class CursorController : MonoBehaviour
     [SerializeField] private Sprite cursorArrow;
     [SerializeField] private Sprite cursorTarget;
 
-    public bool isMobile()
-    {
-#if !UNITY_EDITOR && UNITY_WEBGL
-             return IsMobile();
-#endif
-        return false;
-    }
-
     private void Awake()
     {
 
         sRend = GetComponent<SpriteRenderer>();
-        if (isMobile())
-            sRend.enabled = false;
         Cursor.visible = false;
         Normal();
     }
