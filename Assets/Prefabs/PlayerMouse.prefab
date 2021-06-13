@@ -674,6 +674,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 0}
   currentScoreText: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  gameOverText: {fileID: 0}
+  winScreen: {fileID: 0}
+  newHighScoreText: {fileID: 0}
+  finalScoreText: {fileID: 0}
 --- !u!114 &7663549296206625519
 MonoBehaviour:
   m_ObjectHideFlags: 0

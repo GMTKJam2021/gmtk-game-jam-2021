@@ -22,6 +22,7 @@ public class ModuleState : MonoBehaviour
     public Sprite brokenSprite;
     public SpriteRenderer visual;
 
+    public static int brokenModules;
     [SerializeField] private string miniGameName = "TestMinigame";
 
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class ModuleState : MonoBehaviour
 
         Debug.Assert(visual != null);
         UpdateVisual(State.Undamaged);
+        brokenModules = FindObjectsOfType<ModuleState>().Length;
     }
 
     // bool firstUpdate = true;
@@ -66,6 +68,9 @@ public class ModuleState : MonoBehaviour
             Debug.Log(gameObject.name + " is now fixed.");
             UpdateVisual(State.Repaired);
             moduleFixed = true;
+            brokenModules--;
+            if (brokenModules == 0)
+                scorekeeper.Win();
             hp = maxhp;
             sRend.color = Color.green;
             scorekeeper.AddPoints(modulePoints);
@@ -94,6 +99,7 @@ public class ModuleState : MonoBehaviour
         {
             UpdateVisual(State.Damaged);
             moduleFixed = false;
+            brokenModules++;
             sRend.color = Color.red;
             Debug.Log(gameObject.name + " is now broken.");
             beacon.RequestHelp();
