@@ -38,7 +38,7 @@ public class PlayerMouseMovement : MonoBehaviour
             rb.velocity = Vector2.zero;
             rb.angularVelocity = 0;
         }
-            
+
     }
 
 

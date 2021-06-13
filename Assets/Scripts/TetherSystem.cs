@@ -33,6 +33,7 @@ public class TetherSystem : MonoBehaviour
     public float climbSpeed = 3f;
     private bool isColliding;
     public OxygenTank oxygenTank;
+    public FuelTank fuelTank;
 
     void Awake()
     {
@@ -108,14 +109,15 @@ public class TetherSystem : MonoBehaviour
         UpdateTetherPositions();
         HandleTetherLength();
         HandleTetherUnwrap();
-        HandleOxygenFlow();
+        HandleTetherFlow();
     }
 
-    private void HandleOxygenFlow()
+    private void HandleTetherFlow()
     {
         if (tetherAttached)
         {
             oxygenTank.ReplenishOxygen(Time.deltaTime);
+            fuelTank.ReplenishFuel(Time.deltaTime);
         }
     }
 

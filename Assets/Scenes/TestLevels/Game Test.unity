@@ -134,6 +134,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &56425673 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7135747037792560687, guid: 4f2183843d3bf3544bb8d2f9aa1403c3, type: 3}
+  m_PrefabInstance: {fileID: 1001715345}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3291f5ace4f8ab14a83af3cd2bb48ee9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &97492749
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +504,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: fuelTank
+      value: 
+      objectReference: {fileID: 1541080272}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: oxygenTank
       value: 
       objectReference: {fileID: 1722187662}
@@ -503,7 +518,7 @@ PrefabInstance:
     - target: {fileID: 8933292911953002723, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: fuelGauge
       value: 
-      objectReference: {fileID: 2139959185}
+      objectReference: {fileID: 56425673}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6689466d80405479eec052ad156331, type: 3}
 --- !u!1 &816482560
@@ -959,6 +974,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1541080272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8933292911953002723, guid: ad6689466d80405479eec052ad156331, type: 3}
+  m_PrefabInstance: {fileID: 395106303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a598fbd3bf55b0b42aec5347ec930750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1647338462 stripped
