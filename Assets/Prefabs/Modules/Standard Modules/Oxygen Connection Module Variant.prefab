@@ -472,6 +472,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &-6878565597600079211
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2947075863166982562}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1001 &1998592206345891872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -479,6 +495,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3191789821694362049, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -3191789821694362049, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_Name
       value: Oxygen Connection Module Variant
@@ -533,6 +557,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6633152d237366e41913c261047c8635, type: 3}
+--- !u!1 &2947075863166982562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
+  m_PrefabInstance: {fileID: 1998592206345891872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2947075863166982573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3700394184770742669, guid: 6633152d237366e41913c261047c8635, type: 3}
