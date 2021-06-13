@@ -26,7 +26,7 @@ PrefabInstance:
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: brokenSprite
       value: 
-      objectReference: {fileID: -5094818514072097629, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 2610240559746588724, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: miniGameName
       value: MiniGame2
@@ -34,15 +34,15 @@ PrefabInstance:
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: damagedSprite
       value: 
-      objectReference: {fileID: -5094818514072097629, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 5509350894631025010, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: repairedSprite
       value: 
-      objectReference: {fileID: -5094818514072097629, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 8859246213526209503, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: undamagedSprite
       value: 
-      objectReference: {fileID: -5094818514072097629, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 947453662829378184, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 4948339229301490275, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -111,6 +111,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Module
       objectReference: {fileID: 0}
+    - target: {fileID: 4948339230239927439, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 947453662829378184, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
 --- !u!1 &3228152189342062826 stripped
