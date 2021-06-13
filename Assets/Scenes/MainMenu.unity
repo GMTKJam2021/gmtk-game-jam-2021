@@ -2295,7 +2295,7 @@ MonoBehaviour:
   loadingBar: {fileID: 1097578904}
   creditsGroup: {fileID: 1303352215}
   debrisField: {fileID: 1192005599}
-  startingScene: PlayerMovementTesteScene
+  startingScene: Game
   pauseDuration: 1
   wipeDuration: 1
 --- !u!1 &871332623
@@ -4804,7 +4804,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1663019026}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.62940156
+  m_Size: 0.7290537
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
