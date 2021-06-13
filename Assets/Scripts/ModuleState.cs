@@ -16,6 +16,7 @@ public class ModuleState : MonoBehaviour
     public int maxhp = 5;
     public int hp = 0;
 
+    public static int brokenModules;
     [SerializeField] private string miniGameName = "TestMinigame";
 
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class ModuleState : MonoBehaviour
         miniGameWindow = FindObjectOfType<MiniGameWindow>();
         beacon = GetComponent<Problem>();
         beacon.SetStatus(!moduleFixed);
+        brokenModules = FindObjectsOfType<ModuleState>().Length;
     }
     
     // bool firstUpdate = true;
@@ -56,6 +58,9 @@ public class ModuleState : MonoBehaviour
         {
             Debug.Log(gameObject.name + " is now fixed.");
             moduleFixed = true;
+            brokenModules--;
+            if (brokenModules == 0)
+                scorekeeper.Win();
             hp = maxhp;
             sRend.color = Color.green;
             scorekeeper.AddPoints(modulePoints);
@@ -81,6 +86,7 @@ public class ModuleState : MonoBehaviour
         if (moduleFixed)
         {
             moduleFixed = false;
+            brokenModules++;
             sRend.color = Color.red;
             Debug.Log(gameObject.name + " is now broken.");
             beacon.RequestHelp();

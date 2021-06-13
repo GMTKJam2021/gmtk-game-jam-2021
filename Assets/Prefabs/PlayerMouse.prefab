@@ -674,6 +674,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 0}
   currentScoreText: {fileID: 0}
+  gameOverScreen: {fileID: 0}
+  gameOverText: {fileID: 0}
+  winScreen: {fileID: 0}
+  newHighScoreText: {fileID: 0}
+  finalScoreText: {fileID: 0}
 --- !u!114 &7663549296206625519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -690,7 +695,6 @@ MonoBehaviour:
   tetherJoint: {fileID: 7970984298367180619}
   crosshair: {fileID: 8227686613416503484}
   crosshairSprite: {fileID: 243117321869302671}
-  playerMovement: {fileID: 0}
   tetherRenderer: {fileID: 500741377374500888}
   tetherLayerMask:
     serializedVersion: 2

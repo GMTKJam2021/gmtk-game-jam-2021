@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -29,7 +30,7 @@ public class SaveSystem : MonoBehaviour
         else
             path = "idbfs/Orbital.game";
 
-        if (File.Exists(path))
+        try
         {
             BinaryFormatter formatter = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
@@ -37,9 +38,9 @@ public class SaveSystem : MonoBehaviour
             stream.Close();
             return data;
         }
-        else
+        catch (Exception ex)
         {
-            Debug.Log("Save File Not Found");
+            Debug.Log(ex);
             return new SaveData();
         }
 
