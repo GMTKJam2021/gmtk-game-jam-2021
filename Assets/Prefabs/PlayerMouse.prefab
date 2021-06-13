@@ -693,7 +693,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetherHingeAnchor: {fileID: 537050453961599833}
   tetherJoint: {fileID: 7970984298367180619}
-  crosshair: {fileID: 8227686613416503484}
+  crosshair: {fileID: 5242283374576326604}
   crosshairSprite: {fileID: 243117321869302671}
   tetherRenderer: {fileID: 500741377374500888}
   tetherLayerMask:
