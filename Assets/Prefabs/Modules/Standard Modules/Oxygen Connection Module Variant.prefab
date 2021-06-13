@@ -408,6 +408,10 @@ PrefabInstance:
       value: MiniGame0
       objectReference: {fileID: 0}
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
+      propertyPath: modulePoints
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: damagedSprite
       value: 
       objectReference: {fileID: -3857832854798737947, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}

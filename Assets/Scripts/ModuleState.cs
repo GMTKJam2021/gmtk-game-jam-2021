@@ -93,7 +93,7 @@ public class ModuleState : MonoBehaviour
     {
         if (moduleFixed)
         {
-            UpdateVisual(State.Damaged);
+            UpdateVisual(State.Broken);
             moduleFixed = false;
             brokenModules++;
             Debug.Log(gameObject.name + " is now broken.");
