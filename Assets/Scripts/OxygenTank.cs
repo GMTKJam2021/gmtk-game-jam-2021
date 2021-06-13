@@ -5,6 +5,8 @@ using UnityEngine;
 public class OxygenTank : MonoBehaviour
 {
 
+    public MeterBar oxygenGauge;
+
     /// <summary> The max amount of oxygen the tank can hold</summary>
     [SerializeField] private float oxygenMax = 50f;
     /// <summary> The amount of oxygen remaining</summary>
@@ -27,6 +29,9 @@ public class OxygenTank : MonoBehaviour
                 Debug.Log("Oxygen Tank Full");
             }
         }
+
+        if(oxygenGauge)
+            oxygenGauge.SetAmount(oxygenRemaining);
     }
 
 
@@ -41,8 +46,17 @@ public class OxygenTank : MonoBehaviour
             {
                 oxygenRemaining = 0;
                 Debug.Log("Oxygen Tank Empty");
+                GetComponent<ScoreKeeper>().GameOver("You've run out of oxygen.");
             }
         }
+
+        if(oxygenGauge)
+            oxygenGauge.SetAmount(oxygenRemaining);
+    }
+
+    void Start(){
+        if(oxygenGauge)
+            oxygenGauge.SetMaxAmount(oxygenMax);
     }
 
 }

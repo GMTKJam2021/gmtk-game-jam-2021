@@ -6,7 +6,7 @@ using UnityEngine;
 public class DebrisField : MonoBehaviour
 {
     [System.Serializable]
-    public struct SpawnMetrics{
+    public class SpawnMetrics{
         public string typeName;
         public bool enabled;
         public SpaceDebris prefab;

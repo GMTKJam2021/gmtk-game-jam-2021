@@ -7,6 +7,7 @@ using UnityEngine;
 public class SpaceDebris : MonoBehaviour
 {
     public DebrisField parent;
+    public int damage;
 
     public Rigidbody2D rb {
         get {
@@ -21,5 +22,11 @@ public class SpaceDebris : MonoBehaviour
         if(collider == parent.Bounds){
             parent.DespawnDebris(this);
         }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider){
+        ModuleState ms = collider.GetComponent<ModuleState>();
+        if(ms)
+            ms.TakeDamage(damage);
     }
 }

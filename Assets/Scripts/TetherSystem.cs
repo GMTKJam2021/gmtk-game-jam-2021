@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,6 @@ public class TetherSystem : MonoBehaviour
     public DistanceJoint2D tetherJoint;
     public Transform crosshair;
     public SpriteRenderer crosshairSprite;
-    public PlayerMovementController playerMovement;
     private bool tetherAttached;
     private Vector2 playerPosition;
     private Rigidbody2D tetherHingeAnchorRb;
@@ -59,14 +59,10 @@ public class TetherSystem : MonoBehaviour
 
         if (!tetherAttached)
         {
-            playerMovement.isSwinging = false;
             SetCrosshairPosition(aimAngle);
         }
         else
         {
-            playerMovement.isSwinging = true;
-            playerMovement.tetherHook = tetherPositions.Last();
-
             crosshairSprite.enabled = false;
 
             if (tetherPositions.Count > 0)
@@ -79,20 +75,29 @@ public class TetherSystem : MonoBehaviour
                     var colliderWithVertices = playerToCurrentNextHit.collider as CompositeCollider2D;
                     if (colliderWithVertices != null)
                     {
-                        var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
-
-                        if (wrapPointsLookup.ContainsKey((closestPointToHit, wrapLoop)))
+                        try
                         {
-                            // Removed to permit multiple loops
-                            // ResetTether();
-                            // return;
+                            var closestPointToHit = GetClosestColliderPointFromRaycastHit(playerToCurrentNextHit, colliderWithVertices);
 
-                            wrapLoop += 1;
+                            if (wrapPointsLookup.ContainsKey((closestPointToHit, wrapLoop)))
+                            {
+                                // Removed to permit multiple loops
+                                // ResetTether();
+                                // return;
+
+                                wrapLoop += 1;
+                            }
+
+                            tetherPositions.Add(closestPointToHit);
+                            wrapPointsLookup.Add((closestPointToHit, wrapLoop), 0);
+                            distanceSet = false;
+                        }
+                        catch (Exception e) // TO-DO: Hack to prevent crash on new module addition causing issues
+                        {
+                            ResetTether();
+                            return;
                         }
 
-                        tetherPositions.Add(closestPointToHit);
-                        wrapPointsLookup.Add((closestPointToHit, wrapLoop), 0);
-                        distanceSet = false;
                     }
                 }
             }
@@ -120,15 +125,24 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(1))
         {
-            if (tetherAttached) return;
+            // If the tether is attached, reset it
+            if (tetherAttached)
+            {
+                Debug.Log("Detach tether");
+                ResetTether();
+                return;
+            }
+            // Otherwise, attach it if possible
+            Debug.Log("Attaching tether");
             tetherRenderer.enabled = true;
 
             var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
 
             if (hit.collider != null)
             {
+                Debug.Log("Tether attached");
                 tetherAttached = true;
                 if (!tetherPositions.Contains(hit.point))
                 {
@@ -146,18 +160,12 @@ public class TetherSystem : MonoBehaviour
                 tetherJoint.enabled = false;
             }
         }
-
-        if (Input.GetMouseButton(1))
-        {
-            ResetTether();
-        }
     }
 
     private void ResetTether()
     {
         tetherJoint.enabled = false;
         tetherAttached = false;
-        playerMovement.isSwinging = false;
         tetherRenderer.positionCount = 2;
         tetherRenderer.SetPosition(0, transform.position);
         tetherRenderer.SetPosition(1, transform.position);

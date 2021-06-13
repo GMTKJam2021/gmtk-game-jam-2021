@@ -1,7 +1,7 @@
 public class SaveData
 {
     /// <summary>
-    /// The high score for the player.
+    /// The high score for the player
     /// </summary>
     public int highScore;
 
