@@ -12,7 +12,6 @@ public class TetherSystem : MonoBehaviour
     public DistanceJoint2D tetherJoint;
     public Transform crosshair;
     public SpriteRenderer crosshairSprite;
-    public PlayerMovementController playerMovement;
     private bool tetherAttached;
     private Vector2 playerPosition;
     private Rigidbody2D tetherHingeAnchorRb;
@@ -59,14 +58,10 @@ public class TetherSystem : MonoBehaviour
 
         if (!tetherAttached)
         {
-            playerMovement.isSwinging = false;
             SetCrosshairPosition(aimAngle);
         }
         else
         {
-            playerMovement.isSwinging = true;
-            playerMovement.tetherHook = tetherPositions.Last();
-
             crosshairSprite.enabled = false;
 
             if (tetherPositions.Count > 0)
@@ -158,7 +153,6 @@ public class TetherSystem : MonoBehaviour
     {
         tetherJoint.enabled = false;
         tetherAttached = false;
-        playerMovement.isSwinging = false;
         tetherRenderer.positionCount = 2;
         tetherRenderer.SetPosition(0, transform.position);
         tetherRenderer.SetPosition(1, transform.position);
