@@ -603,17 +603,25 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5334775013215584912, guid: ad6689466d80405479eec052ad156331, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+    - target: {fileID: 5334775013215584913, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 5334775013215584912, guid: ad6689466d80405479eec052ad156331, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+    - target: {fileID: 5334775014408337532, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 5334775013215584912, guid: ad6689466d80405479eec052ad156331, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+    - target: {fileID: 6245980044045882409, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245980044045882409, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: tetherMaxCastDistance
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad6689466d80405479eec052ad156331, type: 3}
@@ -841,6 +849,12 @@ MonoBehaviour:
   - {fileID: 4651989846445771969, guid: b0c707979cfed1543a52c9c454b8c14e, type: 3}
   - {fileID: 6392358049535102623, guid: c03da2816f00fe040a7c04b9bf8e915c, type: 3}
   - {fileID: 7151893968876769688, guid: 0abbc29e6b4387844a383dbf498313c3, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
   gridOffset: {x: -6.5, y: -6.5, z: 0}

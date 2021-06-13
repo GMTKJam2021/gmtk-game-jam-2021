@@ -87,5 +87,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Science Module
       objectReference: {fileID: 0}
+    - target: {fileID: 4948339230239927439, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3929891510075638227, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}

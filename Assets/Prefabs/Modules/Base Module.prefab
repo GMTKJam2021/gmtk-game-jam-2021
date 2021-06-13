@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4948339229301490275}
-  - component: {fileID: 4948339229301490274}
   - component: {fileID: 4948339229301490272}
   - component: {fileID: 4948339229301490278}
   - component: {fileID: 4948339229301490273}
@@ -37,27 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &4948339229301490274
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4948339229301490284}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 50
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &4948339229301490272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +76,11 @@ MonoBehaviour:
   connections:
   - outDirectionAngle: 0
     connectedModuleGridLocation: {x: 1, y: 0}
-  rb: {fileID: 4948339229301490274}
+    isBraceConnection: 0
+  rb: {fileID: 0}
+  isCenterCore: 0
+  coreSection: 0
+  isBrace: 0
 --- !u!114 &4948339229301490273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +118,7 @@ PolygonCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}

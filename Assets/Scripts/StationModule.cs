@@ -15,7 +15,7 @@ public class StationModule : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Assert(rb != null);
+        // Debug.Assert(rb != null);
         Debug.Assert(rotationSpeed != 0);
         Debug.Assert(connections.Count > 0);
     }

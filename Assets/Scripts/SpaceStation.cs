@@ -485,10 +485,11 @@ public class SpaceStation : MonoBehaviour
 
 
         // Disable all physics
-        Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();
+        //Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();
         Collider2D newCol = newModule.GetComponent<Collider2D>();
-        newRb.simulated = false;
+        //newRb.simulated = false;
         newCol.enabled = false;
+        newCol.usedByComposite = false;
 
         // Shrink to 0
         newModule.transform.localScale = Vector3.zero;
@@ -500,7 +501,8 @@ public class SpaceStation : MonoBehaviour
         // TO-DO: Add any visuals for this?
 
         // Enable all physics
-        newRb.simulated = true; // May not be needed?
+        //newRb.simulated = true; // May not be needed?
+        newCol.usedByComposite = true;
         newCol.enabled = true;
 
         GetComponent<CompositeCollider2D>().GenerateGeometry();
