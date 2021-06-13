@@ -79,5 +79,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Bottom Center
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}

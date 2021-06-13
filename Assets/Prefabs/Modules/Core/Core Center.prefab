@@ -99,5 +99,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Center
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6591458131086237242, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
