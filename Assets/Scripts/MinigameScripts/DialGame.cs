@@ -8,10 +8,12 @@ public class DialGame : MonoBehaviour
 {
     [SerializeField] private DialController[] dials;
     [SerializeField] private TMP_Text[] timerTexts;
-    [SerializeField] private RawImage[] lights;
+    [SerializeField] private Image[] lights;
+    [SerializeField] private Sprite lightOff;
+    [SerializeField] private Sprite lightOn;
 
     private float[] password = new float[6];
-    private float[] entry = { 0, 0, 0 };
+    private float[] entry = { 0, 0, 0 };    
     private int[] timers = { 0, 0, 0 };
 
     // Start is called before the first frame update
@@ -46,7 +48,7 @@ public class DialGame : MonoBehaviour
             {
                 print("unlocked");
                 dials[0].unlocked = true;
-                lights[0].color = Color.green;
+                lights[0].sprite = lightOn;
                 timers[0] = 5;
                 InvokeRepeating("TimerCountDown0", 0, 1);
             }
@@ -54,7 +56,7 @@ public class DialGame : MonoBehaviour
             if (entry[1] > password[2] && entry[1] < password[3])
             {
                 dials[1].unlocked = true;
-                lights[1].color = Color.green;
+                lights[1].sprite = lightOn;
                 timers[1] = 5;
                 InvokeRepeating("TimerCountDown1", 0, 1);
             }
@@ -62,7 +64,7 @@ public class DialGame : MonoBehaviour
             if (entry[2] > password[4] && entry[2] < password[5])
             {
                 dials[2].unlocked = true;
-                lights[2].color = Color.green;
+                lights[2].sprite = lightOn;
                 timers[2] = 5;
                 InvokeRepeating("TimerCountDown2", 0, 1);
             }
@@ -74,7 +76,7 @@ public class DialGame : MonoBehaviour
         {
             CancelInvoke("TimerCountDown0");
             timerTexts[0].text = "-";
-            lights[0].color = Color.red;
+            lights[0].sprite = lightOff;
             dials[0].unlocked = false; 
             float temp = Random.Range(1, 359);
             while (temp > password[0] && temp < password[1])
@@ -93,7 +95,7 @@ public class DialGame : MonoBehaviour
         {
             CancelInvoke("TimerCountDown1");
             timerTexts[1].text = "-";
-            lights[1].color = Color.red;
+            lights[1].sprite = lightOff;
             dials[1].unlocked = false;
             float temp = Random.Range(1, 359);
             while (temp > password[2] && temp < password[3])
@@ -112,7 +114,7 @@ public class DialGame : MonoBehaviour
         {
             CancelInvoke("TimerCountDown2");
             timerTexts[2].text = "-";
-            lights[2].color = Color.red;
+            lights[2].sprite = lightOff;
             dials[2].unlocked = false;
             float temp = Random.Range(1, 359);
             while (temp > password[4] && temp < password[5])
