@@ -362,6 +362,8 @@ public class SpaceStation : MonoBehaviour
         newRb.simulated = true; // May not be needed?
         newCol.enabled = true;
 
+        GetComponent<CompositeCollider2D>().GenerateGeometry();
+
         // Done?
         Debug.Log("Module Done");
 

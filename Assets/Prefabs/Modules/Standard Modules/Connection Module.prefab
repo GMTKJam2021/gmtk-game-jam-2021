@@ -67,6 +67,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4948339229301490278, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 2009304604110888765, guid: 2c5d9456742e6b745888a7d07564b061, type: 3}
+    - target: {fileID: 4948339229301490278, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: connections.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948339229301490278, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: connections.Array.data[1].outDirectionAngle
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4948339229301490278, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: connections.Array.data[1].connectedModuleGridLocation.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4948339229301490284, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: m_Name
       value: Connection Module
