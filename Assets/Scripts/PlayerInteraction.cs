@@ -9,7 +9,7 @@ public class PlayerInteraction : MonoBehaviour
     private List<ModuleState> nearbyModules = new List<ModuleState>();
     private OxygenTank oxygenTank;
     [SerializeField] private bool tethered = false;
-    public static bool noModule;
+    public static bool noModule = true;
 
     private void Start()
     {
@@ -37,6 +37,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             nearbyModules.Add(collision.GetComponent<ModuleState>());
             Debug.Log(collision.name + "in range");
+            noModule = false;
         }
             
     }
@@ -47,6 +48,8 @@ public class PlayerInteraction : MonoBehaviour
         {
             Debug.Log(collision.name + "out of range");
             nearbyModules.Remove( collision.GetComponent<ModuleState>());
+            if (nearbyModules.Count == 0)
+                noModule = true;
         }
     }
 
