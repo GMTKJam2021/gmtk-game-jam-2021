@@ -2294,10 +2294,15 @@ MonoBehaviour:
   startButton: {fileID: 1515136980}
   loadingBar: {fileID: 1097578904}
   creditsGroup: {fileID: 1303352215}
+  ears: {fileID: 6941528}
   debrisField: {fileID: 1192005599}
   startingScene: Game
   pauseDuration: 1
   wipeDuration: 1
+  unloadDuration: 0.5
+  pauseElapsed: 0
+  wipeElapsed: 0
+  unloadElapsed: 0
 --- !u!1 &871332623
 GameObject:
   m_ObjectHideFlags: 0

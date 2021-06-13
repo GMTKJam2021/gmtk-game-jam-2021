@@ -6,26 +6,30 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    
-
     public CanvasGroup startButton;
     public CanvasGroup loadingBar;
     public CanvasGroup creditsGroup;
 
+    public AudioListener ears;
     public DebrisField debrisField;
     AsyncOperation loadingOp;
 
     public string startingScene;
     public float pauseDuration = 2f;
     public float wipeDuration = 2f;
+    public float unloadDuration = 2f;
 
+    [SerializeField]
     float pauseElapsed = 0f;
+    [SerializeField]
     float wipeElapsed = 0f;
+    [SerializeField]
+    float unloadElapsed = 0f;
 
     //public DebrisField.SpawnMetrics[] meteorStart;
 
     public void StartGame(){
-        loadingOp = SceneManager.LoadSceneAsync(startingScene);
+        loadingOp = SceneManager.LoadSceneAsync(startingScene, LoadSceneMode.Additive);
         loadingOp.allowSceneActivation = false;
         Hide(startButton);
         Show(loadingBar);
@@ -50,11 +54,18 @@ public class MainMenu : MonoBehaviour
                 pauseElapsed += Time.deltaTime;
             else if (wipeElapsed < wipeDuration){
                 wipeElapsed += Time.deltaTime;
-                loadingBar.transform.GetChild(0).GetComponent<Slider>().value=wipeElapsed/wipeDuration;
+                debrisField.enabled=false;
+                Debug.Break();
             }
-            else{
+            else if(unloadElapsed < unloadDuration){
+                unloadElapsed += Time.deltaTime;
+                ears.enabled=false;
                 loadingOp.allowSceneActivation=true;
+            }else{
+                loadingOp = SceneManager.UnloadSceneAsync("MainMenu");
+                //loadingOp.allowSceneActivation=false;
             }
+            
         }
     }
     void Hide(CanvasGroup ui){
