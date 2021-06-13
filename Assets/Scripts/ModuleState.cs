@@ -68,8 +68,6 @@ public class ModuleState : MonoBehaviour
             UpdateVisual(State.Repaired);
             moduleFixed = true;
             brokenModules--;
-            if (brokenModules == 0)
-                scorekeeper.Win();
             hp = maxhp;
             scorekeeper.AddPoints(modulePoints);
             beacon.ProblemSolved();

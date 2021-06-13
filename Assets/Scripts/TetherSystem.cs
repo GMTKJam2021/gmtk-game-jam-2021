@@ -173,7 +173,6 @@ public class TetherSystem : MonoBehaviour
                     tetherAttached = false;
                     tetherJoint.enabled = false;
                 }
-
             }
         }
     }

@@ -46,7 +46,7 @@ public class OxygenTank : MonoBehaviour
             {
                 oxygenRemaining = 0;
                 Debug.Log("Oxygen Tank Empty");
-                GetComponent<ScoreKeeper>().GameOver("You've run out of oxygen.");
+                GetComponent<ScoreKeeper>().Complete();
             }
         }
 
