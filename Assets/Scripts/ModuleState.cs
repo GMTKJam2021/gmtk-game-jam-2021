@@ -27,7 +27,7 @@ public class ModuleState : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        visual = GetComponent<SpriteRenderer>();
+        visual = GetComponentInChildren<SpriteRenderer>();
         scorekeeper = FindObjectOfType<ScoreKeeper>();
         miniGameWindow = FindObjectOfType<MiniGameWindow>();
         beacon = GetComponent<Problem>();
