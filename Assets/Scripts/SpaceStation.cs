@@ -23,7 +23,7 @@ public class SpaceStation : MonoBehaviour
         // StartCoroutine(WaitABitThenAddAModule(5));
         // StartCoroutine(WaitABitThenAddAModule(6));
 
-        for (var i = 0; i < 30; i++)
+        for (var i = 0; i < (13 * 13); i++)
         {
             StartCoroutine(WaitABitThenAddAModule(3 * i));
         }
@@ -256,7 +256,7 @@ public class SpaceStation : MonoBehaviour
         foreach (var connection in modules[x, y].connections)
         {
             thisAngle.Add(connection.outDirectionAngle);
-            Debug.Log(connection.outDirectionAngle);
+            // Debug.Log(connection.outDirectionAngle);
         }
         // StationConnection randomConnection = modules[x, y].connections[Random.Range(0, modules[x, y].connections.Count)];
         List<(int, int)> validNeighbors = GetNeighborsWithConnections(x, y, modules[x, y].connections);
@@ -274,7 +274,6 @@ public class SpaceStation : MonoBehaviour
         {
             if (neighbor.Item1 < x)
             {
-                Debug.Log(neighbor.Item1 + " | " + x);
                 targetAngle.Add(180);
                 Debug.Log(180);
             }
@@ -297,19 +296,19 @@ public class SpaceStation : MonoBehaviour
 
         int indexOfBestRotation = 0;
         int highestCount = 0;
+        List<int> additionalBestIndicies = new List<int>();
         for (var i = 0; i < 4; i++)
         {
             int count = 0;
-            Debug.Log(i + ", Count: " + count);
+            // Debug.Log(i + ", Count: " + count);
             foreach (var angle in thisAngle)
             {
-                Debug.Log("Angle: " + angle);
                 foreach (var other in targetAngle)
                 {
-                    Debug.Log("Other: " + other);
-                    if (angle + i * 90 == other)
+                    // Debug.Log("Angle: " + angle + " | Other: " + other);
+                    if ((angle + i * 90) % 360 == other)
                     {
-                        Debug.Log("true A " + angle + i * 90);
+                        // Debug.Log("true A " + angle + i * 90);
                         count++;
                     }
                 }
@@ -317,15 +316,32 @@ public class SpaceStation : MonoBehaviour
 
             if (count > highestCount)
             {
-                Debug.Log("true B " + count);
+                // Debug.Log("true B " + count);
                 indexOfBestRotation = i;
                 highestCount = count;
+                additionalBestIndicies.Clear();
+            }
+            else if (count == highestCount)
+            {
+                additionalBestIndicies.Add(i);
             }
         }
+        additionalBestIndicies.Add(indexOfBestRotation);
         // Debug.Assert(highestCount > 0); // If this doesn't pass, the logic is horribly broken somewhere (Narrator from the future: it was horribly broken)
-
+        // Debug.Log("Rotation should be " + indexOfBestRotation * )
         // Rotate to make indexOfBestRotation
-        newModule.transform.eulerAngles = new Vector3(0f, 0f, 90f * highestCount);
+        indexOfBestRotation = additionalBestIndicies[Random.Range(0, additionalBestIndicies.Count)];
+        newModule.transform.eulerAngles = new Vector3(0f, 0f, 90f * indexOfBestRotation);
+
+        // Rotate the connection points
+        int a = 90 * indexOfBestRotation;
+        foreach (var connection in modules[x, y].connections)
+        {
+            Vector2 temp = Helper.RotateVector2ByDegree(connection.connectedModuleGridLocation, a);
+            connection.connectedModuleGridLocation = new Vector2Int((int)temp.x, (int)temp.y);
+            connection.outDirectionAngle = (connection.outDirectionAngle + a) % 360;
+        }
+
 
         // Disable all physics
         Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();

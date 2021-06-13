@@ -879,6 +879,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationModulePrefabs:
+  - {fileID: 466686230633995062, guid: 11b74854fbec3df45bfd79ad94ae4dfb, type: 3}
+  - {fileID: 8450578416243176834, guid: 056ae11368e94d34a8956b4bd581fda8, type: 3}
+  - {fileID: 7974336847001061617, guid: 35c649cbd5891fb4c94666bff0e1c9d0, type: 3}
   - {fileID: 7974336847001061617, guid: 35c649cbd5891fb4c94666bff0e1c9d0, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
