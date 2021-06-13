@@ -1364,6 +1364,118 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.size
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 2999802183997414891, guid: 4b8d96c4003142c4b96329f0a8453104, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 7057905657366725060, guid: 884c13002061b5a41ae150a2ebde8ed3, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 2009304604110888755, guid: 2c5d9456742e6b745888a7d07564b061, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 3228152189342062826, guid: 944cd1bf774412a4bb1065b60a75dd14, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 22491390565372461, guid: d2ae6bda565839e46855742f844b7116, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 4346056063682651519, guid: 88088ddb31674e44292a1bf52563adcc, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 5890609497531271944, guid: 21d74e4fd70adef4b9609751abb04097, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 7479464866038559609, guid: dcfd94f47d60b9e40a24e000910d4d87, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 3534780790704283996, guid: ea8c35c471f11b64a9f0e6e3575268bf, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 7225210089764213242, guid: cf920c2df11f74c4bbdc8605775f032e, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[13]
+      value: 
+      objectReference: {fileID: 6503021099383710857, guid: 37726fe42f750854c8fd665942226635, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 4651989846445771969, guid: b0c707979cfed1543a52c9c454b8c14e, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 6392358049535102623, guid: c03da2816f00fe040a7c04b9bf8e915c, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[16]
+      value: 
+      objectReference: {fileID: 7151893968876769688, guid: 0abbc29e6b4387844a383dbf498313c3, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[17]
+      value: 
+      objectReference: {fileID: 1306596186246856594, guid: 39ec6eb36d789aa469455b0aa048eddd, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[18]
+      value: 
+      objectReference: {fileID: 8267491017793042308, guid: d504f963283321b4aa7b7a87256c8bcb, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[19]
+      value: 
+      objectReference: {fileID: 1150619604231462285, guid: c9e9d00c4f9bca8459645c24c54e713c, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[20]
+      value: 
+      objectReference: {fileID: 1682959532822148853, guid: 1e54f3b79b05fbc419e12fffdee94bee, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[21]
+      value: 
+      objectReference: {fileID: 6624253303724850317, guid: 8329e1edfd784f44e8d47b6f3006fa4c, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[22]
+      value: 
+      objectReference: {fileID: 3335061603332104317, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[23]
+      value: 
+      objectReference: {fileID: 1316161779330245082, guid: a9e383f922425e942bce5673305c25ba, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[24]
+      value: 
+      objectReference: {fileID: 5949589752660803016, guid: 4e3024a92f7fd304f801f26629d40705, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[25]
+      value: 
+      objectReference: {fileID: 8136690421614967395, guid: 6792d77a5e19c6e4fa0fd2da9ecd7470, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[26]
+      value: 
+      objectReference: {fileID: 5297058754688168634, guid: 7524a26766ca37a4eb0ecb57b01fa0d6, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[29]
+      value: 
+      objectReference: {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[30]
+      value: 
+      objectReference: {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
     - target: {fileID: 7608618701962416995, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: m_Name
       value: Station Root
