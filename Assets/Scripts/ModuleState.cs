@@ -16,6 +16,12 @@ public class ModuleState : MonoBehaviour
     public int maxhp = 5;
     public int hp = 0;
 
+    public Sprite undamagedSprite;
+    public Sprite repairedSprite;
+    public Sprite damagedSprite;
+    public Sprite brokenSprite;
+    public SpriteRenderer visual;
+
     public static int brokenModules;
     [SerializeField] private string miniGameName = "TestMinigame";
 
@@ -27,9 +33,12 @@ public class ModuleState : MonoBehaviour
         miniGameWindow = FindObjectOfType<MiniGameWindow>();
         beacon = GetComponent<Problem>();
         beacon.SetStatus(!moduleFixed);
+
+        Debug.Assert(visual != null);
+        UpdateVisual(State.Undamaged);
         brokenModules = FindObjectsOfType<ModuleState>().Length;
     }
-    
+
     // bool firstUpdate = true;
     // void FixedUpdate(){
     //     if(firstUpdate){
@@ -57,6 +66,7 @@ public class ModuleState : MonoBehaviour
         if (isFixed)
         {
             Debug.Log(gameObject.name + " is now fixed.");
+            UpdateVisual(State.Repaired);
             moduleFixed = true;
             brokenModules--;
             if (brokenModules == 0)
@@ -70,10 +80,12 @@ public class ModuleState : MonoBehaviour
         Debug.Log(gameObject.name + " is still broken.");
     }
 
-    public void TakeDamage(int amount){
-        hp-= amount;
-        if(hp<=0){
-            hp=0;
+    public void TakeDamage(int amount)
+    {
+        hp -= amount;
+        if (hp <= 0)
+        {
+            hp = 0;
             Break();
         }
     }
@@ -85,6 +97,7 @@ public class ModuleState : MonoBehaviour
     {
         if (moduleFixed)
         {
+            UpdateVisual(State.Damaged);
             moduleFixed = false;
             brokenModules++;
             sRend.color = Color.red;
@@ -93,6 +106,25 @@ public class ModuleState : MonoBehaviour
             return;
         }
         Debug.Log(gameObject.name + " is already broken.");
+    }
+
+    public void UpdateVisual(State state)
+    {
+        switch (state)
+        {
+            case State.Undamaged:
+                visual.sprite = undamagedSprite;
+                break;
+            case State.Damaged:
+                visual.sprite = damagedSprite;
+                break;
+            case State.Repaired:
+                visual.sprite = repairedSprite;
+                break;
+            case State.Broken:
+                visual.sprite = brokenSprite;
+                break;
+        }
     }
 
     public enum State

@@ -9,17 +9,15 @@ public class StationModule : MonoBehaviour
     public List<StationConnection> connections = new List<StationConnection>();
     [SerializeField]
     private Rigidbody2D rb;
+    public bool isCenterCore = false;
+    public CoreSection coreSection = CoreSection.NotCore;
+    public bool isBrace = false;
 
     private void Awake()
     {
-        Debug.Assert(rb != null);
+        // Debug.Assert(rb != null);
         Debug.Assert(rotationSpeed != 0);
         Debug.Assert(connections.Count > 0);
-    }
-
-    private void Update()
-    {
-
     }
 
     public bool CheckIfCanConnectTo(int x, int y, int offsetX, int offsetY)
@@ -51,5 +49,19 @@ public class StationModule : MonoBehaviour
             rb.rotation += angle * Time.deltaTime;
             yield return null;
         }
+    }
+
+    public enum CoreSection
+    {
+        NotCore,
+        Center,
+        CenterLeft,
+        CenterRight,
+        TopLeft,
+        TopCenter,
+        TopRight,
+        BottomLeft,
+        BottomCenter,
+        BottomRight,
     }
 }

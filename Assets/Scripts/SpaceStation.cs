@@ -35,8 +35,145 @@ public class SpaceStation : MonoBehaviour
 
         Vector2Int spot = FindValidModuleSpot();
 
-        yield return StartCoroutine(AddModule(stationModulePrefabs[Random.Range(0, stationModulePrefabs.Length)], spot.x, spot.y));
-        // Debug.Log("Module Done");
+        // GameObject newModule = stationModulePrefabs[Random.Range(0, stationModulePrefabs.Length)];
+        GameObject newModule = PickModuleForSpot(spot);
+
+        yield return StartCoroutine(AddModule(newModule, spot.x, spot.y));
+    }
+
+    public GameObject PickModuleForSpot(Vector2Int spot)
+    {
+        // If center, return first item on list(core)
+        if (spot.x == maxStationDimensions.x / 2 && spot.y == maxStationDimensions.y / 2)
+        {
+            return stationModulePrefabs[0];
+        }
+
+        // Gather list of all possible modules
+        List<StationModule> moduleList = new List<StationModule>();
+        foreach (var go in stationModulePrefabs)
+        {
+            moduleList.Add(go.GetComponent<StationModule>());
+        }
+
+        // First, check if it has core neighbors (including diagonals)
+        // TO-DO: Consider discarding diagonals and restarting spot search?
+        StationModule.CoreSection coreSection = CheckIfValidCoreSection(spot);
+
+        // If core, figure out which core piece fits and return that
+        if (coreSection != StationModule.CoreSection.NotCore)
+        {
+            foreach (var module in moduleList)
+            {
+                if (module.coreSection == coreSection)
+                {
+                    return module.gameObject;
+                }
+            }
+        }
+        else
+        {
+            moduleList.RemoveAll(x => x.coreSection != StationModule.CoreSection.NotCore);
+        }
+
+        // Check if it is connecting to a brace connection
+        // If brace, narrow list to braces; otherwise, remove braces
+        // Count that spot's neighbors and return a module with that many sides if possible; continue with a narrowed-down list
+        // Check the type of module that the player has the least of; return one of those if possible
+        // If still undecided, pick randomly from remaining list
+        return moduleList[Random.Range(0, moduleList.Count)].gameObject;
+    }
+
+
+
+    public StationModule.CoreSection CheckIfValidCoreSection(Vector2Int spot)
+    {
+        int x = -1;
+        int y = -1;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.TopRight;
+            }
+        }
+
+        x = 0;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.TopCenter;
+            }
+        }
+
+        x = 1;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.TopLeft;
+            }
+        }
+
+        x = -1;
+        y = 0;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.CenterRight;
+            }
+        }
+
+        x = 0;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                Debug.LogError("Something has gone horribly wrong if you reached this error. The game should probably be over because the core center needed replacing.");
+                return StationModule.CoreSection.Center;
+            }
+        }
+
+        x = 1;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.CenterLeft;
+            }
+        }
+
+        x = -1;
+        y = 1;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.BottomRight;
+            }
+        }
+
+        x = 0;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.BottomCenter;
+            }
+        }
+
+        x = 1;
+        if (!(spot.x + x < 0 || spot.y + y < 0 || spot.x + x >= maxStationDimensions.x || spot.y + y >= maxStationDimensions.y) && modules[spot.x + x, spot.y + y] != null)
+        {
+            if (modules[spot.x + x, spot.y + y].isCenterCore)
+            {
+                return StationModule.CoreSection.BottomLeft;
+            }
+        }
+
+        return StationModule.CoreSection.NotCore;
     }
 
     public Vector2Int FindValidModuleSpot()
@@ -237,7 +374,6 @@ public class SpaceStation : MonoBehaviour
 
     public IEnumerator AddModule(GameObject module, int x, int y)
     {
-
         // Convert grid coords to real coords
         Vector3 spawnPosition = new Vector3(x * moduleToGridScaleFactor, y * moduleToGridScaleFactor, 0f) + gridOffset;
 
@@ -251,103 +387,109 @@ public class SpaceStation : MonoBehaviour
         newModule.transform.parent = transform;
 
         // Rotate to match random connection to connection target
-        List<float> thisAngle = new List<float>();
-        Debug.Log("outangles");
-        foreach (var connection in modules[x, y].connections)
+        // but not if core section
+        if (modules[x, y].coreSection == StationModule.CoreSection.NotCore)
         {
-            thisAngle.Add(connection.outDirectionAngle);
-            // Debug.Log(connection.outDirectionAngle);
-        }
-        // StationConnection randomConnection = modules[x, y].connections[Random.Range(0, modules[x, y].connections.Count)];
-        List<(int, int)> validNeighbors = GetNeighborsWithConnections(x, y, modules[x, y].connections);
-        // float thisAngle = randomConnection.outDirectionAngle;
-        Debug.Log("neigh");
-        foreach (var n in validNeighbors)
-        {
-            Debug.Log(n);
-        }
-        Debug.Log("end neigh");
+            List<float> thisAngle = new List<float>();
+            Debug.Log("outangles");
+            foreach (var connection in modules[x, y].connections)
+            {
+                thisAngle.Add(connection.outDirectionAngle);
+                // Debug.Log(connection.outDirectionAngle);
+            }
+            // StationConnection randomConnection = modules[x, y].connections[Random.Range(0, modules[x, y].connections.Count)];
+            List<(int, int)> validNeighbors = GetNeighborsWithConnections(x, y, modules[x, y].connections);
+            // float thisAngle = randomConnection.outDirectionAngle;
+            Debug.Log("neigh");
+            foreach (var n in validNeighbors)
+            {
+                Debug.Log(n);
+            }
+            Debug.Log("end neigh");
 
-        // This list will contain all the directions where a connection is valid
-        List<float> targetAngle = new List<float>();
-        foreach (var neighbor in validNeighbors)
-        {
-            if (neighbor.Item1 < x)
+            // This list will contain all the directions where a connection is valid
+            List<float> targetAngle = new List<float>();
+            foreach (var neighbor in validNeighbors)
             {
-                targetAngle.Add(180);
-                Debug.Log(180);
-            }
-            else if (neighbor.Item1 > x)
-            {
-                targetAngle.Add(0);
-                Debug.Log(0);
-            }
-            else if (neighbor.Item2 < y)
-            {
-                targetAngle.Add(270);
-                Debug.Log(270);
-            }
-            else if (neighbor.Item2 > y)
-            {
-                targetAngle.Add(90);
-                Debug.Log(90);
-            }
-        }
-
-        int indexOfBestRotation = 0;
-        int highestCount = 0;
-        List<int> additionalBestIndicies = new List<int>();
-        for (var i = 0; i < 4; i++)
-        {
-            int count = 0;
-            // Debug.Log(i + ", Count: " + count);
-            foreach (var angle in thisAngle)
-            {
-                foreach (var other in targetAngle)
+                if (neighbor.Item1 < x)
                 {
-                    // Debug.Log("Angle: " + angle + " | Other: " + other);
-                    if ((angle + i * 90) % 360 == other)
-                    {
-                        // Debug.Log("true A " + angle + i * 90);
-                        count++;
-                    }
+                    targetAngle.Add(180);
+                    Debug.Log(180);
+                }
+                else if (neighbor.Item1 > x)
+                {
+                    targetAngle.Add(0);
+                    Debug.Log(0);
+                }
+                else if (neighbor.Item2 < y)
+                {
+                    targetAngle.Add(270);
+                    Debug.Log(270);
+                }
+                else if (neighbor.Item2 > y)
+                {
+                    targetAngle.Add(90);
+                    Debug.Log(90);
                 }
             }
 
-            if (count > highestCount)
+            int indexOfBestRotation = 0;
+            int highestCount = 0;
+            List<int> additionalBestIndicies = new List<int>();
+            for (var i = 0; i < 4; i++)
             {
-                // Debug.Log("true B " + count);
-                indexOfBestRotation = i;
-                highestCount = count;
-                additionalBestIndicies.Clear();
-            }
-            else if (count == highestCount)
-            {
-                additionalBestIndicies.Add(i);
-            }
-        }
-        additionalBestIndicies.Add(indexOfBestRotation);
-        // Debug.Assert(highestCount > 0); // If this doesn't pass, the logic is horribly broken somewhere (Narrator from the future: it was horribly broken)
-        // Debug.Log("Rotation should be " + indexOfBestRotation * )
-        // Rotate to make indexOfBestRotation
-        indexOfBestRotation = additionalBestIndicies[Random.Range(0, additionalBestIndicies.Count)];
-        newModule.transform.eulerAngles = new Vector3(0f, 0f, 90f * indexOfBestRotation);
+                int count = 0;
+                // Debug.Log(i + ", Count: " + count);
+                foreach (var angle in thisAngle)
+                {
+                    foreach (var other in targetAngle)
+                    {
+                        // Debug.Log("Angle: " + angle + " | Other: " + other);
+                        if ((angle + i * 90) % 360 == other)
+                        {
+                            // Debug.Log("true A " + angle + i * 90);
+                            count++;
+                        }
+                    }
+                }
 
-        // Rotate the connection points
-        int a = 90 * indexOfBestRotation;
-        foreach (var connection in modules[x, y].connections)
-        {
-            Vector2 temp = Helper.RotateVector2ByDegree(connection.connectedModuleGridLocation, a);
-            connection.connectedModuleGridLocation = new Vector2Int((int)temp.x, (int)temp.y);
-            connection.outDirectionAngle = (connection.outDirectionAngle + a) % 360;
+                if (count > highestCount)
+                {
+                    // Debug.Log("true B " + count);
+                    indexOfBestRotation = i;
+                    highestCount = count;
+                    additionalBestIndicies.Clear();
+                }
+                else if (count == highestCount)
+                {
+                    additionalBestIndicies.Add(i);
+                }
+            }
+            additionalBestIndicies.Add(indexOfBestRotation);
+            // Debug.Assert(highestCount > 0); // If this doesn't pass, the logic is horribly broken somewhere (Narrator from the future: it was horribly broken)
+            // Debug.Log("Rotation should be " + indexOfBestRotation * )
+            // Rotate to make indexOfBestRotation
+            indexOfBestRotation = additionalBestIndicies[Random.Range(0, additionalBestIndicies.Count)];
+            newModule.transform.eulerAngles = new Vector3(0f, 0f, 90f * indexOfBestRotation);
+
+            // Rotate the connection points
+            int a = 90 * indexOfBestRotation;
+            foreach (var connection in modules[x, y].connections)
+            {
+                Vector2 temp = Helper.RotateVector2ByDegree(connection.connectedModuleGridLocation, a);
+                connection.connectedModuleGridLocation = new Vector2Int((int)temp.x, (int)temp.y);
+                connection.outDirectionAngle = (connection.outDirectionAngle + a) % 360;
+            }
         }
+
 
 
         // Disable all physics
-        Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();
+        //Rigidbody2D newRb = newModule.GetComponent<Rigidbody2D>();
         Collider2D newCol = newModule.GetComponent<Collider2D>();
-        newRb.simulated = false;
+        //newRb.simulated = false;
         newCol.enabled = false;
+        newCol.usedByComposite = false;
 
         // Shrink to 0
         newModule.transform.localScale = Vector3.zero;
@@ -359,8 +501,11 @@ public class SpaceStation : MonoBehaviour
         // TO-DO: Add any visuals for this?
 
         // Enable all physics
-        newRb.simulated = true; // May not be needed?
+        //newRb.simulated = true; // May not be needed?
+        newCol.usedByComposite = true;
         newCol.enabled = true;
+
+        GetComponent<CompositeCollider2D>().GenerateGeometry();
 
         // Done?
         Debug.Log("Module Done");
