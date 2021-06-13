@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     private ModuleState currentModule;
     private OxygenTank oxygenTank;
     [SerializeField] private bool tethered = false;
+    public static bool noModule;
 
     private void Start()
     {
@@ -26,7 +27,6 @@ public class PlayerInteraction : MonoBehaviour
             oxygenTank.ReplenishOxygen(Time.deltaTime);
         else
             oxygenTank.DepleteOxygen(Time.deltaTime);
-            
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

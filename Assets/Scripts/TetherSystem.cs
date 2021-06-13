@@ -137,39 +137,43 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (Input.GetButtonDown("Oxygen Toggle"))
+        if (Input.GetButtonDown("Oxygen Toggle") || Input.GetMouseButtonDown(1))
         {
-            // If the tether is attached, reset it
-            if (tetherAttached)
+            if (PlayerInteraction.noModule)
             {
-                Debug.Log("Detach tether");
-                ResetTether();
-                return;
-            }
-            // Otherwise, attach it if possible
-            Debug.Log("Attaching tether");
-            tetherRenderer.enabled = true;
-
-            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
-
-            if (hit.collider != null)
-            {
-                Debug.Log("Tether attached");
-                tetherAttached = true;
-                if (!tetherPositions.Contains(hit.point))
+                // If the tether is attached, reset it
+                if (tetherAttached)
                 {
-                    tetherPositions.Add(hit.point);
-                    tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
-                    tetherJoint.enabled = true;
-                    tetherHingeAnchorSprite.enabled = true;
-                    tetherLength = tetherJoint.distance;
+                    Debug.Log("Detach tether");
+                    ResetTether();
+                    return;
                 }
-            }
-            else
-            {
-                tetherRenderer.enabled = false;
-                tetherAttached = false;
-                tetherJoint.enabled = false;
+                // Otherwise, attach it if possible
+                Debug.Log("Attaching tether");
+                tetherRenderer.enabled = true;
+
+                var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
+
+                if (hit.collider != null)
+                {
+                    Debug.Log("Tether attached");
+                    tetherAttached = true;
+                    if (!tetherPositions.Contains(hit.point))
+                    {
+                        tetherPositions.Add(hit.point);
+                        tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
+                        tetherJoint.enabled = true;
+                        tetherHingeAnchorSprite.enabled = true;
+                        tetherLength = tetherJoint.distance;
+                    }
+                }
+                else
+                {
+                    tetherRenderer.enabled = false;
+                    tetherAttached = false;
+                    tetherJoint.enabled = false;
+                }
+
             }
         }
     }
