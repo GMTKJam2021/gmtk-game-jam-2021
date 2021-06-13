@@ -71,7 +71,6 @@ public class ModuleState : MonoBehaviour
             if (brokenModules == 0)
                 scorekeeper.Win();
             hp = maxhp;
-            visual.color = Color.green;
             scorekeeper.AddPoints(modulePoints);
             beacon.ProblemSolved();
             return;
@@ -99,7 +98,6 @@ public class ModuleState : MonoBehaviour
             UpdateVisual(State.Damaged);
             moduleFixed = false;
             brokenModules++;
-            visual.color = Color.red;
             Debug.Log(gameObject.name + " is now broken.");
             beacon.RequestHelp();
             return;
