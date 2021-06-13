@@ -32,7 +32,9 @@ public class TetherSystem : MonoBehaviour
     private int wrapLoop = 0; // This is the number of times looped around, used with wrapPointsLookup to handle multiple loops around an object
     public float climbSpeed = 3f;
     private bool isColliding;
+    public float oxygenReplenishRate = 1f;
     public OxygenTank oxygenTank;
+    public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
 
     void Awake()
@@ -116,8 +118,8 @@ public class TetherSystem : MonoBehaviour
     {
         if (tetherAttached)
         {
-            oxygenTank.ReplenishOxygen(Time.deltaTime);
-            fuelTank.ReplenishFuel(Time.deltaTime);
+            oxygenTank.ReplenishOxygen(oxygenReplenishRate * Time.deltaTime);
+            fuelTank.ReplenishFuel(FuelReplenishRate * Time.deltaTime);
         }
     }
 
