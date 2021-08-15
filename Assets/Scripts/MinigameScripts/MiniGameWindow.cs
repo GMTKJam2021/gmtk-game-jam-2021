@@ -70,9 +70,12 @@ public class MiniGameWindow : MonoBehaviour
     }
     public void MiniGameEnd(bool result)
     {
-        Debug.Log("Close Window");
-        currentModule.FixResult(result);
-        windowState = 3; // Starts closing window
+        if(currentModule != null)
+        {
+            Debug.Log("Close Window");
+            currentModule.FixResult(result);
+            windowState = 3; // Starts closing window
+        }
     }
     private void WindowClose()
     {
