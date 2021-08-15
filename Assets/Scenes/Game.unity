@@ -357,6 +357,10 @@ PrefabInstance:
       value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6065456260790140828, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 802298101}
+    - target: {fileID: 6065456260790140828, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: miniGameWidth
       value: 1
       objectReference: {fileID: 0}

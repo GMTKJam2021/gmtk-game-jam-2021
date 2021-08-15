@@ -39,9 +39,9 @@ public class CursorController : MonoBehaviour
         anim.SetInteger("State", 1);
     }
 
-    public void Target()
+    public void Target(Vector2 rotation)
     {
-        transform.up = Vector2.zero;
+        transform.up = rotation;
         anim.SetInteger("State", 2);
     }
 

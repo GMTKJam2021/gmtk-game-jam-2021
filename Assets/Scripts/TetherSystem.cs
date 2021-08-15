@@ -124,7 +124,7 @@ public class TetherSystem : MonoBehaviour
         {
             var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
             if (hit.collider != null)
-                cursor.Target();
+                cursor.Target(aimDirection);
             else
                 cursor.Arrow(aimDirection);
 
