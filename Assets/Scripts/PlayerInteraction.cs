@@ -9,7 +9,8 @@ public class PlayerInteraction : MonoBehaviour
     private List<ModuleState> nearbyModules = new List<ModuleState>();
     private OxygenTank oxygenTank;
     [SerializeField] private bool tethered = false;
-    public static bool noModule = true;
+    public static bool fixable;
+    [SerializeField] private CursorController cursor;
 
     private void Start()
     {
@@ -19,9 +20,9 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
-            if ( nearbyModules.Any() && !PlayerMouseMovement.inGame)
+            if ( fixable && !PlayerMouseMovement.inGame)
             {
-                ClosestModule().AttemptFix();
+                FixableModule().AttemptFix();
             }
             else
                 Debug.Log("No Module Available");
@@ -37,7 +38,9 @@ public class PlayerInteraction : MonoBehaviour
         {
             nearbyModules.Add(collision.GetComponent<ModuleState>());
             Debug.Log(collision.name + "in range");
-            noModule = false;
+            CanFix();
+            if (fixable)
+                cursor.Problem();
         }
             
     }
@@ -49,11 +52,35 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(collision.name + "out of range");
             nearbyModules.Remove( collision.GetComponent<ModuleState>());
             if (nearbyModules.Count == 0)
-                noModule = true;
+                fixable = false;
         }
     }
 
-    public ModuleState ClosestModule(){
+    public void CanFix()
+    {
+        for(int i = 0; i < nearbyModules.Count; i++)
+        {
+            if (!nearbyModules[i].moduleFixed)
+            {
+                fixable = true;
+                return;
+            }
+        }
+        fixable = false;
+    }
+
+    private ModuleState FixableModule()
+    {
+        for (int i = 0; i < nearbyModules.Count; i++)
+        {
+            if (!nearbyModules[i].moduleFixed)
+                return nearbyModules[i];
+        }
+        return null;
+    }
+
+
+   /* private ModuleState ClosestModule(){
         float dist = Mathf.Infinity;
         int selection = -1;
         for(int i=0; i<nearbyModules.Count; i++){
@@ -65,7 +92,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         return nearbyModules[selection];
     }
-
+*/
     // public int CompareByDistance(ModuleState a, ModuleState b){
     //     if(a==null){
     //         if(b==null) return 0;

@@ -35,6 +35,7 @@ public class TetherSystem : MonoBehaviour
     public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
     [SerializeField] private CursorController cursor;
+    private bool targeting;
 
     void Awake()
     {
@@ -60,6 +61,7 @@ public class TetherSystem : MonoBehaviour
         //Debug.DrawRay(transform.position, aimDirection, Color.red);
         playerPosition = transform.position;
 
+        //Attached Tether Points
         if (tetherAttached)
         {
 
@@ -101,6 +103,10 @@ public class TetherSystem : MonoBehaviour
             }
         }
 
+        //Target Oxygen Module
+        if (Input.GetMouseButtonDown(1))
+            targeting = true;
+
         HandleInput(aimDirection);
         UpdateTetherPositions();
         HandleTetherLength();
@@ -119,50 +125,55 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleInput(Vector2 aimDirection)
     {
-        if (PlayerInteraction.noModule)
+        if (!PlayerInteraction.fixable)
         {
-            var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
-            if (hit.collider != null)
-                cursor.Target(aimDirection);
-            else
-                cursor.Arrow(aimDirection);
-
-            if (Input.GetButtonDown("Oxygen Toggle") || Input.GetMouseButtonDown(1))
+            if (targeting)
             {
-            
-                // If the tether is attached, reset it
-                if (tetherAttached)
-                {
-                    Debug.Log("Detach tether");
-                    ResetTether();
-                    return;
-                }
-                // Otherwise, attach it if possible
-                Debug.Log("Attaching tether");
-                tetherRenderer.enabled = true;
-
-                
-
+                var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
                 if (hit.collider != null)
+                    cursor.Found();
+                else
+                    cursor.Target();
+
+                if (Input.GetMouseButtonUp(1))
                 {
-                    Debug.Log("Tether attached");
-                    tetherAttached = true;
-                    if (!tetherPositions.Contains(hit.point))
+                    cursor.Arrow(aimDirection);
+                    targeting = false;
+                    // If the tether is attached, reset it
+                    if (tetherAttached)
                     {
-                        tetherPositions.Add(hit.point);
-                        tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
-                        tetherJoint.enabled = true;
-                        tetherHingeAnchorSprite.enabled = true;
-                        tetherLength = tetherJoint.distance;
+                        Debug.Log("Detach tether");
+                        ResetTether();
+                    }
+                    // Otherwise, attach it if possible
+                    Debug.Log("Attaching tether");
+                    tetherRenderer.enabled = true;
+
+
+
+                    if (hit.collider != null)
+                    {
+                        Debug.Log("Tether attached");
+                        tetherAttached = true;
+                        if (!tetherPositions.Contains(hit.point))
+                        {
+                            tetherPositions.Add(hit.point);
+                            tetherJoint.distance = Vector2.Distance(playerPosition, hit.point);
+                            tetherJoint.enabled = true;
+                            tetherHingeAnchorSprite.enabled = true;
+                            tetherLength = tetherJoint.distance;
+                        }
+                    }
+                    else
+                    {
+                        tetherRenderer.enabled = false;
+                        tetherAttached = false;
+                        tetherJoint.enabled = false;
                     }
                 }
-                else
-                {   
-                    tetherRenderer.enabled = false;
-                    tetherAttached = false;
-                    tetherJoint.enabled = false;
-                }
             }
+            else
+                cursor.Arrow(aimDirection);
         }
     }
 
