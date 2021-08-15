@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 418430179}
   - component: {fileID: 2965458605115331410}
   m_Layer: 9
-  m_Name: Oxygen Connection L
-  m_TagString: Oxygen
+  m_Name: Fuel Connection L
+  m_TagString: Fuel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -5986337497808472874, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+  m_Sprite: {fileID: 8623486971937166214, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -168,8 +168,8 @@ GameObject:
   - component: {fileID: 980516168}
   - component: {fileID: 635004858773409289}
   m_Layer: 9
-  m_Name: Oxygen Connection R
-  m_TagString: Oxygen
+  m_Name: Fuel Connection R
+  m_TagString: Fuel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -228,7 +228,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: -5986337497808472874, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+  m_Sprite: {fileID: 8623486971937166214, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -341,7 +341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_Name
-      value: Oxygen Connection Module Variant
+      value: Fuel Connection Module Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3700394184770742664, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: connections.Array.size
@@ -402,7 +402,7 @@ PrefabInstance:
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: brokenSprite
       value: 
-      objectReference: {fileID: -2409076161749473710, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 2610240559746588724, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: miniGameName
       value: MiniGame0
@@ -414,19 +414,19 @@ PrefabInstance:
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: damagedSprite
       value: 
-      objectReference: {fileID: -3857832854798737947, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 2610240559746588724, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: repairedSprite
       value: 
-      objectReference: {fileID: -6133237646408789321, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 8859246213526209503, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 3700394184770742670, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: undamagedSprite
       value: 
-      objectReference: {fileID: 6267069649403000226, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 947453662829378184, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 3700394185172420449, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6267069649403000226, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 947453662829378184, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 3700394185172420449, guid: 6633152d237366e41913c261047c8635, type: 3}
       propertyPath: m_Color.b
       value: 1

@@ -18,22 +18,24 @@ public class TetherSystem : MonoBehaviour
     public LineRenderer tetherRenderer;
     public LayerMask tetherLayerMask;
     public LayerMask connectionLayerMask;
-    [SerializeField]
-    private float tetherMaxCastDistance = 20f;
-    [SerializeField]
-    private float tetherMaxLength = 30f;
-    [SerializeField]
-    private float tetherLength = 0f;
+    [SerializeField] private float tetherMaxCastDistance = 20f;
+    [SerializeField] private float tetherMaxLength = 30f;
+    [SerializeField] private float tetherLength = 0f;
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
     private Dictionary<(Vector2, int), int> wrapPointsLookup = new Dictionary<(Vector2, int), int>();
     private int wrapLoop = 0; // This is the number of times looped around, used with wrapPointsLookup to handle multiple loops around an object
     public float climbSpeed = 3f;
     private bool isColliding;
+
+    //Resource Fields
+    private bool resourceType;
     public float oxygenReplenishRate = 1f;
     public OxygenTank oxygenTank;
     public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
+    
+    //Cursor Fields
     [SerializeField] private CursorController cursor;
     private bool targeting;
 
@@ -118,8 +120,10 @@ public class TetherSystem : MonoBehaviour
     {
         if (tetherAttached)
         {
-            oxygenTank.ReplenishOxygen(oxygenReplenishRate * Time.deltaTime);
-            fuelTank.ReplenishFuel(FuelReplenishRate * Time.deltaTime);
+            if(resourceType)
+                oxygenTank.ReplenishOxygen(oxygenReplenishRate * Time.deltaTime);
+            else
+                fuelTank.ReplenishFuel(FuelReplenishRate * Time.deltaTime);
         }
     }
 
@@ -129,6 +133,7 @@ public class TetherSystem : MonoBehaviour
         {
             if (targeting)
             {
+                //Check if player as hit a node
                 var hit = Physics2D.Raycast(playerPosition, aimDirection, tetherMaxCastDistance, connectionLayerMask);
                 if (hit.collider != null)
                     cursor.Found();
@@ -149,12 +154,22 @@ public class TetherSystem : MonoBehaviour
                     Debug.Log("Attaching tether");
                     tetherRenderer.enabled = true;
 
-
-
+                    //If a node is hit then attach a tether
                     if (hit.collider != null)
                     {
                         Debug.Log("Tether attached");
                         tetherAttached = true;
+                        if (hit.collider.CompareTag("Oxygen"))
+                        {
+                            tetherRenderer.startColor = Color.blue;
+                            resourceType = true;
+                        }
+                        else
+                        {
+                            tetherRenderer.startColor = Color.red;
+                            resourceType = false;
+                        }
+                               
                         if (!tetherPositions.Contains(hit.point))
                         {
                             tetherPositions.Add(hit.point);

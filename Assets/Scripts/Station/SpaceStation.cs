@@ -15,9 +15,11 @@ public class SpaceStation : MonoBehaviour
     public int moduleCount = 0;
     public int oxygenSourceCount = 0;
     public float oxygenSourceMinFrequency = 0.1f;
+    public int fuelSourceCount = 0;
+    public float fuelSourceMinFrequency = 0.1f;
     public float moreConnectionsFrequency = 0.2f;
 
-    private void Awake()
+    private void Awake()    
     {
         modules = new StationModule[maxStationDimensions.x, maxStationDimensions.y];
 
@@ -96,6 +98,12 @@ public class SpaceStation : MonoBehaviour
         {
             oxygenSourceCount++;
             return stationModulePrefabs[1];
+        }
+
+        if (fuelSourceCount <= moduleCount * fuelSourceMinFrequency)
+        {
+            fuelSourceCount++;
+            return stationModulePrefabs[6];
         }
 
         if (Random.Range(0f, 1f) < moreConnectionsFrequency)

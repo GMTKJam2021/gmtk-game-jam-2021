@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4478725180253793890, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
 --- !u!224 &295304897 stripped
@@ -394,7 +398,7 @@ PrefabInstance:
       objectReference: {fileID: 1722187662}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: FuelReplenishRate
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: tetherMaxCastDistance
@@ -1475,8 +1479,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: fuelSourceMinFrequency
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.size
-      value: 31
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.data[2]
@@ -1497,7 +1505,7 @@ PrefabInstance:
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.data[6]
       value: 
-      objectReference: {fileID: 3228152189342062826, guid: 944cd1bf774412a4bb1065b60a75dd14, type: 3}
+      objectReference: {fileID: 2947075863166982562, guid: a4777b8bc37c6ed4aa650ddce566525e, type: 3}
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.data[7]
       value: 
@@ -1579,9 +1587,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5297058754688168634, guid: 7524a26766ca37a4eb0ecb57b01fa0d6, type: 3}
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
+      propertyPath: stationModulePrefabs.Array.data[28]
+      value: 
+      objectReference: {fileID: 2947075863166982562, guid: a4777b8bc37c6ed4aa650ddce566525e, type: 3}
+    - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.data[29]
       value: 
-      objectReference: {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
+      objectReference: {fileID: 2947075863166982562, guid: a4777b8bc37c6ed4aa650ddce566525e, type: 3}
     - target: {fileID: 7608618701962416993, guid: 2c2cb92a90599e548ba96bb424dda3e4, type: 3}
       propertyPath: stationModulePrefabs.Array.data[30]
       value: 
