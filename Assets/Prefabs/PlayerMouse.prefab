@@ -207,6 +207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   windowState: 0
   miniGameWidth: 0.8
+  cursor: {fileID: 0}
 --- !u!1 &2668321874442883501
 GameObject:
   m_ObjectHideFlags: 0
@@ -596,8 +597,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetherHingeAnchor: {fileID: 537050453961599833}
   tetherJoint: {fileID: 7970984298367180619}
-  crosshair: {fileID: 0}
-  crosshairSprite: {fileID: 0}
   tetherRenderer: {fileID: 500741377374500888}
   tetherLayerMask:
     serializedVersion: 2

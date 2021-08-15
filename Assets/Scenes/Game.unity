@@ -366,12 +366,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6245980044045882409, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6245980044045882409, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: m_LocalScale.y
-      value: 6.5
+      value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 802298101}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: fuelTank
       value: 

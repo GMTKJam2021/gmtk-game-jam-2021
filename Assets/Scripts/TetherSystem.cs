@@ -34,7 +34,7 @@ public class TetherSystem : MonoBehaviour
     public OxygenTank oxygenTank;
     public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
-    private CursorController cursor;
+    [SerializeField] private CursorController cursor;
 
     void Awake()
     {
@@ -42,7 +42,6 @@ public class TetherSystem : MonoBehaviour
         playerPosition = transform.position;
         tetherHingeAnchorRb = tetherHingeAnchor.GetComponent<Rigidbody2D>();
         tetherHingeAnchorSprite = tetherHingeAnchor.GetComponent<SpriteRenderer>();
-        cursor = FindObjectOfType<CursorController>();
     }
 
     private void Update()
