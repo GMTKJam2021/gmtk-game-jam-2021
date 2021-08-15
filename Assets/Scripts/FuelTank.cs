@@ -51,7 +51,7 @@ public class FuelTank : MonoBehaviour
             if(fuelGauge)
                 fuelGauge.SetAmount(fuelRemaining);
             
-            return amount;
+            return fuelRemaining;
         }
         else
         {
@@ -61,7 +61,7 @@ public class FuelTank : MonoBehaviour
             if(fuelGauge)
                 fuelGauge.SetAmount(fuelRemaining);
             
-            return temp;
+            return fuelRemaining;
         }
     }
     

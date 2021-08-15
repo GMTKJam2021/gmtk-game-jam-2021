@@ -28,9 +28,11 @@ public class PlayerMouseMovement : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                fuelTank.DepleteFuel( depletionRate * Time.fixedDeltaTime);
-                rb.AddForce(transform.up * speed);
-                anim.SetBool("Boosting", true);
+                if (fuelTank.DepleteFuel(depletionRate * Time.fixedDeltaTime) > 0)
+                {
+                    rb.AddForce(transform.up * speed);
+                    anim.SetBool("Boosting", true);
+                }
             }
             else
                 anim.SetBool("Boosting", false);
