@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: Team Fabulous
   productName: Orbital Recovery
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 0d55ed1e65902964394c8067785e4657, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.21176471, g: 0.078431375, b: 0.34901962, a: 1}
   m_ShowUnitySplashScreen: 1

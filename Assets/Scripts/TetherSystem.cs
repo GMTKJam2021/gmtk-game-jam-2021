@@ -11,8 +11,6 @@ public class TetherSystem : MonoBehaviour
 {
     public GameObject tetherHingeAnchor;
     public DistanceJoint2D tetherJoint;
-    public Transform crosshair;
-    public SpriteRenderer crosshairSprite;
     private bool tetherAttached;
     private Vector2 playerPosition;
     private Rigidbody2D tetherHingeAnchorRb;
@@ -63,13 +61,8 @@ public class TetherSystem : MonoBehaviour
         //Debug.DrawRay(transform.position, aimDirection, Color.red);
         playerPosition = transform.position;
 
-        if (!tetherAttached)
+        if (tetherAttached)
         {
-            SetCrosshairPosition(aimAngle);
-        }
-        else
-        {
-            crosshairSprite.enabled = false;
 
             if (tetherPositions.Count > 0)
             {
@@ -123,20 +116,6 @@ public class TetherSystem : MonoBehaviour
             oxygenTank.ReplenishOxygen(oxygenReplenishRate * Time.deltaTime);
             fuelTank.ReplenishFuel(FuelReplenishRate * Time.deltaTime);
         }
-    }
-
-    private void SetCrosshairPosition(float aimAngle)
-    {
-        if (!crosshairSprite.enabled)
-        {
-            crosshairSprite.enabled = true;
-        }
-
-        var x = transform.position.x + 1f * Mathf.Cos(aimAngle);
-        var y = transform.position.y + 1f * Mathf.Sin(aimAngle);
-
-        var crossHairPosition = new Vector3(x, y, 0);
-        crosshair.transform.position = crossHairPosition;
     }
 
     private void HandleInput(Vector2 aimDirection)

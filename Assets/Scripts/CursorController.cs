@@ -9,14 +9,13 @@ public class CursorController : MonoBehaviour
 {
     private SpriteRenderer sRend;
     private Vector2 cursorPosition;
-    [SerializeField] private Sprite cursorNormal;
-    [SerializeField] private Sprite cursorArrow;
-    [SerializeField] private Sprite cursorTarget;
+    private Animator anim;
 
     private void Awake()
     {
 
         sRend = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         Cursor.visible = false;
         Normal();
     }
@@ -28,22 +27,22 @@ public class CursorController : MonoBehaviour
         transform.position = cursorPosition;
     }
 
-    public void Arrow(Vector2 rotation)
-    {
-        transform.up = rotation;
-        sRend.sprite = cursorArrow;
-    }
-
     public void Normal()
     {
         transform.up = Vector2.zero;
-        sRend.sprite = cursorNormal;
+        anim.SetInteger("State", 0);
+    }
+
+    public void Arrow(Vector2 rotation)
+    {
+        transform.up = rotation;
+        anim.SetInteger("State", 1);
     }
 
     public void Target()
     {
         transform.up = Vector2.zero;
-        sRend.sprite = cursorTarget;
+        anim.SetInteger("State", 2);
     }
 
 }
