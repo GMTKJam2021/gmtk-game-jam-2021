@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 6426befc09a3f6a4095f39bf9be13f59
+guid: 0846eece28ab06447ac02fc6ef3af568
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -575800028427724159
-    second: creditButton-sheet_0
+      213: -6210058219405131837
+    second: button_stand-Sheet_0
   - first:
-      213: 8646043103332152336
-    second: creditButton-sheet_1
+      213: 4658802278053050198
+    second: button_stand-Sheet_1
+  - first:
+      213: 6696858537232676846
+    second: button_stand-Sheet_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -121,43 +124,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: creditButton-sheet_0
+      name: button_stand-Sheet_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 116
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 57
+        y: 81
+        width: 179
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18ad7e3cce85208f0800000000000000
-      internalID: -575800028427724159
+      spriteID: 3cfbcd5a3f071d9a0800000000000000
+      internalID: -6210058219405131837
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: creditButton-sheet_1
+      name: button_stand-Sheet_1
       rect:
         serializedVersion: 2
-        x: 118
-        y: 0
-        width: 112
-        height: 26
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 345
+        y: 84
+        width: 179
+        height: 68
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01434dec46aecf770800000000000000
-      internalID: 8646043103332152336
+      spriteID: 657f12e0df367a040800000000000000
+      internalID: 4658802278053050198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: button_stand-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 311
+        y: 0
+        width: 248
+        height: 57
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee7bbceab5500fc50800000000000000
+      internalID: 6696858537232676846
       vertices: []
       indices: 
       edges: []
