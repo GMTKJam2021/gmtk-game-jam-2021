@@ -19,6 +19,7 @@ public class MiniGameWindow : MonoBehaviour
     private MiniGameController miniGame;
     private Transform ret;
     private ModuleState currentModule;
+    [SerializeField] private PlayerInteraction player;
     [SerializeField] private float miniGameWidth = .8f;
     [SerializeField] private CursorController cursor;
 
@@ -82,6 +83,7 @@ public class MiniGameWindow : MonoBehaviour
         transform.localScale -= new Vector3(1f, 1f, 0) * Time.deltaTime * 2f;
         if (transform.localScale.x < 0.01f)
         {
+            player.CanFix();
             if (!scene.IsValid()) return;
             miniGame.transform.SetParent(ret);
             SceneManager.sceneUnloaded += OnSceneUnloaded;

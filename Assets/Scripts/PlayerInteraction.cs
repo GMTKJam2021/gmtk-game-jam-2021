@@ -39,8 +39,6 @@ public class PlayerInteraction : MonoBehaviour
             nearbyModules.Add(collision.GetComponent<ModuleState>());
             Debug.Log(collision.name + "in range");
             CanFix();
-            if (fixable)
-                cursor.Problem();
         }
             
     }
@@ -63,6 +61,8 @@ public class PlayerInteraction : MonoBehaviour
             if (!nearbyModules[i].moduleFixed)
             {
                 fixable = true;
+                if(!PlayerMouseMovement.inGame)
+                    cursor.Problem();
                 return;
             }
         }
