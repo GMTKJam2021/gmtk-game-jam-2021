@@ -53,7 +53,7 @@ public class ModuleState : MonoBehaviour
             //Debug.Log(gameObject.name + " is already fixed");
             return;
         }
-        PlayerMouseMovement.inGame = true;
+        PlayerMovement.inGame = true;
         miniGameWindow.LoadMinigame(miniGameName, this);
     }
 
@@ -62,7 +62,7 @@ public class ModuleState : MonoBehaviour
     /// </summary>
     public void FixResult(bool isFixed)
     {
-        PlayerMouseMovement.inGame = false;
+        PlayerMovement.inGame = false;
         if (isFixed)
         {
             //Debug.Log(gameObject.name + " is now fixed.");

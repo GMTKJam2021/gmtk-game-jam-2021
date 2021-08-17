@@ -14,7 +14,6 @@ public class ScoreKeeper : MonoBehaviour
     [SerializeField] private TMP_Text newHighScoreText;
     [SerializeField] private TMP_Text finalScoreText;
 
-
     private void Awake()
     {
         data = SaveSystem.Load();
@@ -22,6 +21,7 @@ public class ScoreKeeper : MonoBehaviour
             highScoreText.text = "Best: " + data.highScore;
         if(currentScoreText)
             currentScoreText.text = "Score: 0";
+        FindObjectOfType<PlayerMovement>().keyBoardControls = data.keyBoardControls;
     }
 
     /// <summary> Adds points to the score</summary>

@@ -14,7 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
-            if ( fixable && !PlayerMouseMovement.inGame)
+            if ( fixable && !PlayerMovement.inGame)
             {
                 try
                 {
@@ -54,7 +54,7 @@ public class PlayerInteraction : MonoBehaviour
             if (!nearbyModules[i].moduleFixed)
             {
                 fixable = true;
-                if(!PlayerMouseMovement.inGame)
+                if(!PlayerMovement.inGame)
                     cursor.Problem();
                 return;
             }

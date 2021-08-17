@@ -224,13 +224,14 @@ GameObject:
   - component: {fileID: 500741377374500888}
   - component: {fileID: 5334775013215584908}
   - component: {fileID: 5334775013215584915}
+  - component: {fileID: 6786832781639859468}
   - component: {fileID: 5334775013215584909}
   - component: {fileID: 7663549296206625519}
   - component: {fileID: 8933292911953002723}
   - component: {fileID: 288953565075591548}
   - component: {fileID: 451609091}
   m_Layer: 8
-  m_Name: PlayerMouse
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -471,7 +472,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  depletionRate: 10
+--- !u!114 &6786832781639859468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334775013215584910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aca0ec7b2feb054c9007ffd0b8b648b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
 --- !u!114 &5334775013215584909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -484,7 +497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a35d8bdc5d4b8594ea2467f5fabbf44d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tethered: 0
   cursor: {fileID: 0}
 --- !u!114 &7663549296206625519
 MonoBehaviour:
