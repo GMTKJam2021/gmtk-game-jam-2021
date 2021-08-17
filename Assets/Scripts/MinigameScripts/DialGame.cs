@@ -19,18 +19,13 @@ public class DialGame : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(dials[0].unlocked);
-        print(dials[1].unlocked);
-        print(dials[2].unlocked);
+        
         for (int i = 0; i < 6; i++)
         {
             float temp = Random.Range(1, 359);
             password[i] = temp - 5;
-            print(password[i]);
             i++;
             password[i] = temp + 5;
-            print(password[i]);
-            print(temp);
 
         }
     }
@@ -46,7 +41,6 @@ public class DialGame : MonoBehaviour
         if (!dials[0].unlocked)
             if (entry[0] > password[0] && entry[0] < password[1])
             {
-                print("unlocked");
                 dials[0].unlocked = true;
                 lights[0].sprite = lightOn;
                 timers[0] = 5;

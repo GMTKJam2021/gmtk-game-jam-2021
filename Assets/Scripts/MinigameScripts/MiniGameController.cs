@@ -18,7 +18,6 @@ public class MiniGameController : MonoBehaviour
     /// <param name="result">True if a player won, false if they lost or cancelled.</param>
     public void EndMiniGame(bool result)
     {
-        Debug.Log("End Game");
         FindObjectOfType<MiniGameWindow>().MiniGameEnd(result);
     }
 }

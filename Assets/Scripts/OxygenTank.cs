@@ -5,8 +5,8 @@ using UnityEngine;
 public class OxygenTank : MonoBehaviour
 {
 
+    /// <summary>The meter that displays how much oxygen remains in the tank.</summary>
     public MeterBar oxygenGauge;
-
     /// <summary> The max amount of oxygen the tank can hold</summary>
     [SerializeField] private float oxygenMax = 50f;
     /// <summary> The amount of oxygen remaining</summary>
@@ -15,6 +15,12 @@ public class OxygenTank : MonoBehaviour
     [SerializeField] private float refillRate = 5f;
     /// <summary> The rate at which the oxygen depletes</summary>
     [SerializeField] private float usageRate = 2f;
+
+    void Start()
+    {
+        if (oxygenGauge)
+            oxygenGauge.SetMaxAmount(oxygenMax);
+    }
 
     /// <summary> Refills the oxygen using the time provided and the refill rate</summary>
     /// <param name="timeDelta">The amount of time since the last refill point</param>
@@ -26,7 +32,7 @@ public class OxygenTank : MonoBehaviour
             if (oxygenRemaining>= oxygenMax)
             {
                 oxygenRemaining = oxygenMax;
-                Debug.Log("Oxygen Tank Full");
+                //Debug.Log("Oxygen Tank Full");
             }
         }
 
@@ -45,7 +51,7 @@ public class OxygenTank : MonoBehaviour
             if (oxygenRemaining <= 0)
             {
                 oxygenRemaining = 0;
-                Debug.Log("Oxygen Tank Empty");
+                //Debug.Log("Oxygen Tank Empty");
                 FindObjectOfType<MiniGameWindow>().MiniGameEnd(false);
                 GetComponent<ScoreKeeper>().Complete();
             }
@@ -53,11 +59,6 @@ public class OxygenTank : MonoBehaviour
 
         if(oxygenGauge)
             oxygenGauge.SetAmount(oxygenRemaining);
-    }
-
-    void Start(){
-        if(oxygenGauge)
-            oxygenGauge.SetMaxAmount(oxygenMax);
     }
 
 }

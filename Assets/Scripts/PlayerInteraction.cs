@@ -7,29 +7,22 @@ public class PlayerInteraction : MonoBehaviour
 {
     
     private List<ModuleState> nearbyModules = new List<ModuleState>();
-    private OxygenTank oxygenTank;
-    [SerializeField] private bool tethered = false;
     public static bool fixable;
     [SerializeField] private CursorController cursor;
 
-    private void Start()
-    {
-        oxygenTank = GetComponent<OxygenTank>();
-    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
             if ( fixable && !PlayerMouseMovement.inGame)
             {
-                FixableModule().AttemptFix();
+                try
+                {
+                    FixableModule().AttemptFix();
+                }
+                catch(System.NullReferenceException e)
+                { }
             }
-            else
-                Debug.Log("No Module Available");
-        if (tethered)
-            oxygenTank.ReplenishOxygen(Time.deltaTime);
-        else
-            oxygenTank.DepleteOxygen(Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -37,7 +30,7 @@ public class PlayerInteraction : MonoBehaviour
         if (collision.CompareTag("Module"))
         {
             nearbyModules.Add(collision.GetComponent<ModuleState>());
-            Debug.Log(collision.name + "in range");
+            //Debug.Log(collision.name + "in range");
             CanFix();
         }
             
@@ -47,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (collision.CompareTag("Module"))
         {
-            Debug.Log(collision.name + "out of range");
+            //Debug.Log(collision.name + "out of range");
             nearbyModules.Remove( collision.GetComponent<ModuleState>());
             if (nearbyModules.Count == 0)
                 fixable = false;

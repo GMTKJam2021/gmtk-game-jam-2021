@@ -395,7 +395,7 @@ public class SpaceStation : MonoBehaviour
                 {
                     continue;
                 }
-                Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
+                //Debug.Log("X: " + (x + moduleX) + " | Y: " + (y + moduleY));
 
                 foreach (var c in connections)
                 {
@@ -433,7 +433,7 @@ public class SpaceStation : MonoBehaviour
         if (modules[x, y].coreSection == StationModule.CoreSection.NotCore)
         {
             List<float> thisAngle = new List<float>();
-            Debug.Log("outangles");
+            //Debug.Log("outangles");
             foreach (var connection in modules[x, y].connections)
             {
                 thisAngle.Add(connection.outDirectionAngle);
@@ -442,12 +442,12 @@ public class SpaceStation : MonoBehaviour
             // StationConnection randomConnection = modules[x, y].connections[Random.Range(0, modules[x, y].connections.Count)];
             List<(int, int)> validNeighbors = GetNeighborsWithConnections(x, y, modules[x, y].connections);
             // float thisAngle = randomConnection.outDirectionAngle;
-            Debug.Log("neigh");
-            foreach (var n in validNeighbors)
+            //Debug.Log("neigh");
+/*            foreach (var n in validNeighbors)
             {
                 Debug.Log(n);
-            }
-            Debug.Log("end neigh");
+            }*/
+            //Debug.Log("end neigh");
 
             // This list will contain all the directions where a connection is valid
             List<float> targetAngle = new List<float>();
@@ -456,22 +456,22 @@ public class SpaceStation : MonoBehaviour
                 if (neighbor.Item1 < x)
                 {
                     targetAngle.Add(180);
-                    Debug.Log(180);
+                    //Debug.Log(180);
                 }
                 else if (neighbor.Item1 > x)
                 {
                     targetAngle.Add(0);
-                    Debug.Log(0);
+                    //Debug.Log(0);
                 }
                 else if (neighbor.Item2 < y)
                 {
                     targetAngle.Add(270);
-                    Debug.Log(270);
+                    //Debug.Log(270);
                 }
                 else if (neighbor.Item2 > y)
                 {
                     targetAngle.Add(90);
-                    Debug.Log(90);
+                    //Debug.Log(90);
                 }
             }
 
@@ -550,7 +550,7 @@ public class SpaceStation : MonoBehaviour
         GetComponent<CompositeCollider2D>().GenerateGeometry();
 
         // Done?
-        Debug.Log("Module Done");
+        // Debug.Log("Module Done");
 
     }
 

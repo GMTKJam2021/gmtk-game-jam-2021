@@ -30,9 +30,7 @@ public class TetherSystem : MonoBehaviour
 
     //Resource Fields
     private bool resourceType;
-    public float oxygenReplenishRate = 1f;
     public OxygenTank oxygenTank;
-    public float FuelReplenishRate = 1f;
     public FuelTank fuelTank;
     
     //Cursor Fields
@@ -121,10 +119,15 @@ public class TetherSystem : MonoBehaviour
         if (tetherAttached)
         {
             if(resourceType)
-                oxygenTank.ReplenishOxygen(oxygenReplenishRate * Time.deltaTime);
+                oxygenTank.ReplenishOxygen(Time.deltaTime);
             else
-                fuelTank.ReplenishFuel(FuelReplenishRate * Time.deltaTime);
+            {
+                fuelTank.ReplenishFuel(Time.deltaTime);
+                oxygenTank.DepleteOxygen(Time.deltaTime);
+            }
         }
+        else
+            oxygenTank.DepleteOxygen(Time.deltaTime);
     }
 
     private void HandleInput(Vector2 aimDirection)
@@ -147,17 +150,17 @@ public class TetherSystem : MonoBehaviour
                     // If the tether is attached, reset it
                     if (tetherAttached)
                     {
-                        Debug.Log("Detach tether");
+                        //Debug.Log("Detach tether");
                         ResetTether();
                     }
                     // Otherwise, attach it if possible
-                    Debug.Log("Attaching tether");
+                    //Debug.Log("Attaching tether");
                     tetherRenderer.enabled = true;
 
                     //If a node is hit then attach a tether
                     if (hit.collider != null)
                     {
-                        Debug.Log("Tether attached");
+                        //Debug.Log("Tether attached");
                         tetherAttached = true;
                         if (hit.collider.CompareTag("Oxygen"))
                         {

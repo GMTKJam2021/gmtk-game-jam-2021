@@ -34,7 +34,7 @@ public class ModuleState : MonoBehaviour
         beacon = GetComponent<Problem>();
         beacon.SetStatus(!moduleFixed);
 
-        Debug.Assert(visual != null);
+        //Debug.Assert(visual != null);
         UpdateVisual(State.Undamaged);
         brokenModules = FindObjectsOfType<ModuleState>().Length;
     }
@@ -50,7 +50,7 @@ public class ModuleState : MonoBehaviour
     {
         if (moduleFixed)
         {
-            Debug.Log(gameObject.name + " is already fixed");
+            //Debug.Log(gameObject.name + " is already fixed");
             return;
         }
         PlayerMouseMovement.inGame = true;
@@ -65,7 +65,7 @@ public class ModuleState : MonoBehaviour
         PlayerMouseMovement.inGame = false;
         if (isFixed)
         {
-            Debug.Log(gameObject.name + " is now fixed.");
+            //Debug.Log(gameObject.name + " is now fixed.");
             UpdateVisual(State.Repaired);
             moduleFixed = true;
             brokenModules--;
@@ -74,7 +74,7 @@ public class ModuleState : MonoBehaviour
             beacon.ProblemSolved();
             return;
         }
-        Debug.Log(gameObject.name + " is still broken.");
+        //Debug.Log(gameObject.name + " is still broken.");
     }
 
     public void TakeDamage(int amount)
@@ -97,11 +97,11 @@ public class ModuleState : MonoBehaviour
             UpdateVisual(State.Broken);
             moduleFixed = false;
             brokenModules++;
-            Debug.Log(gameObject.name + " is now broken.");
+            //Debug.Log(gameObject.name + " is now broken.");
             beacon.RequestHelp();
             return;
         }
-        Debug.Log(gameObject.name + " is already broken.");
+        //Debug.Log(gameObject.name + " is already broken.");
     }
 
     public void UpdateVisual(State state)

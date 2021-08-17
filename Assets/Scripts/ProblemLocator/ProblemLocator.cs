@@ -16,7 +16,7 @@ public class ProblemLocator : MonoBehaviour
     }
     public void RemoveProblem(Problem prob){
         problems2PointAt.Remove(prob);
-        Debug.Log("problems:"+problems2PointAt.Count);
+        //Debug.Log("problems:"+problems2PointAt.Count);
     }
 
     void Start(){

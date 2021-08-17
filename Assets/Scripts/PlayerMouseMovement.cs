@@ -10,7 +10,6 @@ public class PlayerMouseMovement : MonoBehaviour
     private Animator anim;
 
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float depletionRate = 10f;
 
     private Vector3 mousePosition;
 
@@ -28,8 +27,9 @@ public class PlayerMouseMovement : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (fuelTank.DepleteFuel(depletionRate * Time.fixedDeltaTime) > 0)
+                if (fuelTank.fuelRemaining > 0)
                 {
+                    fuelTank.DepleteFuel(Time.deltaTime);
                     rb.AddForce(transform.up * speed);
                     anim.SetBool("Boosting", true);
                 }
