@@ -53,7 +53,7 @@ public class OxygenTank : MonoBehaviour
                 oxygenRemaining = 0;
                 //Debug.Log("Oxygen Tank Empty");
                 FindObjectOfType<MiniGameWindow>().MiniGameEnd(false);
-                GetComponent<ScoreKeeper>().Complete();
+                FindObjectOfType<ScoreKeeper>().Complete();
             }
         }
 

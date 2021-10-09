@@ -47,7 +47,7 @@ public class ScoreKeeper : MonoBehaviour
     /// <summary> Switches to win screen and saves high scores.</summary>
     public void Complete()
     {
-        FindObjectOfType<CursorController>().Normal();
+        FindObjectOfType<CursorController>().LockedNormal();
         completeScreen.SetActive(true);
         if (currentScore > data.highScore)
         {

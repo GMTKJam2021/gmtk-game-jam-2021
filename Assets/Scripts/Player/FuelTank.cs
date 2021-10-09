@@ -53,7 +53,7 @@ public class FuelTank : MonoBehaviour
                 fuelRemaining = 0;
                 //Debug.Log("Fuel Tank Empty");
                 FindObjectOfType<MiniGameWindow>().MiniGameEnd(false);
-                GetComponent<ScoreKeeper>().Complete();
+                //FindObjectOfType<ScoreKeeper>().Complete();
             }
         }
 

@@ -144,10 +144,18 @@ PrefabInstance:
     - target: {fileID: 4478725179194805417, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1805823155}
+    - target: {fileID: 4478725179194805417, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: MainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 4478725179501994925, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 1805823155}
+    - target: {fileID: 4478725179501994925, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Retry
       objectReference: {fileID: 0}
     - target: {fileID: 4478725180033590908, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
       propertyPath: m_Texture
