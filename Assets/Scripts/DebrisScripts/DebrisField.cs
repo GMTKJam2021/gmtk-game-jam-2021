@@ -19,7 +19,8 @@ public class DebrisField : MonoBehaviour
     }
     
     public float spawnDistance = 20f;
-    public SpawnMetrics[] spawnOptions; 
+    public SpawnMetrics[] spawnOptions;
+    private float spawnRate = 1;
 
     CircleCollider2D bounds;
     public Collider2D Bounds { get{ return bounds; }}
@@ -50,10 +51,13 @@ public class DebrisField : MonoBehaviour
                 TrySpawn(metrics, child);
             }
         }
+        //The spawn rate will increase by 1 every 20 seconds
+        spawnRate += .005f * Time.deltaTime;
+        
     }
 
     public void TrySpawn(SpawnMetrics metrics, Transform parent){
-        if(Random.value > metrics.probability * Time.deltaTime) return;
+        if(Random.value > metrics.probability * Time.deltaTime * spawnRate) return;
 
         float direction = Random.Range(metrics.directionLowerBound, metrics.directionUpperBound)%360f;
         float speed = Random.Range(metrics.velocityLowerBound, metrics.velocityUpperBound);
