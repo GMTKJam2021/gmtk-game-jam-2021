@@ -15,7 +15,6 @@ public class DialController : MonoBehaviour, IDragHandler, IPointerDownHandler, 
         if (dragging && !unlocked)
         {
             mousePosition = Camera.main.ScreenToWorldPoint(eventData.position);
-            print(mousePosition);
             transform.up = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
             rotation = transform.rotation.eulerAngles.z;
         }

@@ -13,7 +13,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Down") || Input.GetMouseButtonDown(1))
             if ( fixable && !PlayerMovement.inGame)
             {
                 try

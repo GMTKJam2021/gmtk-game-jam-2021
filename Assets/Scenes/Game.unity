@@ -336,6 +336,14 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5334775013215584915, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5334775013215584915, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: rotateSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6065456260790140828, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: cursor
       value: 
@@ -344,6 +352,14 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 802298101}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: tetherMaxLength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: tetherMaxCastDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8933292911953002723, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: fuelGauge
       value: 

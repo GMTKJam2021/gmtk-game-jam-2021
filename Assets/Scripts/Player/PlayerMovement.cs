@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
 
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float rotateSpeed = 10f;
+    [SerializeField] private float rotateSpeed = 5f;
     public bool keyBoardControls;
 
     private Vector3 mousePosition;
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if(keyBoardControls)
             {
-                if (Input.GetKey(KeyCode.UpArrow))
+                if (Input.GetAxis("Vertical") > .1)
                 {
                     if (fuelTank.fuelRemaining > 0)
                     {
@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
                 }
                 else
                     anim.SetBool("Boosting", false);
-                if (Input.GetKey(KeyCode.LeftArrow))
-                    transform.Rotate(Vector3.forward, rotateSpeed);
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetAxis("Horizontal") < -.1)
+                    transform.Rotate(Vector3.forward, rotateSpeed); 
+                if (Input.GetAxis("Horizontal") > .1)
                     transform.Rotate(Vector3.forward, -1 * rotateSpeed);
             }
             else

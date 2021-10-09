@@ -19,7 +19,7 @@ public class TetherSystem : MonoBehaviour
     public LayerMask tetherLayerMask;
     public LayerMask connectionLayerMask;
     [SerializeField] private float tetherMaxCastDistance = 20f;
-    [SerializeField] private float tetherMaxLength = 30f;
+    [SerializeField] private float tetherMaxLength = 20f;
     [SerializeField] private float tetherLength = 0f;
     private List<Vector2> tetherPositions = new List<Vector2>();
     private bool distanceSet;
@@ -104,7 +104,7 @@ public class TetherSystem : MonoBehaviour
         }
 
         //Target Oxygen Module
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetButtonDown("Down") || Input.GetMouseButtonDown(1))
             targeting = true;
 
         HandleInput(aimDirection);
@@ -143,7 +143,7 @@ public class TetherSystem : MonoBehaviour
                 else
                     cursor.Target();
 
-                if (Input.GetMouseButtonUp(1))
+                if (Input.GetButtonUp("Down") || Input.GetMouseButtonUp(1))
                 {
                     cursor.Arrow(aimDirection);
                     targeting = false;
@@ -289,29 +289,32 @@ public class TetherSystem : MonoBehaviour
 
     private void HandleTetherLength()
     {
-        if ((Input.GetButton("Tether Retract") || Input.mouseScrollDelta.y < 0) && tetherAttached && !isColliding)
-        {
-            tetherJoint.distance -= Time.deltaTime * climbSpeed;
-            tetherLength -= Time.deltaTime * climbSpeed;
-        }
-        else if ((Input.GetButton("Tether Extend") || Input.mouseScrollDelta.y > 0) && tetherAttached && tetherLength < tetherMaxLength)
+        if ((Input.GetButton("Tether Extend")) && tetherAttached && tetherLength < tetherMaxLength)
         {
             tetherJoint.distance += Time.deltaTime * climbSpeed;
             tetherLength += Time.deltaTime * climbSpeed;
 
         }
-
-        if (Input.mouseScrollDelta.y < 0 && tetherAttached && !isColliding)
+        else if ((Input.GetButton("Tether Retract")) && tetherAttached && !isColliding)
         {
-            tetherJoint.distance -= Time.deltaTime * climbSpeed * Input.mouseScrollDelta.y * 10;
+            if (tetherLength < .2f) return;
+            tetherJoint.distance -= Time.deltaTime * climbSpeed;
             tetherLength -= Time.deltaTime * climbSpeed;
         }
-        else if (Input.mouseScrollDelta.y > 0 && tetherAttached && tetherLength < tetherMaxLength)
+        
+        if ((Input.mouseScrollDelta.y > 0) && tetherAttached && tetherLength < tetherMaxLength)
         {
-            tetherJoint.distance += Time.deltaTime * climbSpeed * Input.mouseScrollDelta.y * -10;
+            tetherJoint.distance += Time.deltaTime * climbSpeed * 5;
             tetherLength += Time.deltaTime * climbSpeed;
 
         }
+        else if ((Input.mouseScrollDelta.y < 0) && tetherAttached && !isColliding)
+        {
+            if (tetherLength < .2f) return;
+            tetherJoint.distance -= Time.deltaTime * climbSpeed * 5;
+            tetherLength -= Time.deltaTime * climbSpeed;
+        }
+        
     }
 
     // May be needed?
