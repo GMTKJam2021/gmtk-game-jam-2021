@@ -8,9 +8,11 @@ public class ScoreKeeper : MonoBehaviour
 {
     private SaveData data;
     private int currentScore;
+    private bool paused;
     [SerializeField] private TMP_Text highScoreText;
     [SerializeField] private TMP_Text currentScoreText;
     [SerializeField] private GameObject completeScreen;
+    [SerializeField] private GameObject pauseScreen;
     [SerializeField] private TMP_Text newHighScoreText;
     [SerializeField] private TMP_Text finalScoreText;
 
@@ -22,6 +24,15 @@ public class ScoreKeeper : MonoBehaviour
         if(currentScoreText)
             currentScoreText.text = "Score: 0";
         FindObjectOfType<PlayerMovement>().keyBoardControls = data.keyBoardControls;
+        paused = false;
+    }
+
+    private void Update()
+    {
+        if (Input.GetButtonDown("Pause"))
+            if (!paused)
+                Pause();
+            else Resume();
     }
 
     /// <summary> Adds points to the score</summary>
@@ -60,7 +71,25 @@ public class ScoreKeeper : MonoBehaviour
 
     public void Retry()
     {
+        FindObjectOfType<CursorController>().Normal();
+        Time.timeScale = 1;
         SceneManager.LoadScene("Game");
+    }
+    public void Pause()
+    {
+        paused = true;
+        FindObjectOfType<CursorController>().LockedNormal();
+        FindObjectOfType<MiniGameWindow>(true).gameObject.SetActive(false);
+        Time.timeScale = 0;
+        pauseScreen.SetActive(true);
+    }
+    public void Resume()
+    {
+        paused = false;
+        FindObjectOfType<CursorController>().Normal();
+        FindObjectOfType<MiniGameWindow>(true).gameObject.SetActive(true);
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
     }
 
     public void MainMenu()
