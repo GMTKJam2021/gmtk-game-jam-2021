@@ -22,6 +22,7 @@ public class ModuleState : MonoBehaviour
     bool changeColorIfDamagedOrBroken = false;
     public SpriteRenderer visual;
 
+
     public static int brokenModules;
     [SerializeField] private string miniGameName = "TestMinigame";
     [SerializeField] private bool connectable = false;
