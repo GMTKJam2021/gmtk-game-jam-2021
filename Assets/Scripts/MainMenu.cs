@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour
 
     private SaveData data;
     [SerializeField] private TMP_Text highScore;
+    [SerializeField] private TMP_Text highScore2;
     [SerializeField] private Slider controlsSlider;
     [SerializeField] private TMP_Text mControl1;
     [SerializeField] private TMP_Text mControl2;
@@ -42,7 +43,7 @@ public class MainMenu : MonoBehaviour
     {
         data = SaveSystem.Load();
         if(data.highScore > 0)
-            highScore.text = data.highScore.ToString();
+            highScore.text = highScore2.text = data.highScore.ToString();
         if (data.keyBoardControls)
             controlsSlider.value = 1;
             
