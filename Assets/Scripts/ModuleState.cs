@@ -19,11 +19,14 @@ public class ModuleState : MonoBehaviour
     public Sprite repairedSprite;
     public Sprite damagedSprite;
     public Sprite brokenSprite;
-    public bool changeColorIfDamagedOrBroken = false;
+    bool changeColorIfDamagedOrBroken = false;
     public SpriteRenderer visual;
 
     public static int brokenModules;
     [SerializeField] private string miniGameName = "TestMinigame";
+    [SerializeField] private bool connectable = false;
+    [SerializeField] private GameObject connectorL;
+    [SerializeField] private GameObject connectorR;
 
     // Start is called before the first frame update
     void Start()
@@ -110,6 +113,12 @@ public class ModuleState : MonoBehaviour
         {
             case State.Undamaged:
                 visual.sprite = undamagedSprite;
+                if (connectable)
+                {
+                    connectorL.SetActive(true);
+                    connectorR.SetActive(true);
+                    
+                }
                 if (changeColorIfDamagedOrBroken)
                 {
                     visual.color = Color.white;
@@ -117,13 +126,25 @@ public class ModuleState : MonoBehaviour
                 break;
             case State.Damaged:
                 visual.sprite = damagedSprite;
+                if (connectable)
+                {
+                    connectorL.SetActive(false);
+                    connectorR.SetActive(false);
+
+                }
                 if (changeColorIfDamagedOrBroken)
                 {
-                    visual.color = new Color(255, 119, 126, 255);
+                    visual.color = new Color(150, 150, 150, 255);
                 }
                 break;
             case State.Repaired:
                 visual.sprite = repairedSprite;
+                if (connectable)
+                {
+                    connectorL.SetActive(true);
+                    connectorR.SetActive(true);
+
+                }
                 if (changeColorIfDamagedOrBroken)
                 {
                     visual.color = Color.white;
@@ -131,6 +152,12 @@ public class ModuleState : MonoBehaviour
                 break;
             case State.Broken:
                 visual.sprite = brokenSprite;
+                if (connectable)
+                {
+                    connectorL.SetActive(false);
+                    connectorR.SetActive(false);
+
+                }
                 if (changeColorIfDamagedOrBroken)
                 {
                     visual.color = new Color(255, 119, 126, 255);

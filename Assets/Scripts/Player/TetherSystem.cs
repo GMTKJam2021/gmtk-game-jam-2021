@@ -18,6 +18,7 @@ public class TetherSystem : MonoBehaviour
     public LineRenderer tetherRenderer;
     public LayerMask tetherLayerMask;
     public LayerMask connectionLayerMask;
+    private GameObject currentConnector;
     [SerializeField] private float tetherMaxCastDistance = 20f;
     [SerializeField] private float tetherMaxLength = 20f;
     [SerializeField] private float tetherLength = 0f;
@@ -47,6 +48,9 @@ public class TetherSystem : MonoBehaviour
 
     private void Update()
     {
+        if(currentConnector != null)
+            if (!currentConnector.gameObject.activeSelf)
+                ResetTether();
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         Vector3 facingDirection = worldMousePosition - transform.position;
         float aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);
@@ -160,16 +164,19 @@ public class TetherSystem : MonoBehaviour
                     //If a node is hit then attach a tether
                     if (hit.collider != null)
                     {
+                        currentConnector = hit.collider.gameObject;
                         //Debug.Log("Tether attached");
                         tetherAttached = true;
                         if (hit.collider.CompareTag("Oxygen"))
                         {
                             tetherRenderer.startColor = Color.blue;
+                            tetherHingeAnchorSprite.color = Color.blue;
                             resourceType = true;
                         }
                         else
                         {
                             tetherRenderer.startColor = Color.red;
+                            tetherHingeAnchorSprite.color = Color.red;
                             resourceType = false;
                         }
                                
@@ -195,8 +202,11 @@ public class TetherSystem : MonoBehaviour
         }
     }
 
-    private void ResetTether()
+    public void ResetTether()
     {
+        currentConnector = null;
+        if (!tetherAttached)
+            return;
         tetherJoint.enabled = false;
         tetherAttached = false;
         tetherRenderer.positionCount = 2;

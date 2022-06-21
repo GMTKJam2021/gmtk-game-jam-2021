@@ -245,6 +245,12 @@ TextureImporter:
   - first:
       213: -5785686976915552244
     second: Final Station Tileset_80
+  - first:
+      213: -7208024255082417191
+    second: Final Station Tileset_81
+  - first:
+      213: 7387999779437744295
+    second: Final Station Tileset_82
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -2054,6 +2060,48 @@ TextureImporter:
       bones: []
       spriteID: c08485f295c15bfa0800000000000000
       internalID: -5785686976915552244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Final Station Tileset_81
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d3b9673124f7fb90800000000000000
+      internalID: -7208024255082417191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Final Station Tileset_82
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a01d06f7a2778660800000000000000
+      internalID: 7387999779437744295
       vertices: []
       indices: 
       edges: []
