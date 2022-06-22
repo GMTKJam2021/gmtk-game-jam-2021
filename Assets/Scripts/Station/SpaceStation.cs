@@ -103,7 +103,7 @@ public class SpaceStation : MonoBehaviour
         if (fuelSourceCount <= moduleCount * fuelSourceMinFrequency)
         {
             fuelSourceCount++;
-            return stationModulePrefabs[6];
+            return stationModulePrefabs[4];
         }
 
         if (Random.Range(0f, 1f) < moreConnectionsFrequency)

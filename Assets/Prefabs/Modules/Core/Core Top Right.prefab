@@ -78,15 +78,15 @@ PrefabInstance:
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: brokenSprite
       value: 
-      objectReference: {fileID: 7556953709233435225, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: -9033306981627991029, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: damagedSprite
       value: 
-      objectReference: {fileID: 7556953709233435225, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: -7715720773360330051, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: repairedSprite
       value: 
-      objectReference: {fileID: 1406022298535876194, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+      objectReference: {fileID: 7556953709233435225, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 8703360252821022853, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
       propertyPath: undamagedSprite
       value: 
@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Core Top Right
       objectReference: {fileID: 0}
+    - target: {fileID: 8703360252954232426, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1406022298535876194, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: d5b16a7a9d0a6e84ca1d1cac666aa64f, type: 3}

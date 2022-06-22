@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: brokenSprite
+      value: 
+      objectReference: {fileID: -1323290490211043259, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+    - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: damagedSprite
+      value: 
+      objectReference: {fileID: 536014339569324079, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
+    - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
+      propertyPath: repairedSprite
+      value: 
+      objectReference: {fileID: 1260650255730879869, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
     - target: {fileID: 4948339229301490275, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: m_RootOrder
       value: 0

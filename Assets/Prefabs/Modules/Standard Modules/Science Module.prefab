@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: modulePoints
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4948339229301490272, guid: 1198476eff5377e40a323068fb0fdf5c, type: 3}
       propertyPath: damagedSprite

@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3335061603332104305, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
+      propertyPath: miniGameName
+      value: MiniGame3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335061603332104305, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
+      propertyPath: modulePoints
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3335061603332104306, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -53,7 +61,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3335061603332104317, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
       propertyPath: m_Name
-      value: Brace X
+      value: Brace X Variant 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}

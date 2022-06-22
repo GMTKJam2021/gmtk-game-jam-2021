@@ -50,7 +50,7 @@ MonoBehaviour:
   - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
   - {fileID: 2009304604110888755, guid: 2c5d9456742e6b745888a7d07564b061, type: 3}
   - {fileID: 3700394184770742658, guid: 6633152d237366e41913c261047c8635, type: 3}
-  - {fileID: 3228152189342062826, guid: 944cd1bf774412a4bb1065b60a75dd14, type: 3}
+  - {fileID: 2947075863166982562, guid: a4777b8bc37c6ed4aa650ddce566525e, type: 3}
   - {fileID: 22491390565372461, guid: d2ae6bda565839e46855742f844b7116, type: 3}
   - {fileID: 4346056063682651519, guid: 88088ddb31674e44292a1bf52563adcc, type: 3}
   - {fileID: 5890609497531271944, guid: 21d74e4fd70adef4b9609751abb04097, type: 3}
@@ -63,22 +63,21 @@ MonoBehaviour:
   - {fileID: 7151893968876769688, guid: 0abbc29e6b4387844a383dbf498313c3, type: 3}
   - {fileID: 1306596186246856594, guid: 39ec6eb36d789aa469455b0aa048eddd, type: 3}
   - {fileID: 8267491017793042308, guid: d504f963283321b4aa7b7a87256c8bcb, type: 3}
-  - {fileID: 1150619604231462285, guid: c9e9d00c4f9bca8459645c24c54e713c, type: 3}
   - {fileID: 1682959532822148853, guid: 1e54f3b79b05fbc419e12fffdee94bee, type: 3}
   - {fileID: 6624253303724850317, guid: 8329e1edfd784f44e8d47b6f3006fa4c, type: 3}
   - {fileID: 3335061603332104317, guid: 699f33344ec14c448a947d77680a0dc8, type: 3}
   - {fileID: 1316161779330245082, guid: a9e383f922425e942bce5673305c25ba, type: 3}
   - {fileID: 5949589752660803016, guid: 4e3024a92f7fd304f801f26629d40705, type: 3}
-  - {fileID: 8136690421614967395, guid: 6792d77a5e19c6e4fa0fd2da9ecd7470, type: 3}
-  - {fileID: 5297058754688168634, guid: 7524a26766ca37a4eb0ecb57b01fa0d6, type: 3}
-  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
-  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
-  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
-  - {fileID: 2947075863166982562, guid: 8a6d75b6970df0d4ca360bba4ae4c623, type: 3}
   maxStationDimensions: {x: 13, y: 13}
   moduleToGridScaleFactor: 1
   gridOffset: {x: -6.5, y: -6.5, z: 0}
   moduleScaleInRate: 0.5
+  moduleCount: 0
+  oxygenSourceCount: 0
+  oxygenSourceMinFrequency: 0.1
+  fuelSourceCount: 0
+  fuelSourceMinFrequency: 0.05
+  moreConnectionsFrequency: 0.2
 --- !u!50 &7608618701962416991
 Rigidbody2D:
   serializedVersion: 4
