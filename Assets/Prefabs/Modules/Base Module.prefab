@@ -50,7 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moduleFixed: 1
   miniGameWindow: {fileID: 0}
-  modulePoints: 0
+  modulePoints: 1
   beacon: {fileID: 0}
   maxhp: 5
   hp: 0
@@ -59,7 +59,10 @@ MonoBehaviour:
   damagedSprite: {fileID: 1260650255730879869, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
   brokenSprite: {fileID: 1260650255730879869, guid: 83ac921d4be69564ea389f9d8bbe1663, type: 3}
   visual: {fileID: 4948339230239927439}
-  miniGameName: TestMinigame
+  miniGameName: MiniGame0
+  connectable: 0
+  connectorL: {fileID: 0}
+  connectorR: {fileID: 0}
 --- !u!114 &4948339229301490278
 MonoBehaviour:
   m_ObjectHideFlags: 0

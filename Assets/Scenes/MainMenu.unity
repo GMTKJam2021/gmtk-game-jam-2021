@@ -1798,7 +1798,7 @@ MonoBehaviour:
   wipeElapsed: 0
   unloadElapsed: 0
   highScore: {fileID: 1729602826}
-  highScore2: {fileID: 0}
+  highScore2: {fileID: 502693068}
   controlsSlider: {fileID: 1789111933}
   mControl1: {fileID: 1263635423}
   mControl2: {fileID: 1520755973}
