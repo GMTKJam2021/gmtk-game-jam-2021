@@ -17,7 +17,7 @@ public class BraceController : MonoBehaviour, IPointerClickHandler
         broken = false;
         image.sprite = unBrokenSprite;
         BraceGame.brokenCount--;
-        print(gameObject.name + " is not broken");
+        //print(gameObject.name + " is not broken");
     }
 
     void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
@@ -27,7 +27,7 @@ public class BraceController : MonoBehaviour, IPointerClickHandler
             broken = false;
             image.sprite = fixedSprite;
             BraceGame.brokenCount--;
-            print(gameObject.name + " is fixed");
+            //print(gameObject.name + " is fixed");
         }
     }
 }

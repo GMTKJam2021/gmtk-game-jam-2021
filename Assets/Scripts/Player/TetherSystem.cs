@@ -33,7 +33,8 @@ public class TetherSystem : MonoBehaviour
     private bool resourceType;
     public OxygenTank oxygenTank;
     public FuelTank fuelTank;
-    
+    [SerializeField] private PlayerInteraction player;
+
     //Cursor Fields
     [SerializeField] private CursorController cursor;
     private bool targeting;
@@ -50,7 +51,10 @@ public class TetherSystem : MonoBehaviour
     {
         if(currentConnector != null)
             if (!currentConnector.gameObject.activeSelf)
+            {
                 ResetTether();
+                player.CanFix();
+            }
         Vector3 worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f));
         Vector3 facingDirection = worldMousePosition - transform.position;
         float aimAngle = Mathf.Atan2(facingDirection.y, facingDirection.x);

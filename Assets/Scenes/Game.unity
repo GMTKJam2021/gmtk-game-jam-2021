@@ -264,6 +264,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4478725180033590909, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
   m_PrefabInstance: {fileID: 295304896}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &295903341 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5334775013215584909, guid: ad6689466d80405479eec052ad156331, type: 3}
+  m_PrefabInstance: {fileID: 395106303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a35d8bdc5d4b8594ea2467f5fabbf44d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &341061357 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4478725180033590910, guid: e64f6a09273264147a0eff435aa3efa5, type: 3}
@@ -372,6 +383,10 @@ PrefabInstance:
       propertyPath: cursor
       value: 
       objectReference: {fileID: 802298101}
+    - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 295903341}
     - target: {fileID: 7663549296206625519, guid: ad6689466d80405479eec052ad156331, type: 3}
       propertyPath: tetherMaxLength
       value: 2
@@ -1260,6 +1275,30 @@ PrefabInstance:
     - target: {fileID: 8611687254697642616, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
       propertyPath: m_Name
       value: DebrisField
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[0].directionLowerBound
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[0].directionUpperBound
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[1].directionLowerBound
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[1].directionUpperBound
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[2].directionLowerBound
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8611687254697642617, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
+      propertyPath: spawnOptions.Array.data[2].directionUpperBound
+      value: 360
       objectReference: {fileID: 0}
     - target: {fileID: 8611687254697642622, guid: bf81fad96c7d41b41b017d5fd9500273, type: 3}
       propertyPath: m_Enabled
